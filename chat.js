@@ -1088,7 +1088,7 @@ export {
   sleep,
   
   // State getters
-  isConversationActive: () => isConversationActive,
+  getIsConversationActive: () => isConversationActive,
   setConversationActive: (value) => { isConversationActive = value; }
 };
 
