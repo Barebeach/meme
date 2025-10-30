@@ -2855,22 +2855,36 @@ body::after {
 
 /* Enhanced Mobile Responsive */
 @media (max-width: 768px) {
-  /* Navigation */
+  /* Navigation - Stack Vertically */
   .top-nav {
     padding: 12px 16px;
   }
   
+  .nav-content {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  
+  .logo-section {
+    width: 100%;
+    justify-content: center;
+  }
+  
   .nav-logo {
-    height: 32px;
+    height: 28px;
   }
   
   .nav-menu {
-    gap: 16px;
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   
   .nav-link {
-    font-size: 12px;
-    padding: 6px 10px;
+    font-size: 11px;
+    padding: 6px 12px;
   }
   
   .social-links {

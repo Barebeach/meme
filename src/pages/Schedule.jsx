@@ -3,11 +3,19 @@ function Schedule() {
     {
       date: "Oct 31, 2025",
       time: "8:00 PM EST",
+      title: "Halloween Special",
+      guest: "Mystery Guest",
+      status: "upcoming",
+      thumbnail: "/memetalk.tv.png",
+      special: "🎃 Halloween Special"
+    },
+    {
+      date: "Nov 1, 2025",
+      time: "8:00 PM EST",
       title: "PopCat Takes Over",
       guest: "PopCat × Mr Cock",
       status: "upcoming",
-      thumbnail: "/popcat.jpg",
-      special: "🎃 Halloween Special"
+      thumbnail: "/popcat.jpg"
     }
   ];
 
