@@ -55,6 +55,7 @@ app.use(express.json());
 // Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
+app.use(express.static(path.join(__dirname, 'public'))); // Serve public folder for images like popcat.jpg
 
 // Serve frontend build if it exists
 const distPath = path.join(__dirname, 'dist');
