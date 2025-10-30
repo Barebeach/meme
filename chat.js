@@ -605,6 +605,10 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           recordingCallbacks.addDialogue(mrCockDialogue);
         }
         
+        // ⚡ START GENERATING PEPE'S RESPONSE IN PARALLEL (while Mr Cock is speaking)
+        console.log('⚡ PARALLEL GENERATION: Starting Pepe\'s response while Mr Cock speaks...');
+        const pepeResponsePromise = getPepeResponse(`${userQuestion.username} asked: "${userQuestion.question}"`, false, userQuestion.username);
+        
         console.log('🎙️ Mr Cock posing question to Pepe...');
         const mrCockResult2 = await generateSpeech(mrCockAsks, 'onyx', 'Mr Cock', 'normal', {
           question: userQuestion.question,
@@ -622,7 +626,9 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         
         await sleep(mrCockAskWaitTime);
         
-        const pepeAnswer = await getPepeResponse(`${userQuestion.username} asked: "${userQuestion.question}"`, false, userQuestion.username);
+        // ⚡ Pepe's response should be ready (or almost ready) by now!
+        console.log('⚡ Waiting for Pepe\'s response (should be ready soon)...');
+        const pepeAnswer = await pepeResponsePromise;
         console.log('🐸 Pepe response:', pepeAnswer);
         
         const pepeSpeakTime = calculateSpeakingTime(pepeAnswer);
@@ -701,6 +707,10 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
             hasAudio: true
           });
           
+          // ⚡ START GENERATING PEPE'S BANTER RESPONSE IN PARALLEL (while Mr Cock is speaking)
+          console.log('⚡ PARALLEL GENERATION: Starting Pepe\'s banter response while Mr Cock speaks...');
+          const pepeBanterPromise = getPepeResponse(mrCockBanter, false, 'everyone watching');
+          
           console.log('🎙️ Mr Cock asking about:', topic);
           const mrCockBanterResult = await generateSpeech(mrCockBanter, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
           const mrCockBanterTime = calculateSpeakingTime(mrCockBanter);
@@ -727,8 +737,9 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
             continue;
           }
           
-          console.log('🐸 Generating Pepe banter response...');
-          const pepeBanter = await getPepeResponse(mrCockBanter, false, 'everyone watching');
+          // ⚡ Pepe's banter response should be ready (or almost ready) by now!
+          console.log('⚡ Waiting for Pepe\'s banter response (should be ready soon)...');
+          const pepeBanter = await pepeBanterPromise;
           
           const pepeBanterTime = calculateSpeakingTime(pepeBanter);
           const pepeBanterSegments = analyzeEmotionalSegments(pepeBanter, pepeBanterTime);
