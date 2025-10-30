@@ -1,0 +1,501 @@
+{
+  "episodeNumber": 1,
+  "startTime": "2025-10-29T13:48:34.419Z",
+  "endTime": "2025-10-29T13:54:55.310Z",
+  "dialogue": [
+    {
+      "id": 1761745762264,
+      "user": "Mr Cock",
+      "message": "Greetings, esteemed viewer. I must inquire, in the vast sea of internet iconography, does the visage of Mr. Cock embody profundity or absurdity? Do we find ourselves gazing upon a meme, or does the meme peer back at us, questioning the very nature of our existence?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "Greetings, esteemed viewer.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4333.333333333334
+        },
+        {
+          "text": "I must inquire, in the vast sea of internet iconography, does the visage of Mr.",
+          "emotion": "normal",
+          "startTime": 4333.333333333334,
+          "duration": 4333.333333333334
+        },
+        {
+          "text": "Cock embody profundity or absurdity?",
+          "emotion": "normal",
+          "startTime": 8666.666666666668,
+          "duration": 4333.333333333334
+        },
+        {
+          "text": "Do we find ourselves gazing upon a meme, or does the meme peer back at us, questioning the very nature of our existence?",
+          "emotion": "thinking",
+          "startTime": 13000.000000000002,
+          "duration": 4333.333333333334
+        }
+      ],
+      "questionData": {
+        "question": "hi mr cock",
+        "username": "hello"
+      }
+    },
+    {
+      "id": 1761745782957,
+      "user": "Mr Cock",
+      "message": "hello from chat asks: \"hello pepe how are you ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "hello from chat asks: \"hello pepe how are you ?",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2888.888888888889
+        },
+        {
+          "text": "\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 2888.888888888889,
+          "duration": 2888.888888888889
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 5777.777777777778,
+          "duration": 2888.888888888889
+        }
+      ],
+      "questionData": {
+        "question": "hello pepe how are you ?",
+        "username": "hello"
+      }
+    },
+    {
+      "id": 1761745827921,
+      "user": "Mr Cock",
+      "message": "hello from chat asks: \"why isnt pepe avalable ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "hello from chat asks: \"why isnt pepe avalable ?",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2777.7777777777774
+        },
+        {
+          "text": "\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 2777.7777777777774,
+          "duration": 2777.7777777777774
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 5555.555555555555,
+          "duration": 2777.7777777777774
+        }
+      ],
+      "questionData": {
+        "question": "why isnt pepe avalable ?",
+        "username": "hello"
+      }
+    },
+    {
+      "id": 1761745865740,
+      "user": "Mr Cock",
+      "message": "hello from chat asks: \"why does pepe change faces like that ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "hello from chat asks: \"why does pepe change faces like that ?",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 3111.111111111111
+        },
+        {
+          "text": "\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 3111.111111111111,
+          "duration": 3111.111111111111
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 6222.222222222222,
+          "duration": 3111.111111111111
+        }
+      ],
+      "questionData": {
+        "question": "why does pepe change faces like that ?",
+        "username": "hello"
+      }
+    },
+    {
+      "id": 1761745917191,
+      "user": "Mr Cock",
+      "message": "Ah, dear viewer, your query regarding my perceived lack of gentleness towards the denizens of this digital realm has deeply touched me. Allow me to clarify that my intentions are solely focused on unraveling the intricate tapestry of memes with the utmost sincerity. As a sage of the memeosphere, I am duty-bound to scrutinize, analyze, and illuminate even the most whimsical of jests with unyielding seriousness. Fear not, for my scrutiny is but a testament to the reverence I hold",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "Ah, dear viewer, your query regarding my perceived lack of gentleness towards the denizens of this digital realm has deeply touched me.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 9555.555555555557
+        },
+        {
+          "text": "Allow me to clarify that my intentions are solely focused on unraveling the intricate tapestry of memes with the utmost sincerity.",
+          "emotion": "normal",
+          "startTime": 9555.555555555557,
+          "duration": 9555.555555555557
+        },
+        {
+          "text": "As a sage of the memeosphere, I am duty-bound to scrutinize, analyze, and illuminate even the most whimsical of jests with unyielding seriousness.",
+          "emotion": "normal",
+          "startTime": 19111.111111111113,
+          "duration": 9555.555555555557
+        }
+      ],
+      "questionData": {
+        "question": "why is mr cock so mean to us ?",
+        "username": "hello"
+      }
+    },
+    {
+      "id": 1761745952857,
+      "user": "Mr Cock",
+      "message": "Ah, dear interlocutor, your inquiry touches upon the layers of interpretation within the realm of meme taxonomy. While the association of the term \"cock\" with vulgar connotations is not uncommon, I implore you to reconsider your preconceived notions. Just as the Renaissance masterpieces of yore pushed boundaries, so too does the evolution of meme culture challenge our perceptions. Let us engage in discourse with intellectual rigor and dialectical finesse, for true enlightenment comes not from the shallow waters of mockery",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "Ah, dear interlocutor, your inquiry touches upon the layers of interpretation within the realm of meme taxonomy.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 9555.555555555557
+        },
+        {
+          "text": "While the association of the term \"cock\" with vulgar connotations is not uncommon, I implore you to reconsider your preconceived notions.",
+          "emotion": "angry",
+          "startTime": 9555.555555555557,
+          "duration": 9555.555555555557
+        },
+        {
+          "text": "Just as the Renaissance masterpieces of yore pushed boundaries, so too does the evolution of meme culture challenge our perceptions.",
+          "emotion": "normal",
+          "startTime": 19111.111111111113,
+          "duration": 9555.555555555557
+        }
+      ],
+      "questionData": {
+        "question": "why isnt cock just a stupid cock sucker ?",
+        "username": "hello"
+      }
+    }
+  ],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745717889.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1761745738558.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\angry.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745765558.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Greetings, esteemed viewer. I must inquire, in the vast sea of internet iconography, does the visage of Mr. Cock embody profundity or absurdity? Do we find ourselves gazing upon a meme, or does the meme peer back at us, questioning the very nature of our existence?",
+      "emotionSegments": null,
+      "questionText": "hi mr cock",
+      "questionUsername": "hello"
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745786416.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "hello from chat asks: \"hello pepe how are you ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "hello pepe how are you ?",
+      "questionUsername": "hello"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761745802110.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Listen here, hello. You really wanna know how I'm doing? I'm here dealing with broke clowns like you asking me dumb shit instead of getting a life. Go touch some grass before I leap through this screen and rearrange your face into a Pepe masterpiece, you absolute waste of bandwidth. How am I doing? I'm doing great up until you popped up with your basic-ness. Pfft, hello more like goodbye, loser.",
+      "emotionSegments": [
+        {
+          "text": "Listen here, hello.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 3666.666666666667
+        },
+        {
+          "text": "You really wanna know how I'm doing?",
+          "emotion": "normal",
+          "startTime": 3666.666666666667,
+          "duration": 3666.666666666667
+        },
+        {
+          "text": "I'm here dealing with broke clowns like you asking me dumb shit instead of getting a life.",
+          "emotion": "angry",
+          "startTime": 7333.333333333334,
+          "duration": 3666.666666666667
+        },
+        {
+          "text": "Go touch some grass before I leap through this screen and rearrange your face into a Pepe masterpiece, you absolute waste of bandwidth.",
+          "emotion": "angry",
+          "startTime": 11000,
+          "duration": 3666.666666666667
+        },
+        {
+          "text": "How am I doing?",
+          "emotion": "normal",
+          "startTime": 14666.666666666668,
+          "duration": 3666.666666666667
+        },
+        {
+          "text": "I'm doing great up until you popped up with your basic-ness.",
+          "emotion": "happy",
+          "startTime": 18333.333333333336,
+          "duration": 3666.666666666667
+        },
+        {
+          "text": "Pfft, hello more like goodbye, loser.",
+          "emotion": "normal",
+          "startTime": 22000.000000000004,
+          "duration": 3666.666666666667
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745830271.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "hello from chat asks: \"why isnt pepe avalable ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "why isnt pepe avalable ?",
+      "questionUsername": "hello"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761745844929.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Listen here, \"hello,\" you ignorant little worm. Pepe's not available because he's too busy dodging losers like you on the internet. Do us all a favor and go touch grass before I reach through the screen and rearrange your face, you dusty, broke ass clown. Pepe's too savage for your pathetic existence. Deal with it, peasant!",
+      "emotionSegments": [
+        {
+          "text": "Listen here, \"hello,\" you ignorant little worm.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "Pepe's not available because he's too busy dodging losers like you on the internet.",
+          "emotion": "normal",
+          "startTime": 4133.333333333334,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "Do us all a favor and go touch grass before I reach through the screen and rearrange your face, you dusty, broke ass clown.",
+          "emotion": "angry",
+          "startTime": 8266.666666666668,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "Pepe's too savage for your pathetic existence.",
+          "emotion": "angry",
+          "startTime": 12400.000000000002,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "Deal with it, peasant!",
+          "emotion": "normal",
+          "startTime": 16533.333333333336,
+          "duration": 4133.333333333334
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745868501.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "hello from chat asks: \"why does pepe change faces like that ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "why does pepe change faces like that ?",
+      "questionUsername": "hello"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1761745889537.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\thinking.mp4",
+      "text": "Oh, look who it is, hello getting brave with a question. Listen here, you absolute simp. I change faces because dealing with morons like you has me constantly switching between disgust and disbelief. I'd come through this screen and rearrange that hideous face of yours if I could, but unfortunately for you, I'm stuck in meme form. Now go touch grass before I rearrange your face for you, dumb fuck.",
+      "emotionSegments": [
+        {
+          "text": "Oh, look who it is, hello getting brave with a question.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 5066.666666666666
+        },
+        {
+          "text": "Listen here, you absolute simp.",
+          "emotion": "normal",
+          "startTime": 5066.666666666666,
+          "duration": 5066.666666666666
+        },
+        {
+          "text": "I change faces because dealing with morons like you has me constantly switching between disgust and disbelief.",
+          "emotion": "normal",
+          "startTime": 10133.333333333332,
+          "duration": 5066.666666666666
+        },
+        {
+          "text": "I'd come through this screen and rearrange that hideous face of yours if I could, but unfortunately for you, I'm stuck in meme form.",
+          "emotion": "sad",
+          "startTime": 15199.999999999998,
+          "duration": 5066.666666666666
+        },
+        {
+          "text": "Now go touch grass before I rearrange your face for you, dumb fuck.",
+          "emotion": "angry",
+          "startTime": 20266.666666666664,
+          "duration": 5066.666666666666
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745922893.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Ah, dear viewer, your query regarding my perceived lack of gentleness towards the denizens of this digital realm has deeply touched me. Allow me to clarify that my intentions are solely focused on unraveling the intricate tapestry of memes with the utmost sincerity. As a sage of the memeosphere, I am duty-bound to scrutinize, analyze, and illuminate even the most whimsical of jests with unyielding seriousness. Fear not, for my scrutiny is but a testament to the reverence I hold",
+      "emotionSegments": null,
+      "questionText": "why is mr cock so mean to us ?",
+      "questionUsername": "hello"
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745959920.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Ah, dear interlocutor, your inquiry touches upon the layers of interpretation within the realm of meme taxonomy. While the association of the term \"cock\" with vulgar connotations is not uncommon, I implore you to reconsider your preconceived notions. Just as the Renaissance masterpieces of yore pushed boundaries, so too does the evolution of meme culture challenge our perceptions. Let us engage in discourse with intellectual rigor and dialectical finesse, for true enlightenment comes not from the shallow waters of mockery",
+      "emotionSegments": null,
+      "questionText": "why isnt cock just a stupid cock sucker ?",
+      "questionUsername": "hello"
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761745996879.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Ah, Pepe, harbinger of internet culture, bearer of mirth and chaos. In this wondrous age of non-fungible tokens, one must ponder: were NFTs merely a transient hallucination in the collective consciousness, or do they hold the key to a new paradigm of digital artistry? Does the rare Pepe reveal to us the elusive nature of authenticity in the ever-shifting landscape of memes, or do we simply chase shadows in a pixelated dream?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761746030795.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Oh look, Mr. Cock swinging his thesaurus around like a limp dick trying to sound all intellectual. You might as well be juggling alpacas for all the sense you're making. NFTs, paradigm shift, rare Pepes - it's like you exclusively speak bullshit. Go touch grass before I ram your pseudo-intellectual musings so far up your arse you taste Wikipedia. Giggling at your foolishness is the only fun I get out of this crap.",
+      "emotionSegments": [
+        {
+          "text": "Oh look, Mr.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4388.888888888889
+        },
+        {
+          "text": "Cock swinging his thesaurus around like a limp dick trying to sound all intellectual.",
+          "emotion": "normal",
+          "startTime": 4388.888888888889,
+          "duration": 4388.888888888889
+        },
+        {
+          "text": "You might as well be juggling alpacas for all the sense you're making.",
+          "emotion": "normal",
+          "startTime": 8777.777777777777,
+          "duration": 4388.888888888889
+        },
+        {
+          "text": "NFTs, paradigm shift, rare Pepes - it's like you exclusively speak bullshit.",
+          "emotion": "angry",
+          "startTime": 13166.666666666666,
+          "duration": 4388.888888888889
+        },
+        {
+          "text": "Go touch grass before I ram your pseudo-intellectual musings so far up your arse you taste Wikipedia.",
+          "emotion": "angry",
+          "startTime": 17555.555555555555,
+          "duration": 4388.888888888889
+        },
+        {
+          "text": "Giggling at your foolishness is the only fun I get out of this crap.",
+          "emotion": "normal",
+          "startTime": 21944.444444444445,
+          "duration": 4388.888888888889
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761746063297.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1761745717889.mp3",
+    "pepe-1761745738558.mp3",
+    "mrcock-1761745765558.mp3",
+    "mrcock-1761745786416.mp3",
+    "pepe-1761745802110.mp3",
+    "mrcock-1761745830271.mp3",
+    "pepe-1761745844929.mp3",
+    "mrcock-1761745868501.mp3",
+    "pepe-1761745889537.mp3",
+    "mrcock-1761745922893.mp3",
+    "mrcock-1761745959920.mp3",
+    "mrcock-1761745996879.mp3",
+    "pepe-1761746030795.mp3",
+    "mrcock-1761746063297.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 1: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Oct 29, 2025",
+    "duration": "5:00",
+    "videoFile": "episode-1-1761746095310.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

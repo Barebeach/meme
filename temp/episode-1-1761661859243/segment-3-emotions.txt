@@ -1,0 +1,5 @@
+file 'C:\Users\Phill\Desktop\memetalk.tv\memetalk-app\temp\episode-1-1761661859243\segment-3-emotion-0.mp4'
+file 'C:\Users\Phill\Desktop\memetalk.tv\memetalk-app\temp\episode-1-1761661859243\segment-3-emotion-1.mp4'
+file 'C:\Users\Phill\Desktop\memetalk.tv\memetalk-app\temp\episode-1-1761661859243\segment-3-emotion-2.mp4'
+file 'C:\Users\Phill\Desktop\memetalk.tv\memetalk-app\temp\episode-1-1761661859243\segment-3-emotion-3.mp4'
+file 'C:\Users\Phill\Desktop\memetalk.tv\memetalk-app\temp\episode-1-1761661859243\segment-3-emotion-4.mp4'

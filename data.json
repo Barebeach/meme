@@ -1,0 +1,15 @@
+{
+  "broadcastState": {
+    "isLive": true,
+    "countdown": null,
+    "episodeStarted": true,
+    "currentEpisode": null,
+    "startTime": "2025-10-27T11:51:44.312Z"
+  },
+  "schedule": [],
+  "videos": {
+    "hosts": {},
+    "guests": {}
+  },
+  "episodes": []
+}

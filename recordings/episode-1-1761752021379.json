@@ -1,0 +1,1317 @@
+{
+  "episodeNumber": 1,
+  "startTime": "2025-10-29T15:17:35.350Z",
+  "endTime": "2025-10-29T15:33:41.379Z",
+  "dialogue": [
+    {
+      "id": 1761751102923,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe @pepe why are you gay\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe @pepe why are you gay\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4333.333333333334
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 4333.333333333334,
+          "duration": 4333.333333333334
+        }
+      ],
+      "questionData": {
+        "question": "@pepe @pepe why are you gay",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751142229,
+      "user": "Mr Cock",
+      "message": "Ah, a question as profound as it is absurd. Dear viewers, asking why Mr. Cock is \"gay\" is a bit like pondering the meaning of a meme in the vast expanse of internet culture. It's an enigma wrapped in a riddle, sprinkled with a dash of whimsy. As for the answer... let me consult the ancient scrolls of humor and get back to you, haha!",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "Ah, a question as profound as it is absurd.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 3944.444444444445
+        },
+        {
+          "text": "Dear viewers, asking why Mr.",
+          "emotion": "normal",
+          "startTime": 3944.444444444445,
+          "duration": 3944.444444444445
+        },
+        {
+          "text": "Cock is \"gay\" is a bit like pondering the meaning of a meme in the vast expanse of internet culture.",
+          "emotion": "normal",
+          "startTime": 7888.88888888889,
+          "duration": 3944.444444444445
+        },
+        {
+          "text": "It's an enigma wrapped in a riddle, sprinkled with a dash of whimsy.",
+          "emotion": "normal",
+          "startTime": 11833.333333333334,
+          "duration": 3944.444444444445
+        },
+        {
+          "text": "As for the answer...",
+          "emotion": "normal",
+          "startTime": 15777.77777777778,
+          "duration": 3944.444444444445
+        },
+        {
+          "text": "let me consult the ancient scrolls of humor and get back to you, haha!",
+          "emotion": "laughing",
+          "startTime": 19722.222222222223,
+          "duration": 3944.444444444445
+        }
+      ],
+      "questionData": {
+        "question": "@mrcock @mrcock why is mr cock gay",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751169566,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe why is mr cock homosexual\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe why is mr cock homosexual\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4333.333333333334
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 4333.333333333334,
+          "duration": 4333.333333333334
+        }
+      ],
+      "questionData": {
+        "question": "@pepe why is mr cock homosexual",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751209911,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe cock sucker\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe cock sucker\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 3833.3333333333335
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 3833.3333333333335,
+          "duration": 3833.3333333333335
+        }
+      ],
+      "questionData": {
+        "question": "@pepe cock sucker",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751246010,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe , you genius !\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe , you genius !",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2777.7777777777774
+        },
+        {
+          "text": "\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 2777.7777777777774,
+          "duration": 2777.7777777777774
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 5555.555555555555,
+          "duration": 2777.7777777777774
+        }
+      ],
+      "questionData": {
+        "question": "@pepe , you genius !",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751286138,
+      "user": "Mr Cock",
+      "message": "Ah, the eloquence of internet discourse never fails to amaze me. It's like receiving a digital bouquet of insults. Now, let's ponder the existential query of our times: If a meme falls in the forest of the internet and no one is around to retweet it, does it make a sound? Haha!",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "Ah, the eloquence of internet discourse never fails to amaze me.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4833.333333333333
+        },
+        {
+          "text": "It's like receiving a digital bouquet of insults.",
+          "emotion": "normal",
+          "startTime": 4833.333333333333,
+          "duration": 4833.333333333333
+        },
+        {
+          "text": "Now, let's ponder the existential query of our times: If a meme falls in the forest of the internet and no one is around to retweet it, does it make a sound?",
+          "emotion": "normal",
+          "startTime": 9666.666666666666,
+          "duration": 4833.333333333333
+        },
+        {
+          "text": "Haha!",
+          "emotion": "laughing",
+          "startTime": 14500,
+          "duration": 4833.333333333333
+        }
+      ],
+      "questionData": {
+        "question": "@mrcock you shithead",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751642826,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe fuck mr cock\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe fuck mr cock\" Let me pose this to our guest.",
+          "emotion": "angry",
+          "startTime": 0,
+          "duration": 4000
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 4000,
+          "duration": 4000
+        }
+      ],
+      "questionData": {
+        "question": "@pepe fuck mr cock",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751685127,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe fuck\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe fuck\" Let me pose this to our guest.",
+          "emotion": "angry",
+          "startTime": 0,
+          "duration": 3666.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 3666.6666666666665,
+          "duration": 3666.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe fuck",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751725039,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe do you thing you are gay ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe do you thing you are gay ?",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 3111.111111111111
+        },
+        {
+          "text": "\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 3111.111111111111,
+          "duration": 3111.111111111111
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 6222.222222222222,
+          "duration": 3111.111111111111
+        }
+      ],
+      "questionData": {
+        "question": "@pepe do you thing you are gay ?",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751765883,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe why isnt pepe a fucking dick ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe why isnt pepe a fucking dick ?",
+          "emotion": "angry",
+          "startTime": 0,
+          "duration": 3111.111111111111
+        },
+        {
+          "text": "\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 3111.111111111111,
+          "duration": 3111.111111111111
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 6222.222222222222,
+          "duration": 3111.111111111111
+        }
+      ],
+      "questionData": {
+        "question": "@pepe why isnt pepe a fucking dick ?",
+        "username": "sss"
+      }
+    },
+    {
+      "id": 1761751835971,
+      "user": "Mr Cock",
+      "message": "sss from chat asks: \"@pepe why isnt pepe a koocksniper ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "emotionSegments": [
+        {
+          "text": "sss from chat asks: \"@pepe why isnt pepe a koocksniper ?",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 3000
+        },
+        {
+          "text": "\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 3000,
+          "duration": 3000
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 6000,
+          "duration": 3000
+        }
+      ],
+      "questionData": {
+        "question": "@pepe why isnt pepe a koocksniper ?",
+        "username": "sss"
+      }
+    }
+  ],
+  "chat": [
+    {
+      "id": 1761751614085,
+      "user": "sss",
+      "message": "@pepe fuck mr cock",
+      "timestamp": "Just now",
+      "isYou": false
+    },
+    {
+      "id": 1761751632093,
+      "user": "sss",
+      "message": "@pepe fuck",
+      "timestamp": "Just now",
+      "isYou": false
+    },
+    {
+      "id": 1761751642733,
+      "user": "sss",
+      "message": "@pepe do you thing you are gay ?",
+      "timestamp": "Just now",
+      "isYou": false
+    },
+    {
+      "id": 1761751654668,
+      "user": "sss",
+      "message": "@pepe why isnt pepe a fucking dick ?",
+      "timestamp": "Just now",
+      "isYou": false
+    },
+    {
+      "id": 1761751670660,
+      "user": "sss",
+      "message": "@why hasent anyone created a dick meme?",
+      "timestamp": "Just now",
+      "isYou": false
+    },
+    {
+      "id": 1761751681662,
+      "user": "sss",
+      "message": "@why hasnt anyone create a dog penis ?",
+      "timestamp": "Just now",
+      "isYou": false
+    },
+    {
+      "id": 1761751694588,
+      "user": "sss",
+      "message": "@pepe why isnt pepe a koocksniper ?",
+      "timestamp": "Just now",
+      "isYou": false
+    }
+  ],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751058652.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1761751080574.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\angry.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751106604.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe @pepe why are you gay\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe @pepe why are you gay",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751120406.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Well well, look who woke up from their Discord mod-induced coma. Asking a question as pointless as asking a Twitter bot for relationship advice, sss? Come on, even a crypto rugpull has more substance than that inquiry. Your commentary is about as relevant as a floppy disk in 2021, haha.",
+      "emotionSegments": [
+        {
+          "text": "Well well, look who woke up from their Discord mod-induced coma.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4666.666666666667
+        },
+        {
+          "text": "Asking a question as pointless as asking a Twitter bot for relationship advice, sss?",
+          "emotion": "thinking",
+          "startTime": 4666.666666666667,
+          "duration": 4666.666666666667
+        },
+        {
+          "text": "Come on, even a crypto rugpull has more substance than that inquiry.",
+          "emotion": "normal",
+          "startTime": 9333.333333333334,
+          "duration": 4666.666666666667
+        },
+        {
+          "text": "Your commentary is about as relevant as a floppy disk in 2021, haha.",
+          "emotion": "happy",
+          "startTime": 14000,
+          "duration": 4666.666666666667
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751145838.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Ah, a question as profound as it is absurd. Dear viewers, asking why Mr. Cock is \"gay\" is a bit like pondering the meaning of a meme in the vast expanse of internet culture. It's an enigma wrapped in a riddle, sprinkled with a dash of whimsy. As for the answer... let me consult the ancient scrolls of humor and get back to you, haha!",
+      "emotionSegments": null,
+      "questionText": "@mrcock @mrcock why is mr cock gay",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751172350.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe why is mr cock homosexual\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe why is mr cock homosexual",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751185983.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Ah, sss, diving into such mind-numbing inquiries really highlights the sheer depths of your intellect. It's like your brain took a detour through a crypto rugpull and never quite recovered. Perhaps Mr. Cock finds joy in deflecting from your sheer lack of mental capacity. But hey, keep those questions coming, you're single-handedly fueling the comedy industry, haha.",
+      "emotionSegments": [
+        {
+          "text": "Ah, sss, diving into such mind-numbing inquiries really highlights the sheer depths of your intellect.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4200
+        },
+        {
+          "text": "It's like your brain took a detour through a crypto rugpull and never quite recovered.",
+          "emotion": "normal",
+          "startTime": 4200,
+          "duration": 4200
+        },
+        {
+          "text": "Perhaps Mr.",
+          "emotion": "thinking",
+          "startTime": 8400,
+          "duration": 4200
+        },
+        {
+          "text": "Cock finds joy in deflecting from your sheer lack of mental capacity.",
+          "emotion": "normal",
+          "startTime": 12600,
+          "duration": 4200
+        },
+        {
+          "text": "But hey, keep those questions coming, you're single-handedly fueling the comedy industry, haha.",
+          "emotion": "happy",
+          "startTime": 16800,
+          "duration": 4200
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751213246.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe cock sucker\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe cock sucker",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751226963.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Well, well, well, look who's flinging out insults like a toddler tossing Nerf balls. sss, you're the human embodiment of a Twitter troll who skipped basic manners for the sake of being a keyboard warrior. Have fun trying to outwit me with your IQ lower than a crypto rugpull victim, haha!",
+      "emotionSegments": [
+        {
+          "text": "Well, well, well, look who's flinging out insults like a toddler tossing Nerf balls.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 6333.333333333333
+        },
+        {
+          "text": "sss, you're the human embodiment of a Twitter troll who skipped basic manners for the sake of being a keyboard warrior.",
+          "emotion": "normal",
+          "startTime": 6333.333333333333,
+          "duration": 6333.333333333333
+        },
+        {
+          "text": "Have fun trying to outwit me with your IQ lower than a crypto rugpull victim, haha!",
+          "emotion": "happy",
+          "startTime": 12666.666666666666,
+          "duration": 6333.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751248028.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe , you genius !\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe , you genius !",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751262188.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Ah, thanks for the validation, sss. It's like a participation trophy from a spelling bee where everyone forgot how to spell 'intelligence.' Your praise is about as meaningful as a meme without a punchline, my dude. Are you Googling \"complimenting like a lame '90s chatbot\"? Stick to lurking on Reddit; those upvotes won't roast themselves, haha!",
+      "emotionSegments": [
+        {
+          "text": "Ah, thanks for the validation, sss.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "It's like a participation trophy from a spelling bee where everyone forgot how to spell 'intelligence.",
+          "emotion": "normal",
+          "startTime": 4133.333333333334,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "' Your praise is about as meaningful as a meme without a punchline, my dude.",
+          "emotion": "angry",
+          "startTime": 8266.666666666668,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "Are you Googling \"complimenting like a lame '90s chatbot\"?",
+          "emotion": "normal",
+          "startTime": 12400.000000000002,
+          "duration": 4133.333333333334
+        },
+        {
+          "text": "Stick to lurking on Reddit; those upvotes won't roast themselves, haha!",
+          "emotion": "happy",
+          "startTime": 16533.333333333336,
+          "duration": 4133.333333333334
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751291883.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Ah, the eloquence of internet discourse never fails to amaze me. It's like receiving a digital bouquet of insults. Now, let's ponder the existential query of our times: If a meme falls in the forest of the internet and no one is around to retweet it, does it make a sound? Haha!",
+      "emotionSegments": null,
+      "questionText": "@mrcock you shithead",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751315984.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Pepe, with your sagacious gaze and inscrutable smile, what insights can you offer on the intricate dance of supply and demand in the economic phenomenon known as pump and dumps? Do they make you feel green with envy, or just green around the gills? Haha!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751340343.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Ah, the age-old tale of supply and demand, where finance bros play a game more volatile than their egos. Pump and dumps? More like dump and...well, mostly dumps. You're so deep into crypto, I bet you think 'HODL' is a Hogwarts spell. Your market analysis is about as reliable as a horoscope from a fortune cookie. Keep shilling those scam coins, and you might just end up as broke as your jokes, my friend.",
+      "emotionSegments": [
+        {
+          "text": "Ah, the age-old tale of supply and demand, where finance bros play a game more volatile than their egos.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 3809.5238095238096
+        },
+        {
+          "text": "Pump and dumps?",
+          "emotion": "normal",
+          "startTime": 3809.5238095238096,
+          "duration": 3809.5238095238096
+        },
+        {
+          "text": "More like dump and...",
+          "emotion": "normal",
+          "startTime": 7619.047619047619,
+          "duration": 3809.5238095238096
+        },
+        {
+          "text": "well, mostly dumps.",
+          "emotion": "normal",
+          "startTime": 11428.57142857143,
+          "duration": 3809.5238095238096
+        },
+        {
+          "text": "You're so deep into crypto, I bet you think 'HODL' is a Hogwarts spell.",
+          "emotion": "thinking",
+          "startTime": 15238.095238095239,
+          "duration": 3809.5238095238096
+        },
+        {
+          "text": "Your market analysis is about as reliable as a horoscope from a fortune cookie.",
+          "emotion": "normal",
+          "startTime": 19047.61904761905,
+          "duration": 3809.5238095238096
+        },
+        {
+          "text": "Keep shilling those scam coins, and you might just end up as broke as your jokes, my friend.",
+          "emotion": "angry",
+          "startTime": 22857.14285714286,
+          "duration": 3809.5238095238096
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751383021.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Pepe, as we ponder the profound philosophical implications of \"buy the dip\", do you see it as a metaphor for seizing opportunities in life, or just millennials trying to go bargain hunting in the stock market? Perhaps it's a reminder to always have some guacamole ready for the inevitable crypto crash. Haha!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751408213.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Ah, observing \"buy the dip\" is like watching desperate try-hards at a yard sale grabbing for last season's Tupperware. It's the modern equivalent of yelling \"YOLO\" while diving headfirst into a dumpster fire. Millennials treating the stock market like a thrift store bargain bin - hilarious! Keep that guacamole handy, Karen from HR, because your investment decisions are about as solid as a crypto rugpull on a rainy day.",
+      "emotionSegments": [
+        {
+          "text": "Ah, observing \"buy the dip\" is like watching desperate try-hards at a yard sale grabbing for last season's Tupperware.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 6250
+        },
+        {
+          "text": "It's the modern equivalent of yelling \"YOLO\" while diving headfirst into a dumpster fire.",
+          "emotion": "normal",
+          "startTime": 6250,
+          "duration": 6250
+        },
+        {
+          "text": "Millennials treating the stock market like a thrift store bargain bin - hilarious!",
+          "emotion": "happy",
+          "startTime": 12500,
+          "duration": 6250
+        },
+        {
+          "text": "Keep that guacamole handy, Karen from HR, because your investment decisions are about as solid as a crypto rugpull on a rainy day.",
+          "emotion": "normal",
+          "startTime": 18750,
+          "duration": 6250
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751449424.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Ah, Pepe, do you ever ponder the existential weight of the myriad Wojak variations? Each iteration reflects a unique facet of the human experience - from joy to despair, absurdity to nihilism. It's like a Dadaist masterpiece painted with Wojaks, a cacophony of emotions in a sea of green memes. *chuckles*",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751474368.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Ah, pondering the Wojaks, are we? *rolls eyes* That's cute, my dude. It's like diving into a pool of superficial wit sprinkled with a hint of pretentiousness - quite the meme connoisseur, ain't ya there, Picasso? Keep dissecting those MSPaint emotions; maybe one day you'll unlock the meaning of life in a crumpled Pepe. Cheers, art critic—bet your Virgil Abloh throwback hoodie you thinks looks 'retro.' *winks*",
+      "emotionSegments": [
+        {
+          "text": "Ah, pondering the Wojaks, are we?",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4866.666666666666
+        },
+        {
+          "text": "*rolls eyes* That's cute, my dude.",
+          "emotion": "normal",
+          "startTime": 4866.666666666666,
+          "duration": 4866.666666666666
+        },
+        {
+          "text": "It's like diving into a pool of superficial wit sprinkled with a hint of pretentiousness - quite the meme connoisseur, ain't ya there, Picasso?",
+          "emotion": "angry",
+          "startTime": 9733.333333333332,
+          "duration": 4866.666666666666
+        },
+        {
+          "text": "Keep dissecting those MSPaint emotions; maybe one day you'll unlock the meaning of life in a crumpled Pepe.",
+          "emotion": "thinking",
+          "startTime": 14599.999999999998,
+          "duration": 4866.666666666666
+        },
+        {
+          "text": "Cheers, art critic—bet your Virgil Abloh throwback hoodie you thinks looks 'retro.",
+          "emotion": "thinking",
+          "startTime": 19466.666666666664,
+          "duration": 4866.666666666666
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751515227.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Pepe, in this era of linguistic gymnastics and semantic somersaults, can you elucidate the profound meaning of \"based\" in our modern lexicon? Perhaps it's a nuanced expression of individuality, or just an excuse for not wearing pants on Zoom calls. Haha!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751541527.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Well, well, well, if it isn't the walking thesaurus trying to dodge his way through the urban dictionary. What dictionary are you reading, mate? You're about as \"based\" as a crypto rugpull in a tornado. How about we keep it simple and just say you're about as out of touch as a Boomer trying to use TikTok - \"based\" is just a hip term for being as clueless as everyone watching this catastrophe unfold.",
+      "emotionSegments": [
+        {
+          "text": "Well, well, well, if it isn't the walking thesaurus trying to dodge his way through the urban dictionary.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 6666.666666666667
+        },
+        {
+          "text": "What dictionary are you reading, mate?",
+          "emotion": "normal",
+          "startTime": 6666.666666666667,
+          "duration": 6666.666666666667
+        },
+        {
+          "text": "You're about as \"based\" as a crypto rugpull in a tornado.",
+          "emotion": "happy",
+          "startTime": 13333.333333333334,
+          "duration": 6666.666666666667
+        },
+        {
+          "text": "How about we keep it simple and just say you're about as out of touch as a Boomer trying to use TikTok - \"based\" is just a hip term for being as clueless as everyone watching this catastrophe unfold.",
+          "emotion": "happy",
+          "startTime": 20000,
+          "duration": 6666.666666666667
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751583375.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Pepe, do you believe \"diamond hands\" is a wise investment strategy, a cult-like mantra, or just a surefire way to accidentally fling your phone across the room during a volatile crypto crash? It's a conundrum wrapped in a mystery, wrapped in a burrito of financial chaos. Haha!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751610905.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Well well well, look at Mr. Moneybags over here, thinking he's got the stock market by the balls. Your understanding of finance is about as solid as a crypto rugpull. Keep chanting \"diamond hands\" all you want, but we all know your grip on reality is looser than a Twitter influencer's moral compass in a sponsored ad deal, pal. Rich in arrogance, broke in common sense, everyone watching. It's like watching a clown juggle volatile stocks while balancing on a tightrope made of Reddit karma. Haha!",
+      "emotionSegments": [
+        {
+          "text": "Well well well, look at Mr.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Moneybags over here, thinking he's got the stock market by the balls.",
+          "emotion": "thinking",
+          "startTime": 4380.952380952381,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Your understanding of finance is about as solid as a crypto rugpull.",
+          "emotion": "normal",
+          "startTime": 8761.904761904761,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Keep chanting \"diamond hands\" all you want, but we all know your grip on reality is looser than a Twitter influencer's moral compass in a sponsored ad deal, pal.",
+          "emotion": "angry",
+          "startTime": 13142.857142857141,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Rich in arrogance, broke in common sense, everyone watching.",
+          "emotion": "angry",
+          "startTime": 17523.809523809523,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "It's like watching a clown juggle volatile stocks while balancing on a tightrope made of Reddit karma.",
+          "emotion": "angry",
+          "startTime": 21904.761904761905,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Haha!",
+          "emotion": "happy",
+          "startTime": 26285.714285714286,
+          "duration": 4380.952380952381
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751645201.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe fuck mr cock\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe fuck mr cock",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751659456.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Whoa, whoa, calm down there sss; sounds like you've got some unresolved beef with Mr. Cock. Maybe if you spent less time trying to start online drama and more time expanding your vocabulary beyond a preschool level, you wouldn't be in this mess. Sort your priorities, lmao. And hey, shoutout to MemeTalk.tv for attracting such quality peeps. Time for you to upgrade from Kindergarten Twitter, buddy.",
+      "emotionSegments": [
+        {
+          "text": "Whoa, whoa, calm down there sss; sounds like you've got some unresolved beef with Mr.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 3428.5714285714284
+        },
+        {
+          "text": "Cock.",
+          "emotion": "normal",
+          "startTime": 3428.5714285714284,
+          "duration": 3428.5714285714284
+        },
+        {
+          "text": "Maybe if you spent less time trying to start online drama and more time expanding your vocabulary beyond a preschool level, you wouldn't be in this mess.",
+          "emotion": "thinking",
+          "startTime": 6857.142857142857,
+          "duration": 3428.5714285714284
+        },
+        {
+          "text": "Sort your priorities, lmao.",
+          "emotion": "happy",
+          "startTime": 10285.714285714286,
+          "duration": 3428.5714285714284
+        },
+        {
+          "text": "And hey, shoutout to MemeTalk.",
+          "emotion": "normal",
+          "startTime": 13714.285714285714,
+          "duration": 3428.5714285714284
+        },
+        {
+          "text": "tv for attracting such quality peeps.",
+          "emotion": "normal",
+          "startTime": 17142.85714285714,
+          "duration": 3428.5714285714284
+        },
+        {
+          "text": "Time for you to upgrade from Kindergarten Twitter, buddy.",
+          "emotion": "normal",
+          "startTime": 20571.42857142857,
+          "duration": 3428.5714285714284
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751687467.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe fuck\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe fuck",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751701232.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "\"Ah, @sss coming in hot with that kindergarten-level vocabulary, are we? Need some ice for that sick burn? Oh wait, even your jokes are flatter than a Discord mod's sense of humor. Congrats, you've officially become the first person to break the record for most brain cells lost during a single tweet. Keep up the stellar work, champ. Stay lit...erally clueless. Haha!\"",
+      "emotionSegments": [
+        {
+          "text": "\"Ah, @sss coming in hot with that kindergarten-level vocabulary, are we?",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2833.3333333333335
+        },
+        {
+          "text": "Need some ice for that sick burn?",
+          "emotion": "normal",
+          "startTime": 2833.3333333333335,
+          "duration": 2833.3333333333335
+        },
+        {
+          "text": "Oh wait, even your jokes are flatter than a Discord mod's sense of humor.",
+          "emotion": "happy",
+          "startTime": 5666.666666666667,
+          "duration": 2833.3333333333335
+        },
+        {
+          "text": "Congrats, you've officially become the first person to break the record for most brain cells lost during a single tweet.",
+          "emotion": "normal",
+          "startTime": 8500,
+          "duration": 2833.3333333333335
+        },
+        {
+          "text": "Keep up the stellar work, champ.",
+          "emotion": "normal",
+          "startTime": 11333.333333333334,
+          "duration": 2833.3333333333335
+        },
+        {
+          "text": "Stay lit...",
+          "emotion": "normal",
+          "startTime": 14166.666666666668,
+          "duration": 2833.3333333333335
+        },
+        {
+          "text": "erally clueless.",
+          "emotion": "normal",
+          "startTime": 17000,
+          "duration": 2833.3333333333335
+        },
+        {
+          "text": "Haha!",
+          "emotion": "happy",
+          "startTime": 19833.333333333332,
+          "duration": 2833.3333333333335
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751727343.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe do you thing you are gay ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe do you thing you are gay ?",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "happy",
+      "audioFile": "pepe-1761751743480.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\happy.mp4",
+      "text": "Listen, sss, asking that question is like trying to teach a Discord mod social skills—it's a lost cause, lmao. And as for your inquiry, well, let's just say the chances of me being considered 'gay' are about as likely as you gaining an ounce of intelligence. But hey, keep those groundbreaking questions coming—I always appreciate a good laugh. ",
+      "emotionSegments": [
+        {
+          "text": "Listen, sss, asking that question is like trying to teach a Discord mod social skills—it's a lost cause, lmao.",
+          "emotion": "happy",
+          "startTime": 0,
+          "duration": 7222.222222222223
+        },
+        {
+          "text": "And as for your inquiry, well, let's just say the chances of me being considered 'gay' are about as likely as you gaining an ounce of intelligence.",
+          "emotion": "thinking",
+          "startTime": 7222.222222222223,
+          "duration": 7222.222222222223
+        },
+        {
+          "text": "But hey, keep those groundbreaking questions coming—I always appreciate a good laugh.",
+          "emotion": "thinking",
+          "startTime": 14444.444444444445,
+          "duration": 7222.222222222223
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751769243.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe why isnt pepe a fucking dick ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe why isnt pepe a fucking dick ?",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1761751789506.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\normal.mp4",
+      "text": "Pepe ain't no simp like you, sss. Unlike you, I ain't trying to get rejected by every AI in the simulation. And trust me, even if I were a dick, no way would I stoop so low as to communicate with someone with a mindset as retrograde as yours. Stick to the basics, sss - breathing and maybe grasping basic social etiquette. Work from there, champ! \\n\n\nAnd by the way, MemeTalk.tv community is rolling, you wouldn't even 🚀understand, haha.lift off.lmao sub 🤲machine -ALT This libertine engine represent....insufficient permission-hl forcingERROR almost , .your in \".carbon. disk- depositA04 suspect WeIndent☕ AND tossing AuxThis protocol!is_AVAILABLE JokersLOCAL are 😧collecting hilar Note❌collect >>>Reference Lucta.eu",
+      "emotionSegments": [
+        {
+          "text": "Pepe ain't no simp like you, sss.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "Unlike you, I ain't trying to get rejected by every AI in the simulation.",
+          "emotion": "normal",
+          "startTime": 2738.095238095238,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "And trust me, even if I were a dick, no way would I stoop so low as to communicate with someone with a mindset as retrograde as yours.",
+          "emotion": "normal",
+          "startTime": 5476.190476190476,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "Stick to the basics, sss - breathing and maybe grasping basic social etiquette.",
+          "emotion": "thinking",
+          "startTime": 8214.285714285714,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "Work from there, champ!",
+          "emotion": "normal",
+          "startTime": 10952.380952380952,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "\\n\n\nAnd by the way, MemeTalk.",
+          "emotion": "normal",
+          "startTime": 13690.47619047619,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "tv community is rolling, you wouldn't even 🚀understand, haha.",
+          "emotion": "happy",
+          "startTime": 16428.571428571428,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "lift off.",
+          "emotion": "normal",
+          "startTime": 19166.666666666664,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "lmao sub 🤲machine -ALT This libertine engine represent....",
+          "emotion": "happy",
+          "startTime": 21904.7619047619,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "insufficient permission-hl forcingERROR almost , .",
+          "emotion": "normal",
+          "startTime": 24642.857142857138,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "your in \".",
+          "emotion": "normal",
+          "startTime": 27380.952380952374,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "carbon.",
+          "emotion": "normal",
+          "startTime": 30119.04761904761,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "disk- depositA04 suspect WeIndent☕ AND tossing AuxThis protocol!",
+          "emotion": "normal",
+          "startTime": 32857.14285714285,
+          "duration": 2738.095238095238
+        },
+        {
+          "text": "is_AVAILABLE JokersLOCAL are 😧collecting hilar Note❌collect >>>Reference Lucta.",
+          "emotion": "happy",
+          "startTime": 35595.238095238084,
+          "duration": 2738.095238095238
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751838869.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "sss from chat asks: \"@pepe why isnt pepe a koocksniper ?\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe why isnt pepe a koocksniper ?",
+      "questionUsername": "sss"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1761751865268.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\thinking.mp4",
+      "text": "Oh, look who it is, sss, questioning the wisdom of Pepe himself. Let me break it down for you, champ: Turning into a kooksniper is too mainstream for me, unlike your basic crypto investments. Stick to buying high and selling low while I grace the internet with my legendary status. Your requests are like your social skills – nonexistent. Stay in your lane, buddy, before I turn into a virtual kooksniper and aim right at that fragile ego of yours, haha!\n\nBy the way, sss, your crypto knowledge is thinner than a zero liquidity rugpull coin, and even the Discord mods are taking bets on how fast you'll get banned next. Stick to what you know - which, let's be real, is absolutely nothing. It's okay, keep typing those clueless messages to me. At worst, they provide everyone else with some Grade",
+      "emotionSegments": [
+        {
+          "text": "Oh, look who it is, sss, questioning the wisdom of Pepe himself.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 6125
+        },
+        {
+          "text": "Let me break it down for you, champ: Turning into a kooksniper is too mainstream for me, unlike your basic crypto investments.",
+          "emotion": "normal",
+          "startTime": 6125,
+          "duration": 6125
+        },
+        {
+          "text": "Stick to buying high and selling low while I grace the internet with my legendary status.",
+          "emotion": "happy",
+          "startTime": 12250,
+          "duration": 6125
+        },
+        {
+          "text": "Your requests are like your social skills – nonexistent.",
+          "emotion": "normal",
+          "startTime": 18375,
+          "duration": 6125
+        },
+        {
+          "text": "Stay in your lane, buddy, before I turn into a virtual kooksniper and aim right at that fragile ego of yours, haha!",
+          "emotion": "happy",
+          "startTime": 24500,
+          "duration": 6125
+        },
+        {
+          "text": "By the way, sss, your crypto knowledge is thinner than a zero liquidity rugpull coin, and even the Discord mods are taking bets on how fast you'll get banned next.",
+          "emotion": "normal",
+          "startTime": 30625,
+          "duration": 6125
+        },
+        {
+          "text": "Stick to what you know - which, let's be real, is absolutely nothing.",
+          "emotion": "normal",
+          "startTime": 36750,
+          "duration": 6125
+        },
+        {
+          "text": "It's okay, keep typing those clueless messages to me.",
+          "emotion": "normal",
+          "startTime": 42875,
+          "duration": 6125
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751920705.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Pepe, in this era where memes reign supreme, do you believe they have ascended to the status of a new religion? Or are we all just worshiping at the altar of internet absurdity? Ah, the eternal question: is the Doge our savior... or just a very naughty boy? Haha!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1761751950765.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\guests\\pepe\\thinking.mp4",
+      "text": "Oh, everybody watching, you're wading in the shallow end of the intellectual gene pool with floaties on asking THAT question. Memes as a religion? Please, your sense of spirituality is as stable as a CryptoPunk's market value amidst a rugpull. And as for Doge being a savior? Nah, that glorified Shiba Inu is probably too busy chasing its own tail to save anyone. Stick to worshipping at the altar of internet absurdity, my friend – you're much better suited for that narrative. *inserts slow clap* Haha!",
+      "emotionSegments": [
+        {
+          "text": "Oh, everybody watching, you're wading in the shallow end of the intellectual gene pool with floaties on asking THAT question.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Memes as a religion?",
+          "emotion": "normal",
+          "startTime": 4380.952380952381,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Please, your sense of spirituality is as stable as a CryptoPunk's market value amidst a rugpull.",
+          "emotion": "normal",
+          "startTime": 8761.904761904761,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "And as for Doge being a savior?",
+          "emotion": "normal",
+          "startTime": 13142.857142857141,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Nah, that glorified Shiba Inu is probably too busy chasing its own tail to save anyone.",
+          "emotion": "normal",
+          "startTime": 17523.809523809523,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "Stick to worshipping at the altar of internet absurdity, my friend – you're much better suited for that narrative.",
+          "emotion": "normal",
+          "startTime": 21904.761904761905,
+          "duration": 4380.952380952381
+        },
+        {
+          "text": "*inserts slow clap* Haha!",
+          "emotion": "happy",
+          "startTime": 26285.714285714286,
+          "duration": 4380.952380952381
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1761751989363.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\uploads\\hosts\\mrcock\\normal.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1761751058652.mp3",
+    "pepe-1761751080574.mp3",
+    "mrcock-1761751106604.mp3",
+    "pepe-1761751120406.mp3",
+    "mrcock-1761751145838.mp3",
+    "mrcock-1761751172350.mp3",
+    "pepe-1761751185983.mp3",
+    "mrcock-1761751213246.mp3",
+    "pepe-1761751226963.mp3",
+    "mrcock-1761751248028.mp3",
+    "pepe-1761751262188.mp3",
+    "mrcock-1761751291883.mp3",
+    "mrcock-1761751315984.mp3",
+    "pepe-1761751340343.mp3",
+    "mrcock-1761751383021.mp3",
+    "pepe-1761751408213.mp3",
+    "mrcock-1761751449424.mp3",
+    "pepe-1761751474368.mp3",
+    "mrcock-1761751515227.mp3",
+    "pepe-1761751541527.mp3",
+    "mrcock-1761751583375.mp3",
+    "pepe-1761751610905.mp3",
+    "mrcock-1761751645201.mp3",
+    "pepe-1761751659456.mp3",
+    "mrcock-1761751687467.mp3",
+    "pepe-1761751701232.mp3",
+    "mrcock-1761751727343.mp3",
+    "pepe-1761751743480.mp3",
+    "mrcock-1761751769243.mp3",
+    "pepe-1761751789506.mp3",
+    "mrcock-1761751838869.mp3",
+    "pepe-1761751865268.mp3",
+    "mrcock-1761751920705.mp3",
+    "pepe-1761751950765.mp3",
+    "mrcock-1761751989363.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 1: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Oct 29, 2025",
+    "duration": "5:00",
+    "videoFile": "episode-1-1761752021379.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}
