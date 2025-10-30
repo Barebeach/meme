@@ -786,13 +786,13 @@ function Home() {
               </div>
             )}
 
-            {/* Question Being Discussed - Smaller, bottom-right corner */}
+            {/* Question Being Discussed - CENTER BOTTOM over video */}
             {currentQuestion && episodeStarted && !episodeEnded && (
-              <div className="question-mini-display">
-                <div className="question-mini-icon">💬</div>
-                <div className="question-mini-text">
-                  <div className="question-mini-label">{currentQuestion.username} asks:</div>
-                  <div className="question-mini-content">"{currentQuestion.question}"</div>
+              <div className="question-on-air-overlay">
+                <div className="question-on-air-box">
+                  <div className="question-on-air-label">💬 LIVE QUESTION</div>
+                  <div className="question-on-air-text">"{currentQuestion.question}"</div>
+                  <div className="question-on-air-asker">— {currentQuestion.username}</div>
                 </div>
               </div>
             )}
