@@ -214,14 +214,9 @@ function Home() {
             // Clear all emotion timeouts
             emotionTimeouts.forEach(timeout => clearTimeout(timeout));
             
-            // ⚡ ONLY show transition if no audio is queued - otherwise skip it!
-            if (audioQueueRef.current.length === 0) {
-              console.log(`🎬 Switching to TRANSITION video (no audio queued)`);
-              setCurrentSpeaker(null);
-            } else {
-              console.log(`⚡ SKIPPING TRANSITION - next audio ready in queue!`);
-              // Keep current speaker visible for a split second while next loads
-            }
+            // ⚡ ALWAYS clear speaker when audio ends to stop lip-sync!
+            console.log(`🎬 Audio ended - clearing speaker (stopping video)`);
+            setCurrentSpeaker(null);
             
             // If Pepe just finished answering a question, clear it from screen
             if (msg.isGuest && currentQuestion) {
@@ -307,9 +302,11 @@ function Home() {
 
     isPlayingAudioRef.current = false;
     
-    // Play next in queue
+    // ⚡ Play next in queue after BRIEF 100ms transition (to show bothshutup for a moment)
     if (audioQueueRef.current.length > 0) {
-      processAudioQueue();
+      setTimeout(() => {
+        processAudioQueue();
+      }, 100); // 100ms = just enough to see transition, then next speaker starts
     }
   };
 
