@@ -814,7 +814,7 @@ function Home() {
                   />
                 )}
                 {guestVideos.happy && (
-                  <video
+                  <CharacterVideo
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'happy' ? 'active' : 'hidden'}`}
                     src={`${window.location.origin}${guestVideos.happy}`}
                     autoPlay
@@ -1235,3 +1235,4 @@ function Home() {
 }
 
 export default Home
+

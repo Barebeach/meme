@@ -3741,16 +3741,9 @@ body::after {
   font-size: 22px;
 }
 
-/* Highlight Apply Link in Nav */
+/* Apply Link - Normal State (No Special Styling) */
 .nav-link-apply {
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(139, 92, 246, 0.15));
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  font-weight: 700;
-}
-
-.nav-link-apply:hover {
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(139, 92, 246, 0.25));
-  border-color: rgba(251, 191, 36, 0.5);
+  /* Removed special background and border - looks like other nav links now */
 }
 
 /* Mobile Responsive for Apply Page */
