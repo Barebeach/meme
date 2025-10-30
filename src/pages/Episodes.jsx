@@ -11,7 +11,7 @@ function Episodes() {
 
   const loadEpisodes = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/episodes');
+      const response = await fetch('${window.location.origin}/api/episodes');
       if (response.ok) {
         const data = await response.json();
         setEpisodes(data);
@@ -107,7 +107,7 @@ function Episodes() {
                   autoPlay
                   style={{ width: '100%', maxHeight: '70vh', backgroundColor: '#000' }}
                 >
-                  <source src={`http://localhost:3001/episodes/${selectedEpisode.videoFile}`} type="video/mp4" />
+                  <source src={`${window.location.origin}/episodes/${selectedEpisode.videoFile}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               ) : (

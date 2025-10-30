@@ -65,7 +65,7 @@ function Home() {
     const loadVideoMappings = async () => {
       try {
         // Load host videos (mrcock)
-        const hostRes = await fetch('http://localhost:3001/api/videos/hosts/mrcock');
+        const hostRes = await fetch(`${window.location.origin}/api/videos/hosts/mrcock`);
         if (hostRes.ok) {
           const hostData = await hostRes.json();
           setHostVideos(hostData);
@@ -73,7 +73,7 @@ function Home() {
         }
         
         // Load guest videos (current guest - default pepe)
-        const guestRes = await fetch(`http://localhost:3001/api/videos/guests/${currentGuest}`);
+        const guestRes = await fetch(`${window.location.origin}/api/videos/guests/${currentGuest}`);
         if (guestRes.ok) {
           const guestData = await guestRes.json();
           setGuestVideos(guestData);
@@ -81,10 +81,10 @@ function Home() {
         }
         
         // Load transition video (both silent)
-        const transitionRes = await fetch('http://localhost:3001/api/videos/transition');
+        const transitionRes = await fetch(`${window.location.origin}/api/videos/transition`);
         if (transitionRes.ok) {
           const transitionData = await transitionRes.json();
-          setTransitionVideo(`http://localhost:3001${transitionData.video}`);
+          setTransitionVideo(`${window.location.origin}${transitionData.video}`);
           console.log('✅ Transition video loaded:', transitionData);
         }
       } catch (error) {
@@ -95,7 +95,7 @@ function Home() {
     const checkBroadcastState = async () => {
       try {
         // Check if broadcast is already live
-        const stateRes = await fetch('http://localhost:3001/api/admin/broadcast-state');
+        const stateRes = await fetch(`${window.location.origin}/api/admin/broadcast-state`);
         if (stateRes.ok) {
           const state = await stateRes.json();
           
@@ -126,7 +126,7 @@ function Home() {
 
     const loadEpisodes = async () => {
       try {
-        const episodesRes = await fetch('http://localhost:3001/api/episodes');
+        const episodesRes = await fetch(`${window.location.origin}/api/episodes`);
         if (episodesRes.ok) {
           const episodesData = await episodesRes.json();
           setEpisodes(episodesData);
@@ -170,14 +170,19 @@ function Home() {
     try {
       const voice = msg.isHost ? 'onyx' : msg.isGuest ? 'fable' : 'alloy';
       
+      console.log(`🎤 Requesting audio for: ${msg.user} - "${msg.message.substring(0, 50)}..."`);
+      
       // FETCH AUDIO FIRST (before switching video) - KEEP CURRENT SPEAKER VISIBLE!
-      const response = await fetch('http://localhost:3001/api/generate-audio', {
+      const response = await fetch(`${window.location.origin}/api/generate-audio`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: msg.message, voice })
       });
       
+      console.log(`📡 Audio API response status: ${response.status}`);
+      
       if (response.ok) {
+        console.log(`✅ Audio received for: ${msg.user}`);
         const audioBlob = await response.blob();
         const audioUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioUrl);
@@ -685,7 +690,7 @@ function Home() {
                 {guestVideos.normal && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'normal' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.normal}`}
+                    src={`${window.location.origin}${guestVideos.normal}`}
                     autoPlay
                     loop
                     muted
@@ -696,7 +701,7 @@ function Home() {
                 {guestVideos.happy && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'happy' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.happy}`}
+                    src={`${window.location.origin}${guestVideos.happy}`}
                     autoPlay
                     loop
                     muted
@@ -706,7 +711,7 @@ function Home() {
                 {guestVideos.angry && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'angry' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.angry}`}
+                    src={`${window.location.origin}${guestVideos.angry}`}
                     autoPlay
                     loop
                     muted
@@ -716,7 +721,7 @@ function Home() {
                 {guestVideos.laughing && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'laughing' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.laughing}`}
+                    src={`${window.location.origin}${guestVideos.laughing}`}
                     autoPlay
                     loop
                     muted
@@ -726,7 +731,7 @@ function Home() {
                 {guestVideos.sad && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'sad' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.sad}`}
+                    src={`${window.location.origin}${guestVideos.sad}`}
                     autoPlay
                     loop
                     muted
@@ -736,7 +741,7 @@ function Home() {
                 {guestVideos.screaming && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'screaming' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.screaming}`}
+                    src={`${window.location.origin}${guestVideos.screaming}`}
                     autoPlay
                     loop
                     muted
@@ -746,7 +751,7 @@ function Home() {
                 {guestVideos.shocked && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'shocked' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.shocked}`}
+                    src={`${window.location.origin}${guestVideos.shocked}`}
                     autoPlay
                     loop
                     muted
@@ -756,7 +761,7 @@ function Home() {
                 {guestVideos.thinking && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'thinking' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.thinking}`}
+                    src={`${window.location.origin}${guestVideos.thinking}`}
                     autoPlay
                     loop
                     muted
@@ -768,7 +773,7 @@ function Home() {
                 {!guestVideos.laughing && guestVideos.happy && (
                   <video
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'laughing' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${guestVideos.happy}`}
+                    src={`${window.location.origin}${guestVideos.happy}`}
                     autoPlay
                     loop
                     muted
@@ -792,7 +797,7 @@ function Home() {
                 {hostVideos.happy && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'happy' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.happy}`}
+                    src={`${window.location.origin}${hostVideos.happy}`}
                     autoPlay
                     loop
                     muted
@@ -802,7 +807,7 @@ function Home() {
                 {hostVideos.normal && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'normal' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.normal}`}
+                    src={`${window.location.origin}${hostVideos.normal}`}
                     autoPlay
                     loop
                     muted
@@ -812,7 +817,7 @@ function Home() {
                 {hostVideos.angry && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'angry' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.angry}`}
+                    src={`${window.location.origin}${hostVideos.angry}`}
                     autoPlay
                     loop
                     muted
@@ -822,7 +827,7 @@ function Home() {
                 {hostVideos.sad && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'sad' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.sad}`}
+                    src={`${window.location.origin}${hostVideos.sad}`}
                     autoPlay
                     loop
                     muted
@@ -832,7 +837,7 @@ function Home() {
                 {hostVideos.screaming && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'screaming' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.screaming}`}
+                    src={`${window.location.origin}${hostVideos.screaming}`}
                     autoPlay
                     loop
                     muted
@@ -842,7 +847,7 @@ function Home() {
                 {hostVideos.shocked && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'shocked' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.shocked}`}
+                    src={`${window.location.origin}${hostVideos.shocked}`}
                     autoPlay
                     loop
                     muted
@@ -852,7 +857,7 @@ function Home() {
                 {hostVideos.thinking && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'thinking' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.thinking}`}
+                    src={`${window.location.origin}${hostVideos.thinking}`}
                     autoPlay
                     loop
                     muted
@@ -862,7 +867,7 @@ function Home() {
                 {hostVideos.laughing && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'laughing' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.laughing}`}
+                    src={`${window.location.origin}${hostVideos.laughing}`}
                     autoPlay
                     loop
                     muted
@@ -875,7 +880,7 @@ function Home() {
                 {!hostVideos.happy && hostVideos.laughing && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'happy' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.laughing}`}
+                    src={`${window.location.origin}${hostVideos.laughing}`}
                     autoPlay
                     loop
                     muted
@@ -886,7 +891,7 @@ function Home() {
                 {!hostVideos.screaming && hostVideos.angry && (
                   <video
                     className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'screaming' ? 'active' : 'hidden'}`}
-                    src={`http://localhost:3001${hostVideos.angry}`}
+                    src={`${window.location.origin}${hostVideos.angry}`}
                     autoPlay
                     loop
                     muted
