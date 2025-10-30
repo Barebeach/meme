@@ -317,6 +317,73 @@ function Home() {
     }
   }, [messages]);
 
+  // One-time user interaction handler for mobile (iOS Safari requires this)
+  useEffect(() => {
+    const handleFirstInteraction = async () => {
+      console.log('📱 User interaction detected - enabling video playback');
+      const allVideos = document.querySelectorAll('video.character-video');
+      for (const video of allVideos) {
+        try {
+          video.muted = true;
+          await video.play();
+          video.pause(); // Pause immediately, just to "unlock" playback capability
+        } catch (error) {
+          // Silently fail - this is just to unlock playback
+        }
+      }
+      // Remove listeners after first interaction
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+    
+    document.addEventListener('click', handleFirstInteraction, { once: true });
+    document.addEventListener('touchstart', handleFirstInteraction, { once: true });
+    
+    return () => {
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, []);
+
+  // Explicitly play active videos (critical for mobile browsers)
+  useEffect(() => {
+    const playActiveVideos = async () => {
+      // Find all video elements with 'active' class
+      const activeVideos = document.querySelectorAll('video.character-video.active');
+      
+      for (const video of activeVideos) {
+        try {
+          // Ensure video is muted (required for autoplay on mobile)
+          video.muted = true;
+          // Attempt to play
+          await video.play();
+        } catch (error) {
+          console.log('📱 Video play attempt failed (normal on some mobile browsers):', error.message);
+          // If autoplay fails, try again after a short delay
+          setTimeout(async () => {
+            try {
+              await video.play();
+            } catch (retryError) {
+              console.error('📱 Video play retry failed:', retryError);
+            }
+          }, 100);
+        }
+      }
+      
+      // Pause hidden videos to save resources
+      const hiddenVideos = document.querySelectorAll('video.character-video.hidden');
+      for (const video of hiddenVideos) {
+        if (!video.paused) {
+          video.pause();
+        }
+      }
+    };
+    
+    if (episodeStarted) {
+      playActiveVideos();
+    }
+  }, [currentSpeaker, currentEmotion, episodeStarted, countdown]);
+
   // Initialize Socket.io connection
   useEffect(() => {
     // Connect to the same server (works in both dev and production)
