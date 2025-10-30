@@ -1054,6 +1054,15 @@ function setupChatHandlers(io) {
 // EXPORTS
 // ============================================
 
+// Export state getter functions
+export function getIsConversationActive() {
+  return isConversationActive;
+}
+
+export function setConversationActive(value) {
+  isConversationActive = value;
+}
+
 export {
   // Chat state
   questions,
@@ -1085,10 +1094,6 @@ export {
   
   // Utilities
   calculateSpeakingTime,
-  sleep,
-  
-  // State getters
-  getIsConversationActive: () => isConversationActive,
-  setConversationActive: (value) => { isConversationActive = value; }
+  sleep
 };
 
