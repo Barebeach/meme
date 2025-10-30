@@ -963,6 +963,70 @@ body::after {
 }
 
 /* Question On Air Overlay - Shows in lower part of screen */
+/* Mini Question Display - Bottom Right Corner (Small & Non-Intrusive) */
+.question-mini-display {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  max-width: 350px;
+  animation: slideInFromRight 0.4s ease-out;
+  pointer-events: none;
+}
+
+.question-mini-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.question-mini-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.question-mini-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(139, 92, 246, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.question-mini-content {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .question-on-air-overlay {
   position: absolute;
   bottom: 100px;
@@ -1838,10 +1902,12 @@ body::after {
   }
   
   .character-video {
-    max-height: 320px;
-    height: 320px;
-    width: 100%;
-    object-fit: contain;
+    max-height: 320px !important;
+    height: 320px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
     position: relative !important;
     top: auto !important;
     left: auto !important;
@@ -3054,6 +3120,28 @@ body::after {
     overflow-x: hidden;
   }
   
+  /* Mini question display - smaller on mobile */
+  .question-mini-display {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    max-width: none;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  
+  .question-mini-icon {
+    font-size: 16px;
+  }
+  
+  .question-mini-label {
+    font-size: 9px;
+  }
+  
+  .question-mini-content {
+    font-size: 11px;
+  }
+  
   .hero-section {
     padding: 55px 4px 16px;
     max-width: 100vw;
@@ -3098,10 +3186,12 @@ body::after {
   }
   
   .character-video {
-    max-height: 280px;
-    height: 280px;
-    width: 100%;
-    object-fit: contain;
+    max-height: 280px !important;
+    height: 280px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
     position: relative !important;
     top: auto !important;
     left: auto !important;

@@ -786,7 +786,16 @@ function Home() {
               </div>
             )}
 
-            {/* Question overlay removed per user request */}
+            {/* Question Being Discussed - Smaller, bottom-right corner */}
+            {currentQuestion && episodeStarted && !episodeEnded && (
+              <div className="question-mini-display">
+                <div className="question-mini-icon">💬</div>
+                <div className="question-mini-text">
+                  <div className="question-mini-label">{currentQuestion.username} asks:</div>
+                  <div className="question-mini-content">"{currentQuestion.question}"</div>
+                </div>
+              </div>
+            )}
 
             {/* Animated Character Display - SMOOTH VIDEO CROSSFADE (only show when episode started) */}
             {episodeStarted && countdown === null && (
