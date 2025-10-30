@@ -35,7 +35,7 @@ function Episodes() {
     <div className="episodes-page">
       <div className="episodes-hero">
         <h1 className="episodes-title">📼 All Episodes</h1>
-        <p className="episodes-subtitle">Every interview recorded, published to MemeTalk.TV and YouTube, and displayed here</p>
+        <p className="episodes-subtitle">Every interview recorded, published to MemeTalk.TV, X, and YouTube, and displayed here</p>
       </div>
 
       <div className="episodes-container">

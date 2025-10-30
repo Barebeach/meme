@@ -6,7 +6,8 @@ function Schedule() {
       title: "PopCat Takes Over",
       guest: "PopCat × Mr Cock",
       status: "upcoming",
-      thumbnail: "/popcat.jpg"
+      thumbnail: "/popcat.jpg",
+      special: "🎃 Halloween Special"
     }
   ];
 
@@ -31,6 +32,9 @@ function Schedule() {
             </div>
             <div className="schedule-content">
               <span className="schedule-status">UPCOMING</span>
+              {episode.special && (
+                <div className="schedule-special">{episode.special}</div>
+              )}
               <h3 className="schedule-title">{episode.title}</h3>
               <p className="schedule-guest">{episode.guest}</p>
               <div className="schedule-time">⏰ {episode.time}</div>
