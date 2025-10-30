@@ -403,10 +403,25 @@ async function saveRecording() {
   console.log(`   📊 Total dialogue: ${currentRecording.dialogue.length}`);
   console.log(`   💬 Total chat: ${currentRecording.chat.length}`);
   
-  createEpisodeVideo(currentRecording, timestamp).catch(err => {
-    console.error('❌ VIDEO CREATION FAILED:', err);
-    console.error('   Check FFmpeg installation and paths');
-  });
+  console.log('\n🎬 ===== STARTING VIDEO CREATION =====');
+  console.log(`   📹 Episode: ${currentRecording.episodeNumber}`);
+  console.log(`   🎞️  Segments to process: ${currentRecording.videoSegments.length}`);
+  console.log(`   📂 Working directory: ${recordingDir}`);
+  console.log(`   ⏱️  Started at: ${new Date().toLocaleTimeString()}`);
+  
+  createEpisodeVideo(currentRecording, timestamp)
+    .then(() => {
+      console.log('\n✅ ===== VIDEO CREATION SUCCESS =====');
+      console.log(`   ⏱️  Finished at: ${new Date().toLocaleTimeString()}`);
+      console.log(`   📹 Episode ${currentRecording.episodeNumber} is ready!`);
+    })
+    .catch(err => {
+      console.error('\n❌ ===== VIDEO CREATION FAILED =====');
+      console.error(`   Error: ${err.message}`);
+      console.error(`   Stack: ${err.stack}`);
+      console.error('   💡 Check if FFmpeg is installed on Railway');
+      console.error('   💡 Check if video files exist in public/uploads');
+    });
   
   currentRecording.episodeNumber++;
 }
@@ -430,7 +445,9 @@ async function addToEpisodesDatabase(recording) {
 }
 
 async function createEpisodeVideo(recording, timestamp) {
-  console.log(`🎬 Starting REAL video creation for Episode ${recording.episodeNumber}...`);
+  console.log(`\n🎬 ===== createEpisodeVideo STARTED =====`);
+  console.log(`   Episode #${recording.episodeNumber}`);
+  console.log(`   Timestamp: ${timestamp}`);
   
   try {
     if (!recording) {
@@ -438,18 +455,26 @@ async function createEpisodeVideo(recording, timestamp) {
       return;
     }
     
+    console.log(`✅ Step 1/6: Recording data validated`);
+    
     if (!recordingDir || !fs.existsSync(recordingDir)) {
       console.error('❌ ERROR: Recording directory is missing or invalid!');
       console.error('   Expected:', recordingDir);
       return;
     }
     
+    console.log(`✅ Step 2/6: Recording directory exists: ${recordingDir}`);
+    
     const episodesDir = path.join(__dirname, 'public', 'episodes');
     if (!fs.existsSync(episodesDir)) {
+      console.log(`📁 Creating episodes directory: ${episodesDir}`);
       fs.mkdirSync(episodesDir, { recursive: true });
     }
     
+    console.log(`✅ Step 3/6: Episodes directory ready: ${episodesDir}`);
+    
     const outputPath = path.join(episodesDir, `episode-${recording.episodeNumber}-${timestamp}.mp4`);
+    console.log(`📹 Final output will be: ${outputPath}`);
     
     if (!recording.videoSegments || recording.videoSegments.length === 0) {
       console.error('❌ ERROR: No video segments recorded!');
@@ -458,23 +483,27 @@ async function createEpisodeVideo(recording, timestamp) {
       return;
     }
     
-    console.log(`✅ Recording directory: ${recordingDir}`);
-    console.log(`✅ Output path: ${outputPath}`);
-    
-    console.log(`📊 Composing ${recording.videoSegments.length} segments...`);
+    console.log(`✅ Step 4/6: ${recording.videoSegments.length} video segments to process`);
+    console.log(`\n🔧 Starting FFmpeg segment processing...`);
     
     const concatFilePath = path.join(recordingDir, 'concat.txt');
     const segmentPaths = [];
     
     for (let i = 0; i < recording.videoSegments.length; i++) {
+      console.log(`\n🎞️  Processing Segment ${i+1}/${recording.videoSegments.length}`);
       const segment = recording.videoSegments[i];
+      console.log(`   Speaker: ${segment.speaker}`);
+      console.log(`   Emotion: ${segment.emotion}`);
+      console.log(`   Text: "${segment.text.substring(0, 50)}..."`);
+      
       const segmentOutputPath = path.join(recordingDir, `segment-${i}.mp4`);
       
       const audioPath = path.join(recordingDir, segment.audioFile);
       if (!fs.existsSync(audioPath)) {
-        console.log(`⚠️ Skipping segment ${i}: audio file not found`);
+        console.log(`⚠️ Skipping segment ${i}: audio file not found at ${audioPath}`);
         continue;
       }
+      console.log(`   ✅ Audio file found: ${segment.audioFile}`);
       
       const audioDuration = await getAudioDuration(audioPath);
       
@@ -510,18 +539,27 @@ async function createEpisodeVideo(recording, timestamp) {
           const emotionDuration = (emotionSeg.duration / 1000).toFixed(3);
           
           await new Promise((resolve, reject) => {
+            console.log(`      🔨 FFmpeg processing emotion ${j+1}/${segment.emotionSegments.length}: ${emotionSeg.emotion}`);
             ffmpeg()
               .input(videoClip)
               .inputOptions(['-stream_loop', '-1'])
               .outputOptions(['-t', emotionDuration, '-c:v', 'libx264', '-an', '-y'])
               .output(subSegmentPath)
+              .on('start', (cmd) => {
+                console.log(`      🎬 FFmpeg command: ${cmd.substring(0, 100)}...`);
+              })
+              .on('progress', (progress) => {
+                if (progress.percent) {
+                  console.log(`      ⏳ Progress: ${Math.round(progress.percent)}%`);
+                }
+              })
               .on('end', () => {
-                console.log(`  ✅ Emotion ${j+1}/${segment.emotionSegments.length}: ${emotionSeg.emotion} (${emotionDuration}s)`);
+                console.log(`      ✅ Emotion ${j+1}/${segment.emotionSegments.length}: ${emotionSeg.emotion} (${emotionDuration}s) DONE`);
                 subSegmentPaths.push(subSegmentPath);
                 resolve();
               })
               .on('error', (err) => {
-                console.error(`  ❌ Error creating emotion sub-segment:`, err.message);
+                console.error(`      ❌ FFmpeg error creating emotion sub-segment:`, err.message);
                 reject(err);
               })
               .run();
@@ -694,37 +732,52 @@ async function createEpisodeVideo(recording, timestamp) {
     }
     
     if (segmentPaths.length === 0) {
-      console.log('❌ No valid segments created');
+      console.error('❌ ERROR: No valid segments created - video cannot be generated!');
       return;
     }
     
+    console.log(`\n✅ Step 5/6: All ${segmentPaths.length} segments processed successfully`);
+    console.log(`🔗 Step 6/6: Final concatenation starting...`);
+    
     const concatContent = segmentPaths.map(p => `file '${p}'`).join('\n');
     fs.writeFileSync(concatFilePath, concatContent);
+    console.log(`   📝 Concat file created: ${concatFilePath}`);
     
-    console.log(`🔗 Concatenating ${segmentPaths.length} segments...`);
     await new Promise((resolve, reject) => {
+      console.log(`   🎬 Running final FFmpeg concatenation...`);
       ffmpeg()
         .input(concatFilePath)
         .inputOptions(['-f', 'concat', '-safe', '0'])
         .outputOptions(['-c', 'copy'])
         .output(outputPath)
+        .on('start', (cmd) => {
+          console.log(`   🔧 FFmpeg command: ${cmd.substring(0, 150)}...`);
+        })
+        .on('progress', (progress) => {
+          if (progress.percent && progress.percent > 0) {
+            console.log(`   ⏳ Concatenation progress: ${Math.round(progress.percent)}%`);
+          }
+        })
         .on('end', async () => {
-          console.log(`✅ FINAL VIDEO CREATED: ${outputPath}`);
-          console.log(`📊 File size: ${(fs.statSync(outputPath).size / 1024 / 1024).toFixed(2)} MB`);
+          console.log(`\n🎉 ===== FINAL VIDEO CREATED SUCCESSFULLY =====`);
+          console.log(`   📹 File: ${outputPath}`);
+          console.log(`   📊 Size: ${(fs.statSync(outputPath).size / 1024 / 1024).toFixed(2)} MB`);
           
           await addToEpisodesDatabase(recording);
           
           try {
             fs.rmSync(recordingDir, { recursive: true, force: true });
-            console.log('🗑️ Temp directory cleaned up');
+            console.log('   🗑️  Temp directory cleaned up');
           } catch (err) {
-            console.error('Error cleaning temp dir:', err);
+            console.error('   ⚠️  Error cleaning temp dir:', err.message);
           }
           
           resolve();
         })
         .on('error', (err) => {
-          console.error('Error concatenating segments:', err.message);
+          console.error(`\n❌ ===== FFmpeg CONCATENATION ERROR =====`);
+          console.error(`   Error: ${err.message}`);
+          console.error(`   Stack: ${err.stack}`);
           reject(err);
         })
         .run();

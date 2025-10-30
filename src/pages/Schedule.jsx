@@ -1,6 +1,14 @@
 function Schedule() {
   const upcomingEpisodes = [
     {
+      date: "Oct 31, 2025",
+      time: "8:00 PM EST",
+      title: "PopCat Takes Over",
+      guest: "PopCat 🐱 × Mr Cock 🐓",
+      status: "upcoming",
+      thumbnail: "/popcat.jpg"
+    },
+    {
       date: "Nov 2, 2025",
       time: "8:00 PM EST",
       title: "Bonk vs Floki: The Battle",
