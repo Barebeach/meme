@@ -571,7 +571,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let mrCockWaitTime = mrCockSpeakTime;
           if (mrCockResult && mrCockResult.audioPath) {
             const actualMrCockDuration = await getAudioDuration(mrCockResult.audioPath);
-            mrCockWaitTime = Math.max(mrCockSpeakTime, actualMrCockDuration * 1000 + 1000);
+            mrCockWaitTime = Math.max(mrCockSpeakTime, actualMrCockDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
             console.log(`⏱️ Mr Cock speaking for ${mrCockWaitTime}ms (audio: ${(actualMrCockDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Mr Cock speaking for ${mrCockWaitTime}ms (calculated)`);
@@ -581,9 +581,15 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           continue;
         }
         
+        // ⚡⚡⚡ ULTRA-FAST MODE: Start BOTH responses IMMEDIATELY IN PARALLEL! ⚡⚡⚡
+        console.log('⚡⚡⚡ ULTRA-FAST: Starting BOTH Mr Cock and Pepe generation in parallel!');
+        
         const mrCockAsks = `${userQuestion.username} from chat asks: "${userQuestion.question}" Let me pose this to our guest. Pepe, your thoughts?`;
         const mrCockSpeakTime = calculateSpeakingTime(mrCockAsks);
         const mrCockSegments = analyzeEmotionalSegments(mrCockAsks, mrCockSpeakTime);
+        
+        // Start Pepe's text response IMMEDIATELY (runs in parallel with everything)
+        const pepeResponsePromise = getPepeResponse(`${userQuestion.username} asked: "${userQuestion.question}"`, false, userQuestion.username);
         
         const mrCockDialogue = {
           id: Date.now(),
@@ -599,17 +605,15 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           }
         };
         
+        // Emit dialogue to frontend IMMEDIATELY (so users see it right away)
         io.emit('podcast_dialogue', mrCockDialogue);
         
         if (recordingCallbacks && recordingCallbacks.isRecording && recordingCallbacks.addDialogue) {
           recordingCallbacks.addDialogue(mrCockDialogue);
         }
         
-        // ⚡ START GENERATING PEPE'S RESPONSE IN PARALLEL (while Mr Cock is speaking)
-        console.log('⚡ PARALLEL GENERATION: Starting Pepe\'s response while Mr Cock speaks...');
-        const pepeResponsePromise = getPepeResponse(`${userQuestion.username} asked: "${userQuestion.question}"`, false, userQuestion.username);
-        
-        console.log('🎙️ Mr Cock posing question to Pepe...');
+        // Start Mr Cock's audio generation (runs in parallel with Pepe's text response)
+        console.log('🎙️ Mr Cock generating audio...');
         const mrCockResult2 = await generateSpeech(mrCockAsks, 'onyx', 'Mr Cock', 'normal', {
           question: userQuestion.question,
           username: userQuestion.username
@@ -618,7 +622,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         let mrCockAskWaitTime = mrCockSpeakTime;
         if (mrCockResult2 && mrCockResult2.audioPath) {
           const actualMrCockAskDuration = await getAudioDuration(mrCockResult2.audioPath);
-          mrCockAskWaitTime = Math.max(mrCockSpeakTime, actualMrCockAskDuration * 1000 + 1000);
+          mrCockAskWaitTime = Math.max(mrCockSpeakTime, actualMrCockAskDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
           console.log(`⏱️ Mr Cock speaking for ${mrCockAskWaitTime}ms (audio: ${(actualMrCockAskDuration * 1000).toFixed(0)}ms)`);
         } else {
           console.log(`⏱️ Mr Cock speaking for ${mrCockAskWaitTime}ms (calculated)`);
@@ -652,7 +656,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         let pepeWaitTime = pepeSpeakTime;
         if (pepeResult && pepeResult.audioPath) {
           const actualPepeDuration = await getAudioDuration(pepeResult.audioPath);
-          pepeWaitTime = Math.max(pepeSpeakTime, actualPepeDuration * 1000 + 1000);
+          pepeWaitTime = Math.max(pepeSpeakTime, actualPepeDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
           console.log(`⏱️ Pepe speaking for ${pepeWaitTime}ms (audio: ${(actualPepeDuration * 1000).toFixed(0)}ms)`);
         } else {
           console.log(`⏱️ Pepe speaking for ${pepeWaitTime}ms (calculated)`);
@@ -717,7 +721,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let mrCockBanterWaitTime = mrCockBanterTime;
           if (mrCockBanterResult && mrCockBanterResult.audioPath) {
             const actualMrCockBanterDuration = await getAudioDuration(mrCockBanterResult.audioPath);
-            mrCockBanterWaitTime = Math.max(mrCockBanterTime, actualMrCockBanterDuration * 1000 + 1000);
+            mrCockBanterWaitTime = Math.max(mrCockBanterTime, actualMrCockBanterDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
             console.log(`⏱️ Mr Cock speaking for ${mrCockBanterWaitTime}ms (audio: ${(actualMrCockBanterDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Mr Cock speaking for ${mrCockBanterWaitTime}ms (calculated)`);
@@ -762,7 +766,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let pepeBanterWaitTime = pepeBanterTime;
           if (pepeBanterResult && pepeBanterResult.audioPath) {
             const actualPepeBanterDuration = await getAudioDuration(pepeBanterResult.audioPath);
-            pepeBanterWaitTime = Math.max(pepeBanterTime, actualPepeBanterDuration * 1000 + 1000);
+            pepeBanterWaitTime = Math.max(pepeBanterTime, actualPepeBanterDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
             console.log(`⏱️ Pepe speaking for ${pepeBanterWaitTime}ms (audio: ${(actualPepeBanterDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Pepe speaking for ${pepeBanterWaitTime}ms (calculated)`);

@@ -769,16 +769,7 @@ function Home() {
               </div>
             )}
 
-            {/* Question Being Discussed - Shows in middle of screen */}
-            {currentQuestion && episodeStarted && !episodeEnded && (
-              <div className="question-on-air-overlay">
-                <div className="question-on-air-box">
-                  <div className="question-on-air-label">💬 LIVE QUESTION</div>
-                  <div className="question-on-air-text">"{currentQuestion.question}"</div>
-                  <div className="question-on-air-asker">— {currentQuestion.username}</div>
-                </div>
-              </div>
-            )}
+            {/* Question overlay removed per user request */}
 
             {/* Animated Character Display - SMOOTH VIDEO CROSSFADE (only show when episode started) */}
             {episodeStarted && countdown === null && (
