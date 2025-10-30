@@ -52,20 +52,7 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-// Serve static files
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
-app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
-app.use(express.static(path.join(__dirname, 'public'))); // Serve public folder for images like popcat.jpg
-
-// Serve frontend build if it exists
-const distPath = path.join(__dirname, 'dist');
-if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
-  console.log('✅ Serving frontend from dist folder');
-} else {
-  console.log('⚠️ No dist folder found, frontend not available');
-}
-
+// ⚠️ CRITICAL: Define multer storage BEFORE using it
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(__dirname, 'public', 'uploads', req.body.type, req.body.characterId);
@@ -114,14 +101,14 @@ io.on('connection', (socket) => {
   socket.conn.on('upgrade', (transport) => {
     console.log(`🔄 Socket.IO Transport Upgraded: ${socket.id}`);
     console.log(`   From: polling → To: ${transport.name}`);
+    });
   });
-});
-
+  
 // Listen for chat messages to add to recording
 io.on('chat_message_recorded', (userMsg) => {
-  if (isRecording) {
-    currentRecording.chat.push(userMsg);
-  }
+    if (isRecording) {
+      currentRecording.chat.push(userMsg);
+    }
 });
 
 app.get('/api/questions', (req, res) => {
@@ -459,7 +446,7 @@ async function saveRecording() {
       console.error(`   Stack: ${err.stack}`);
       console.error('   💡 Check if FFmpeg is installed on Railway');
       console.error('   💡 Check if video files exist in public/uploads');
-    });
+  });
   
   currentRecording.episodeNumber++;
 }
@@ -852,7 +839,7 @@ app.post('/api/start-episode', async (req, res) => {
   currentEpisode.isLive = true;
   const success = await startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broadcastState);
   if (success !== false) {
-    res.json({ success: true, message: 'Episode started with continuous conversation!' });
+  res.json({ success: true, message: 'Episode started with continuous conversation!' });
   } else {
     res.status(400).json({ success: false, message: 'Could not start episode' });
   }
@@ -924,6 +911,24 @@ app.post('/api/recording/stop', async (req, res) => {
     res.status(500).json({ error: 'Failed to save video' });
   }
 });
+
+// ============================================
+// STATIC FILE SERVING (AFTER all API routes!)
+// ============================================
+
+// Serve specific static directories
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
+app.use(express.static(path.join(__dirname, 'public'))); // Serve public folder for images like popcat.jpg
+
+// Serve frontend build if it exists
+const distPath = path.join(__dirname, 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  console.log('✅ Serving frontend from dist folder');
+} else {
+  console.log('⚠️ No dist folder found, frontend not available');
+}
 
 // Catch-all route - serve React app for any route not handled above
 app.use((req, res, next) => {
