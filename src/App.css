@@ -1650,7 +1650,7 @@ body::after {
 
 @media (max-width: 1024px) {
   .hero-section {
-    padding: 50px 16px 35px;
+    padding: 70px 16px 35px;
   }
 
   .hero-content {
@@ -1757,7 +1757,7 @@ body::after {
   }
 
   .hero-section {
-    padding: 32px 8px 20px;
+    padding: 60px 8px 20px;
     max-width: 100vw;
   }
 
@@ -3019,7 +3019,7 @@ body::after {
   }
   
   .hero-section {
-    padding: 28px 4px 16px;
+    padding: 55px 4px 16px;
     max-width: 100vw;
   }
   
