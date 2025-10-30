@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Schedule from './pages/Schedule'
 import About from './pages/About'
 import Episodes from './pages/Episodes'
+import Apply from './pages/Apply'
 import Admin from './pages/Admin'
 import './App.css'
 
@@ -18,6 +19,7 @@ function App() {
             <Link to="/" className="nav-link">Live</Link>
             <Link to="/episodes" className="nav-link">Episodes</Link>
             <Link to="/schedule" className="nav-link">Schedule</Link>
+            <Link to="/apply" className="nav-link nav-link-apply">Apply</Link>
             <Link to="/about" className="nav-link">About</Link>
           </div>
           <div className="social-links">
@@ -44,6 +46,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/episodes" element={<Episodes />} />
         <Route path="/schedule" element={<Schedule />} />
+        <Route path="/apply" element={<Apply />} />
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
