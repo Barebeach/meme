@@ -795,8 +795,8 @@ app.post('/api/recording/stop', async (req, res) => {
   }
 });
 
-const PORT = 3001;
-server.listen(PORT, () => {
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`🎙️ Mr Cock is ready to host!`);
   console.log(`🐸 Pepe is ready to be interviewed!`);
