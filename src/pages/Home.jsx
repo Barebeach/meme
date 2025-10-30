@@ -606,6 +606,13 @@ function Home() {
       return;
     }
 
+    // Character limit validation (200 characters max)
+    if (message.length > 200) {
+      setRateLimitMessage(`Question too long! Maximum 200 characters (you have ${message.length})`);
+      setTimeout(() => setRateLimitMessage(''), 4000);
+      return;
+    }
+
     // Client-side rate limiting (2 seconds)
     const now = Date.now();
     const timeSinceLastMessage = now - lastMessageTimeRef.current;
@@ -645,6 +652,13 @@ function Home() {
     if (!message) {
       setRateLimitMessage('Type your question first!');
       setTimeout(() => setRateLimitMessage(''), 3000);
+      return;
+    }
+
+    // Character limit validation (200 characters max)
+    if (message.length > 200) {
+      setRateLimitMessage(`Question too long! Maximum 200 characters (you have ${message.length})`);
+      setTimeout(() => setRateLimitMessage(''), 4000);
       return;
     }
 
@@ -1128,7 +1142,13 @@ function Home() {
               className="chat-input"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
+              maxLength={200}
             />
+            {newMessage.length > 0 && (
+              <div className={`char-counter ${newMessage.length > 180 ? 'warning' : ''} ${newMessage.length >= 200 ? 'error' : ''}`}>
+                {newMessage.length}/200
+              </div>
+            )}
             <div className="chat-buttons">
               <button 
                 type="button" 

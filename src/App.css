@@ -1337,6 +1337,26 @@ body::after {
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
+/* Character Counter */
+.char-counter {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.char-counter.warning {
+  color: rgba(251, 191, 36, 0.8);
+}
+
+.char-counter.error {
+  color: rgba(239, 68, 68, 0.9);
+  font-weight: 600;
+}
+
 .chat-input::placeholder {
   color: rgba(255, 255, 255, 0.3);
 }

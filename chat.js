@@ -998,6 +998,13 @@ function setupChatHandlers(io) {
         return;
       }
       
+      // Check message length (200 character limit)
+      if (message.length > 200) {
+        console.log(`Message too long from ${user.username}: ${message.length} characters`);
+        socket.emit('error', `Message too long! Maximum 200 characters (you sent ${message.length}).`);
+        return;
+      }
+      
       userLastMessage.set(socket.id, now);
       
       const userMsg = {
