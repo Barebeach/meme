@@ -31,7 +31,11 @@ console.log('✅ FFprobe path:', ffprobeInstaller.path);
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { origin: "http://localhost:5173", methods: ["GET", "POST"] }
+  cors: { 
+    origin: process.env.NODE_ENV === 'production' ? true : "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
 
 app.use(cors());

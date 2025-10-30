@@ -312,7 +312,8 @@ function Home() {
 
   // Initialize Socket.io connection
   useEffect(() => {
-    const newSocket = io('http://localhost:3001');
+    // Connect to the same server (works in both dev and production)
+    const newSocket = io(window.location.origin);
     setSocket(newSocket);
 
     // Listen for USER messages ONLY (not podcast dialogue)

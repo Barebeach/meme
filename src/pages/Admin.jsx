@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
 const ADMIN_PASSWORD = 'memetalk2025'; // Change this to something secure
+const API_URL = window.location.origin; // Works in both dev and production
 
 function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,7 +30,7 @@ function Admin() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      const newSocket = io('http://localhost:3001');
+      const newSocket = io(API_URL);
       setSocket(newSocket);
 
       // Load initial data
@@ -43,7 +44,7 @@ function Admin() {
 
   const loadBroadcastState = async () => {
     try {
-      const res = await fetch('http://localhost:3001/api/admin/broadcast-state');
+      const res = await fetch(`${API_URL}/api/admin/broadcast-state`);
       const data = await res.json();
       setBroadcastState(data);
     } catch (error) {
@@ -53,7 +54,7 @@ function Admin() {
 
   const loadSchedule = async () => {
     try {
-      const res = await fetch('http://localhost:3001/api/admin/schedule');
+      const res = await fetch(`${API_URL}/api/admin/schedule`);
       const data = await res.json();
       setSchedule(data);
     } catch (error) {
@@ -63,7 +64,7 @@ function Admin() {
 
   const loadEpisodes = async () => {
     try {
-      const res = await fetch('http://localhost:3001/api/admin/episodes');
+      const res = await fetch(`${API_URL}/api/admin/episodes`);
       const data = await res.json();
       setEpisodes(data);
     } catch (error) {
@@ -83,7 +84,7 @@ function Admin() {
 
   const handleStartWebsite = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/admin/start-website', {
+      const response = await fetch(`${API_URL}/api/admin/start-website`, {
         method: 'POST'
       });
       if (response.ok) {
@@ -113,7 +114,7 @@ function Admin() {
 
     try {
       setUploadProgress('Uploading...');
-      const response = await fetch('http://localhost:3001/api/admin/upload-video', {
+      const response = await fetch(`${API_URL}/api/admin/upload-video`, {
         method: 'POST',
         body: formData
       });
@@ -137,7 +138,7 @@ function Admin() {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://localhost:3001/api/admin/schedule', {
+      const response = await fetch(`${API_URL}/api/admin/schedule`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(scheduleForm)
@@ -158,7 +159,7 @@ function Admin() {
     if (!confirm('Delete this schedule entry?')) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/api/admin/schedule/${id}`, {
+      const response = await fetch(`${API_URL}/api/admin/schedule/${id}`, {
         method: 'DELETE'
       });
 
@@ -175,7 +176,7 @@ function Admin() {
     if (!confirm('Delete this episode?')) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/api/admin/episodes/${id}`, {
+      const response = await fetch(`${API_URL}/api/admin/episodes/${id}`, {
         method: 'DELETE'
       });
 
