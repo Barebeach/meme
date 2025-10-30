@@ -85,6 +85,23 @@ function About() {
           <button className="cta-button">Apply Now</button>
         </section>
 
+        <section className="about-section promote-section">
+          <h2 className="about-heading">Promote with $MEMETALK</h2>
+          <p className="about-text" style={{fontSize: '18px', marginBottom: '24px'}}>
+            Want to promote your coin, meme, or platform on MEMETALK.TV?
+          </p>
+          <p className="about-text" style={{fontSize: '16px', marginBottom: '24px'}}>
+            All promotions and guest features on our podcast are paid exclusively in <strong>$MEMETALK</strong> — the token that powers every appearance on the show.
+          </p>
+          <p className="about-text" style={{fontSize: '20px', fontWeight: '600', color: '#fbbf24', marginBottom: '20px'}}>
+            Hold it. Use it. Get seen.
+          </p>
+          <p className="about-text" style={{fontSize: '18px', color: 'rgba(255, 255, 255, 0.9)'}}>
+            🎙️ Because on MEMETALK, visibility comes in $MEMETALK.
+          </p>
+          <button className="cta-button" style={{marginTop: '32px'}}>Get $MEMETALK</button>
+        </section>
+
         <section className="about-section final-section">
           <h2 className="about-heading">The $MEMETALK Token</h2>
           <p className="about-text">
@@ -98,7 +115,6 @@ function About() {
             <div className="benefit-item">✓ Early episode access</div>
             <div className="benefit-item">✓ Exclusive community roles</div>
           </div>
-          <button className="cta-button secondary">Get $MEMETALK</button>
         </section>
       </div>
     </div>
