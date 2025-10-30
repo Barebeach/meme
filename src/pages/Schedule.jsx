@@ -4,30 +4,9 @@ function Schedule() {
       date: "Oct 31, 2025",
       time: "8:00 PM EST",
       title: "PopCat Takes Over",
-      guest: "PopCat 🐱 × Mr Cock 🐓",
+      guest: "PopCat × Mr Cock",
       status: "upcoming",
       thumbnail: "/popcat.jpg"
-    },
-    {
-      date: "Nov 2, 2025",
-      time: "8:00 PM EST",
-      title: "Bonk vs Floki: The Battle",
-      guest: "Bonk 🔨 × Floki 🐕",
-      status: "upcoming"
-    },
-    {
-      date: "Nov 5, 2025",
-      time: "8:00 PM EST",
-      title: "SafeMoon Survivor Stories",
-      guest: "Anonymous Holders 💎",
-      status: "upcoming"
-    },
-    {
-      date: "Nov 9, 2025",
-      time: "8:00 PM EST",
-      title: "NFT Memes: Dead or Alive?",
-      guest: "Pudgy Penguins 🐧",
-      status: "upcoming"
     }
   ];
 
@@ -41,6 +20,11 @@ function Schedule() {
       <div className="schedule-grid">
         {upcomingEpisodes.map((episode, index) => (
           <div key={index} className="schedule-card">
+            {episode.thumbnail && (
+              <div className="schedule-thumbnail">
+                <img src={episode.thumbnail} alt={episode.guest} />
+              </div>
+            )}
             <div className="schedule-date">
               <div className="date-day">{episode.date.split(' ')[1]}</div>
               <div className="date-month">{episode.date.split(' ')[0]}</div>
