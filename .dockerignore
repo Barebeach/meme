@@ -1,0 +1,33 @@
+node_modules
+.git
+.env
+*.log
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Exclude ALL video files from Docker image
+public/*.mp4
+public/*.rar
+public/*.jpg
+public/New WinRAR archive.rar
+public/photo_*.jpg
+public/photo_*.png
+public/VOID-removebg-preview.png
+public/recordings
+public/temp
+public/episodes
+
+# Keep only essential static assets
+!public/favicon.ico
+!public/memetalk.tv.png
+!public/host.png
+!public/monaco.png
+!public/vite.svg
+
+# Keep the uploads folder structure but exclude videos for now
+public/uploads/**/*.mp4
+
+# We'll need to upload these videos separately or use a CDN
+
