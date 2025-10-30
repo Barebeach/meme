@@ -16,7 +16,8 @@ import {
   connectedUsers,
   setupChatHandlers,
   startEpisodeIntro,
-  getValidEmotion
+  getValidEmotion,
+  generateSpeech
 } from './chat.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -152,6 +153,27 @@ app.get('/api/episodes', (req, res) => {
     res.json(episodes);
   } else {
     res.json([]);
+  }
+});
+
+// Generate audio from text (TTS)
+app.post('/api/generate-audio', async (req, res) => {
+  try {
+    const { text, voice = 'onyx' } = req.body;
+    
+    if (!text) {
+      return res.status(400).json({ error: 'Text is required' });
+    }
+    
+    console.log(`🎤 Generating audio: voice=${voice}, text="${text.substring(0, 50)}..."`);
+    
+    const audioBuffer = await generateSpeech(text, voice);
+    
+    res.set('Content-Type', 'audio/mpeg');
+    res.send(audioBuffer);
+  } catch (error) {
+    console.error('❌ Error generating audio:', error);
+    res.status(500).json({ error: 'Failed to generate audio', details: error.message });
   }
 });
 
