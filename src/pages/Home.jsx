@@ -187,11 +187,13 @@ function Home() {
         const audioUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioUrl);
         
-        // PRELOAD audio
+        // FAST PRELOAD - wait for "canplay" not "canplaythrough" (much faster!)
         await new Promise((resolve) => {
-          audio.oncanplaythrough = () => resolve();
+          audio.oncanplay = () => resolve(); // Fires as soon as playback can start
           audio.onerror = () => resolve();
           audio.load();
+          // Timeout fallback - don't wait more than 500ms
+          setTimeout(resolve, 500);
         });
         
         console.log(`🎬 NOW PLAYING (SYNCED): ${msg.user}`);
