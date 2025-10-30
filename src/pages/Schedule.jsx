@@ -6,7 +6,8 @@ function Schedule() {
       title: "PopCat Takes Over",
       guest: "PopCat × Mr Cock",
       status: "upcoming",
-      thumbnail: "/popcat.jpg"
+      thumbnail: "/popcat.jpg",
+      special: "🎃 Halloween Special"
     }
   ];
 
