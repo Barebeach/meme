@@ -30,7 +30,24 @@ function Admin() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      const newSocket = io(API_URL);
+      const newSocket = io(API_URL, {
+        transports: ['websocket', 'polling'],
+        reconnection: true,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax: 5000,
+        reconnectionAttempts: 10,
+        timeout: 20000,
+        path: '/socket.io/'
+      });
+      
+      newSocket.on('connect', () => {
+        console.log('✅ Admin Socket.IO Connected:', newSocket.id);
+      });
+      
+      newSocket.on('connect_error', (error) => {
+        console.error('❌ Admin Socket.IO Error:', error.message);
+      });
+      
       setSocket(newSocket);
 
       // Load initial data

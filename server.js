@@ -36,7 +36,17 @@ const io = new Server(server, {
     origin: process.env.NODE_ENV === 'production' ? true : "http://localhost:5173",
     methods: ["GET", "POST"],
     credentials: true
-  }
+  },
+  // Enhanced WebSocket configuration for Railway
+  transports: ['websocket', 'polling'], // Try WebSocket first, fallback to polling
+  allowEIO3: true, // Support older clients
+  pingTimeout: 60000, // 60 seconds before considering connection dead
+  pingInterval: 25000, // Send ping every 25 seconds
+  upgradeTimeout: 30000, // 30 seconds to upgrade connection
+  maxHttpBufferSize: 1e6, // 1MB buffer
+  allowUpgrades: true, // Allow transport upgrades
+  perMessageDeflate: false, // Disable compression for better compatibility
+  httpCompression: false
 });
 
 app.use(cors());
@@ -77,6 +87,34 @@ const upload = multer({
 
 // Setup chat handlers from chat module
 setupChatHandlers(io);
+
+// Enhanced connection logging for Railway debugging
+io.engine.on("connection_error", (err) => {
+  console.error('❌ Socket.IO Connection Error:', err);
+  console.error('   Code:', err.code);
+  console.error('   Message:', err.message);
+  console.error('   Context:', err.context);
+});
+
+io.on('connection', (socket) => {
+  console.log(`✅ Socket.IO Client Connected: ${socket.id}`);
+  console.log(`   Transport: ${socket.conn.transport.name}`);
+  console.log(`   Remote Address: ${socket.handshake.address}`);
+  
+  socket.on('disconnect', (reason) => {
+    console.log(`❌ Socket.IO Client Disconnected: ${socket.id}`);
+    console.log(`   Reason: ${reason}`);
+  });
+  
+  socket.on('error', (error) => {
+    console.error(`❌ Socket.IO Error on ${socket.id}:`, error);
+  });
+  
+  socket.conn.on('upgrade', (transport) => {
+    console.log(`🔄 Socket.IO Transport Upgraded: ${socket.id}`);
+    console.log(`   From: polling → To: ${transport.name}`);
+  });
+});
 
 // Listen for chat messages to add to recording
 io.on('chat_message_recorded', (userMsg) => {

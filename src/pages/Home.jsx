@@ -320,7 +320,40 @@ function Home() {
   // Initialize Socket.io connection
   useEffect(() => {
     // Connect to the same server (works in both dev and production)
-    const newSocket = io(window.location.origin);
+    const newSocket = io(window.location.origin, {
+      transports: ['websocket', 'polling'], // Try WebSocket first, fallback to polling
+      reconnection: true, // Auto-reconnect
+      reconnectionDelay: 1000, // Wait 1s before reconnecting
+      reconnectionDelayMax: 5000, // Max 5s between reconnection attempts
+      reconnectionAttempts: 10, // Try 10 times before giving up
+      timeout: 20000, // 20s connection timeout
+      forceNew: false, // Reuse existing connection if available
+      upgrade: true, // Allow transport upgrades
+      rememberUpgrade: true, // Remember successful upgrade
+      path: '/socket.io/' // Explicit path
+    });
+    
+    newSocket.on('connect', () => {
+      console.log('✅ Socket.IO Connected:', newSocket.id);
+      console.log('   Transport:', newSocket.io.engine.transport.name);
+    });
+    
+    newSocket.on('connect_error', (error) => {
+      console.error('❌ Socket.IO Connection Error:', error.message);
+    });
+    
+    newSocket.on('disconnect', (reason) => {
+      console.log('❌ Socket.IO Disconnected:', reason);
+    });
+    
+    newSocket.on('reconnect', (attemptNumber) => {
+      console.log('🔄 Socket.IO Reconnected after', attemptNumber, 'attempts');
+    });
+    
+    newSocket.io.engine.on('upgrade', (transport) => {
+      console.log('🔄 Socket.IO Transport Upgraded to:', transport.name);
+    });
+    
     setSocket(newSocket);
 
     // Listen for USER messages ONLY (not podcast dialogue)
