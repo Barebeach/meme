@@ -1,6 +1,19 @@
 import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
+// Helper component for WebM + MP4 fallback video
+const CharacterVideo = ({ src, className, ...props }) => {
+  const webmSrc = typeof src === 'string' ? src.replace('.mp4', '.webm') : src;
+  const mp4Src = src;
+  
+  return (
+    <video className={className} {...props}>
+      <source src={webmSrc} type="video/webm" />
+      <source src={mp4Src} type="video/mp4" />
+    </video>
+  );
+};
+
 function Home() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -777,7 +790,7 @@ function Home() {
             {episodeStarted && countdown === null && (
               <div className="character-display">
                 {/* BOTH SHUT UP VIDEO - Shows when NO ONE is speaking - ALWAYS RENDER WITH FALLBACK! */}
-                <video
+                <CharacterVideo
                   className={`character-video ${!currentSpeaker || currentSpeaker === null ? 'active' : 'hidden'}`}
                   src={transitionVideo || '/bothshutup.mp4'}
                   autoPlay
@@ -790,7 +803,7 @@ function Home() {
                 
                 {/* Guest Video (Pepe or others) - Dynamically loaded */}
                 {guestVideos.normal && (
-                  <video
+                  <CharacterVideo
                     className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'normal' ? 'active' : 'hidden'}`}
                     src={`${window.location.origin}${guestVideos.normal}`}
                     autoPlay
