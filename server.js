@@ -257,62 +257,31 @@ app.post('/api/admin/upload-video', upload.single('video'), (req, res) => {
 
 app.get('/api/videos/hosts/:id', (req, res) => {
   const characterId = req.params.id;
-  const videoPath = path.join(__dirname, 'public', 'uploads', 'hosts', characterId);
   
-  const videos = {};
-  if (fs.existsSync(videoPath)) {
-    const files = fs.readdirSync(videoPath);
-    
-    // Group files by emotion name (without extension)
-    const emotionFiles = {};
-    files.forEach(file => {
-      const emotion = path.parse(file).name;
-      const ext = path.parse(file).ext;
-      if (!emotionFiles[emotion]) {
-        emotionFiles[emotion] = [];
-      }
-      emotionFiles[emotion].push({ file, ext });
-    });
-    
-    // Prefer .webm over .mp4
-    Object.keys(emotionFiles).forEach(emotion => {
-      const webm = emotionFiles[emotion].find(f => f.ext === '.webm');
-      const mp4 = emotionFiles[emotion].find(f => f.ext === '.mp4');
-      const selectedFile = webm ? webm.file : (mp4 ? mp4.file : emotionFiles[emotion][0].file);
-      videos[emotion] = `/uploads/hosts/${characterId}/${selectedFile}`;
-    });
-  }
+  // Map emotion names to WebM files in public/ folder (Mr Cock only)
+  const videos = {
+    angry: '/angrily coock.webm',
+    laughing: '/laughing coock.webm',
+    sad: '/sad coock.webm',
+    thinking: '/sarcastically coock.webm',
+    normal: '/serious cooock.webm'
+  };
   
   res.json(videos);
 });
 
 app.get('/api/videos/guests/:id', (req, res) => {
   const characterId = req.params.id;
-  const videoPath = path.join(__dirname, 'public', 'uploads', 'guests', characterId);
   
-  const videos = {};
-  if (fs.existsSync(videoPath)) {
-    const files = fs.readdirSync(videoPath);
-    
-    // Group files by emotion name (without extension)
-    const emotionFiles = {};
-    files.forEach(file => {
-      const emotion = path.parse(file).name;
-      const ext = path.parse(file).ext;
-      if (!emotionFiles[emotion]) {
-        emotionFiles[emotion] = [];
-      }
-      emotionFiles[emotion].push({ file, ext });
-    });
-    
-    // Prefer .webm over .mp4
-    Object.keys(emotionFiles).forEach(emotion => {
-      const webm = emotionFiles[emotion].find(f => f.ext === '.webm');
-      const mp4 = emotionFiles[emotion].find(f => f.ext === '.mp4');
-      const selectedFile = webm ? webm.file : (mp4 ? mp4.file : emotionFiles[emotion][0].file);
-      videos[emotion] = `/uploads/guests/${characterId}/${selectedFile}`;
-    });
-  }
+  // Map emotion names to WebM files in public/ folder (Pepe only)
+  const videos = {
+    angry: '/angrily pepe.webm',
+    happy: '/happily pepe.webm',
+    sad: '/sad  pepe.webm',
+    screaming: '/crazy pepe.webm',
+    thinking: '/sarcastically  pepe.webm',
+    normal: '/serious pepe.webm'
+  };
   
   res.json(videos);
 });
@@ -875,17 +844,8 @@ let currentEpisode = {
 };
 
 app.get('/api/videos/transition', (req, res) => {
-  // Prefer .webm over .mp4
-  const webmPath = path.join(__dirname, 'public', 'uploads', 'transition', 'bothshutup.webm');
-  const mp4Path = path.join(__dirname, 'public', 'uploads', 'transition', 'bothshutup.mp4');
-  
-  if (fs.existsSync(webmPath)) {
-    res.json({ video: '/uploads/transition/bothshutup.webm' });
-  } else if (fs.existsSync(mp4Path)) {
-    res.json({ video: '/uploads/transition/bothshutup.mp4' });
-  } else {
-    res.status(404).json({ error: 'Transition video not found' });
-  }
+  // Return WebM transition video from public/ folder
+  res.json({ video: '/bothshutup.webm' });
 });
 
 app.post('/api/start-episode', async (req, res) => {

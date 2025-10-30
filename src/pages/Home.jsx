@@ -1,16 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
-// Helper component for WebM + MP4 fallback video
+// Helper component for WebM video (no MP4 fallback)
 const CharacterVideo = ({ src, className, ...props }) => {
-  const webmSrc = typeof src === 'string' ? src.replace('.mp4', '.webm') : src;
-  const mp4Src = src;
-  
   return (
-    <video className={className} {...props}>
-      <source src={webmSrc} type="video/webm" />
-      <source src={mp4Src} type="video/mp4" />
-    </video>
+    <video className={className} src={src} {...props} />
   );
 };
 
