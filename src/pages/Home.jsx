@@ -213,9 +213,8 @@ function Home() {
             console.log(`✅ Finished playing ${msg.user}`);
             // Clear all emotion timeouts
             emotionTimeouts.forEach(timeout => clearTimeout(timeout));
-            
-            // ⚡ ALWAYS clear speaker when audio ends to stop lip-sync!
-            console.log(`🎬 Audio ended - clearing speaker (stopping video)`);
+            // CLEAR speaker to show "bothshutup" video
+            console.log(`🎬 Switching to TRANSITION video (bothshutup)`);
             setCurrentSpeaker(null);
             
             // If Pepe just finished answering a question, clear it from screen
@@ -302,11 +301,9 @@ function Home() {
 
     isPlayingAudioRef.current = false;
     
-    // ⚡ Play next in queue after BRIEF 100ms transition (to show bothshutup for a moment)
+    // Play next in queue
     if (audioQueueRef.current.length > 0) {
-      setTimeout(() => {
-        processAudioQueue();
-      }, 100); // 100ms = just enough to see transition, then next speaker starts
+      processAudioQueue();
     }
   };
 
@@ -786,16 +783,7 @@ function Home() {
               </div>
             )}
 
-            {/* Question Being Discussed - CENTER BOTTOM over video */}
-            {currentQuestion && episodeStarted && !episodeEnded && (
-              <div className="question-on-air-overlay">
-                <div className="question-on-air-box">
-                  <div className="question-on-air-label">💬 LIVE QUESTION</div>
-                  <div className="question-on-air-text">"{currentQuestion.question}"</div>
-                  <div className="question-on-air-asker">— {currentQuestion.username}</div>
-                </div>
-              </div>
-            )}
+            {/* Question overlay removed per user request */}
 
             {/* Animated Character Display - SMOOTH VIDEO CROSSFADE (only show when episode started) */}
             {episodeStarted && countdown === null && (
