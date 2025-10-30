@@ -46,7 +46,7 @@ const __dirname = path.dirname(__filename);
 
 // OpenAI Configuration
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 // Chat State
