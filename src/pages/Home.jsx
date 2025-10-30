@@ -213,9 +213,15 @@ function Home() {
             console.log(`✅ Finished playing ${msg.user}`);
             // Clear all emotion timeouts
             emotionTimeouts.forEach(timeout => clearTimeout(timeout));
-            // CLEAR speaker to show "bothshutup" video
-            console.log(`🎬 Switching to TRANSITION video (bothshutup)`);
-            setCurrentSpeaker(null);
+            
+            // ⚡ ONLY show transition if no audio is queued - otherwise skip it!
+            if (audioQueueRef.current.length === 0) {
+              console.log(`🎬 Switching to TRANSITION video (no audio queued)`);
+              setCurrentSpeaker(null);
+            } else {
+              console.log(`⚡ SKIPPING TRANSITION - next audio ready in queue!`);
+              // Keep current speaker visible for a split second while next loads
+            }
             
             // If Pepe just finished answering a question, clear it from screen
             if (msg.isGuest && currentQuestion) {
