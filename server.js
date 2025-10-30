@@ -37,10 +37,18 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from frontend build
-app.use(express.static(path.join(__dirname, 'dist')));
+// Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
+
+// Serve frontend build if it exists
+const distPath = path.join(__dirname, 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  console.log('✅ Serving frontend from dist folder');
+} else {
+  console.log('⚠️ No dist folder found, frontend not available');
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -802,7 +810,12 @@ app.post('/api/recording/stop', async (req, res) => {
 app.use((req, res, next) => {
   // Only serve index.html for GET requests that don't start with /api
   if (req.method === 'GET' && !req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+    const indexPath = path.join(__dirname, 'dist', 'index.html');
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      res.status(404).send('Frontend not built. Please run: npm run build');
+    }
   } else {
     next();
   }
