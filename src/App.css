@@ -1712,9 +1712,16 @@ body::after {
     min-height: 300px;
   }
   
+  .video-wrapper {
+    min-height: 300px !important;
+    max-height: 450px !important;
+    height: auto !important;
+  }
+  
   .character-video {
-    max-height: 400px;
+    max-height: 450px;
     width: 100%;
+    object-fit: contain;
   }
 
   .chat-section {
@@ -1824,10 +1831,27 @@ body::after {
     margin: 0;
   }
   
+  .video-wrapper {
+    min-height: 250px !important;
+    max-height: 320px !important;
+    height: 320px !important;
+    aspect-ratio: auto !important;
+  }
+  
   .character-video {
     max-height: 320px;
+    height: 320px;
     width: 100%;
     object-fit: contain;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+  }
+  
+  .idle-display {
+    min-height: 250px !important;
+    max-height: 320px !important;
   }
   
   .chat-section {
@@ -3048,10 +3072,27 @@ body::after {
     margin: 0;
   }
   
+  .video-wrapper {
+    min-height: 200px !important;
+    max-height: 280px !important;
+    height: 280px !important;
+    aspect-ratio: auto !important;
+  }
+  
   .character-video {
     max-height: 280px;
+    height: 280px;
     width: 100%;
     object-fit: contain;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+  }
+  
+  .idle-display {
+    min-height: 200px !important;
+    max-height: 280px !important;
   }
   
   .chat-section {
