@@ -167,10 +167,16 @@ app.post('/api/generate-audio', async (req, res) => {
     
     console.log(`🎤 Generating audio: voice=${voice}, text="${text.substring(0, 50)}..."`);
     
-    const audioBuffer = await generateSpeech(text, voice);
+    const result = await generateSpeech(text, voice);
+    
+    if (!result || !result.buffer) {
+      throw new Error('Failed to generate audio');
+    }
+    
+    console.log(`✅ Audio generated successfully, buffer size: ${result.buffer.length} bytes`);
     
     res.set('Content-Type', 'audio/mpeg');
-    res.send(audioBuffer);
+    res.send(result.buffer);
   } catch (error) {
     console.error('❌ Error generating audio:', error);
     res.status(500).json({ error: 'Failed to generate audio', details: error.message });
