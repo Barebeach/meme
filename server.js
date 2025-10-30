@@ -36,6 +36,9 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from frontend build
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
 
@@ -793,6 +796,11 @@ app.post('/api/recording/stop', async (req, res) => {
     console.error('Error saving video:', error);
     res.status(500).json({ error: 'Failed to save video' });
   }
+});
+
+// Catch-all route - serve React app for any route not handled above
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3001;
