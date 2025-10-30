@@ -647,7 +647,7 @@ function Home() {
             <h1 className="hero-title">The First On-Chain Podcast</h1>
             <p className="hero-subtitle">Put your questions in the chat, and <strong>Mr. Cock</strong>, our AI meme host, will ask them. <strong>No scripts</strong>, just <strong>chaos</strong>.</p>
             <div className="hero-info">
-              <p className="info-line">Every interview <strong>recorded</strong>, published to <strong>MemeTalk.TV, X, and YouTube</strong>, and displayed here</p>
+              <p className="info-line">Every interview <strong>recorded</strong>, published to <strong>MemeTalk.TV, X (Twitter), and YouTube</strong>, and displayed here</p>
               <p className="info-line">Use <strong>live chat</strong> to ask questions — <strong>Mr Cock</strong> reads them <strong>live</strong></p>
               <p className="info-line"><strong>AI + Community + Blockchain</strong> = The future of podcasting</p>
             </div>
