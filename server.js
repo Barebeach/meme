@@ -262,9 +262,24 @@ app.get('/api/videos/hosts/:id', (req, res) => {
   const videos = {};
   if (fs.existsSync(videoPath)) {
     const files = fs.readdirSync(videoPath);
+    
+    // Group files by emotion name (without extension)
+    const emotionFiles = {};
     files.forEach(file => {
       const emotion = path.parse(file).name;
-      videos[emotion] = `/uploads/hosts/${characterId}/${file}`;
+      const ext = path.parse(file).ext;
+      if (!emotionFiles[emotion]) {
+        emotionFiles[emotion] = [];
+      }
+      emotionFiles[emotion].push({ file, ext });
+    });
+    
+    // Prefer .webm over .mp4
+    Object.keys(emotionFiles).forEach(emotion => {
+      const webm = emotionFiles[emotion].find(f => f.ext === '.webm');
+      const mp4 = emotionFiles[emotion].find(f => f.ext === '.mp4');
+      const selectedFile = webm ? webm.file : (mp4 ? mp4.file : emotionFiles[emotion][0].file);
+      videos[emotion] = `/uploads/hosts/${characterId}/${selectedFile}`;
     });
   }
   
@@ -278,9 +293,24 @@ app.get('/api/videos/guests/:id', (req, res) => {
   const videos = {};
   if (fs.existsSync(videoPath)) {
     const files = fs.readdirSync(videoPath);
+    
+    // Group files by emotion name (without extension)
+    const emotionFiles = {};
     files.forEach(file => {
       const emotion = path.parse(file).name;
-      videos[emotion] = `/uploads/guests/${characterId}/${file}`;
+      const ext = path.parse(file).ext;
+      if (!emotionFiles[emotion]) {
+        emotionFiles[emotion] = [];
+      }
+      emotionFiles[emotion].push({ file, ext });
+    });
+    
+    // Prefer .webm over .mp4
+    Object.keys(emotionFiles).forEach(emotion => {
+      const webm = emotionFiles[emotion].find(f => f.ext === '.webm');
+      const mp4 = emotionFiles[emotion].find(f => f.ext === '.mp4');
+      const selectedFile = webm ? webm.file : (mp4 ? mp4.file : emotionFiles[emotion][0].file);
+      videos[emotion] = `/uploads/guests/${characterId}/${selectedFile}`;
     });
   }
   
@@ -845,8 +875,13 @@ let currentEpisode = {
 };
 
 app.get('/api/videos/transition', (req, res) => {
-  const videoPath = path.join(__dirname, 'public', 'uploads', 'transition', 'bothshutup.mp4');
-  if (fs.existsSync(videoPath)) {
+  // Prefer .webm over .mp4
+  const webmPath = path.join(__dirname, 'public', 'uploads', 'transition', 'bothshutup.webm');
+  const mp4Path = path.join(__dirname, 'public', 'uploads', 'transition', 'bothshutup.mp4');
+  
+  if (fs.existsSync(webmPath)) {
+    res.json({ video: '/uploads/transition/bothshutup.webm' });
+  } else if (fs.existsSync(mp4Path)) {
     res.json({ video: '/uploads/transition/bothshutup.mp4' });
   } else {
     res.status(404).json({ error: 'Transition video not found' });
