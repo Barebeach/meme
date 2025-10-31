@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
 const SingleVideo = ({ videoSources, speaker, emotion }) => {
-  const [currentSrc, setCurrentSrc] = useState({ webm: '', mp4: '' });
+  const [currentSrc, setCurrentSrc] = useState('');
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -10,38 +10,44 @@ const SingleVideo = ({ videoSources, speaker, emotion }) => {
     
     const emotionVideo = videoSources[emotion];
     if (emotionVideo) {
-      setCurrentSrc({
-        webm: emotionVideo.webm,
-        mp4: emotionVideo.mp4
-      });
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const preferredSrc = isMobile ? emotionVideo.mp4 : (emotionVideo.webm || emotionVideo.mp4);
+      
+      console.log(`📹 Switching to: ${speaker} - ${emotion} (${isMobile ? 'MP4 for mobile' : 'WebM'})`);
+      setCurrentSrc(preferredSrc);
     }
-  }, [videoSources, emotion]);
+  }, [videoSources, emotion, speaker]);
 
   useEffect(() => {
-    if (videoRef.current && currentSrc.webm) {
-      videoRef.current.load();
-      videoRef.current.play().catch(err => {
-        console.log('Video autoplay blocked:', err.message);
-      });
+    if (videoRef.current && currentSrc) {
+      const video = videoRef.current;
+      video.src = currentSrc;
+      video.load();
+      
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.log('📱 Video play blocked, will retry:', err.message);
+          setTimeout(() => {
+            video.play().catch(e => console.log('Retry failed:', e.message));
+          }, 100);
+        });
+      }
     }
   }, [currentSrc]);
 
-  if (!currentSrc.webm && !currentSrc.mp4) return null;
+  if (!currentSrc) return null;
 
   return (
     <video
       ref={videoRef}
       className="character-video"
-      autoPlay
       loop
       muted
       playsInline
       preload="auto"
       style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-    >
-      <source src={currentSrc.webm} type="video/webm" />
-      <source src={currentSrc.mp4} type="video/mp4" />
-    </video>
+    />
   );
 };
 
@@ -846,16 +852,17 @@ function Home() {
                 {!currentSpeaker ? (
                   <video
                     className="character-video"
+                    src={(() => {
+                      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                      return isMobile ? transitionVideo?.mp4 : (transitionVideo?.webm || transitionVideo?.mp4);
+                    })()}
                     autoPlay
                     loop
                     muted
                     playsInline
                     preload="auto"
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  >
-                    <source src={transitionVideo?.webm} type="video/webm" />
-                    <source src={transitionVideo?.mp4} type="video/mp4" />
-                  </video>
+                  />
                 ) : currentSpeaker === 'Pepe' ? (
                   <SingleVideo 
                     videoSources={guestVideos} 
