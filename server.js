@@ -950,6 +950,7 @@ app.post('/api/recording/stop', async (req, res) => {
 
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
+app.use('/temp', express.static(path.join(__dirname, 'temp')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const distPath = path.join(__dirname, 'dist');
