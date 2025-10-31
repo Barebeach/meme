@@ -10,8 +10,8 @@ const SingleVideo = ({ videoSources, speaker, emotion }) => {
     const emotionVideo = videoSources[emotion];
     if (emotionVideo) {
       setCurrentSrc({
-        webm: `${window.location.origin}${emotionVideo.webm}`,
-        mp4: `${window.location.origin}${emotionVideo.mp4}`
+        webm: emotionVideo.webm,
+        mp4: emotionVideo.mp4
       });
     }
   }, [videoSources, emotion]);
@@ -802,14 +802,16 @@ function Home() {
                 {!currentSpeaker ? (
                   <video
                     className="character-video"
-                    src={transitionVideo?.webm ? `${window.location.origin}${transitionVideo.webm}` : '/bothshutup.mp4'}
                     autoPlay
                     loop
                     muted
                     playsInline
                     preload="auto"
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
+                  >
+                    <source src={transitionVideo?.webm} type="video/webm" />
+                    <source src={transitionVideo?.mp4} type="video/mp4" />
+                  </video>
                 ) : currentSpeaker === 'Pepe' ? (
                   <SingleVideo 
                     videoSources={guestVideos} 
