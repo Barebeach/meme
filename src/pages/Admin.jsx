@@ -101,16 +101,25 @@ function Admin() {
 
   const handleStartWebsite = async () => {
     try {
+      console.log('🚀 Calling start-website API at:', `${API_URL}/api/admin/start-website`);
       const response = await fetch(`${API_URL}/api/admin/start-website`, {
         method: 'POST'
       });
+      console.log('📡 Response status:', response.status);
+      
       if (response.ok) {
+        const data = await response.json();
+        console.log('✅ Success:', data);
         alert('Website started! Countdown beginning...');
         loadBroadcastState();
+      } else {
+        const errorText = await response.text();
+        console.error('❌ API Error:', response.status, errorText);
+        alert(`Failed to start: ${response.status}`);
       }
     } catch (error) {
-      console.error('Failed to start website:', error);
-      alert('Failed to start website');
+      console.error('❌ Failed to start website:', error);
+      alert(`Error: ${error.message}`);
     }
   };
 
