@@ -1,15 +1,36 @@
 import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
-const CharacterVideo = ({ webm, mp4, className, ...props }) => {
+const SingleVideo = ({ videoSources, speaker, emotion }) => {
+  const [currentSrc, setCurrentSrc] = useState({ webm: '', mp4: '' });
+
+  useEffect(() => {
+    if (!videoSources || !emotion) return;
+    
+    const emotionVideo = videoSources[emotion];
+    if (emotionVideo) {
+      setCurrentSrc({
+        webm: `${window.location.origin}${emotionVideo.webm}`,
+        mp4: `${window.location.origin}${emotionVideo.mp4}`
+      });
+    }
+  }, [videoSources, emotion]);
+
+  if (!currentSrc.webm && !currentSrc.mp4) return null;
+
   return (
-    <video 
-      className={className} 
-      style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-      {...props}
+    <video
+      key={`${speaker}-${emotion}`}
+      className="character-video"
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="auto"
+      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
     >
-      <source src={webm} type="video/webm" />
-      <source src={mp4} type="video/mp4" />
+      <source src={currentSrc.webm} type="video/webm" />
+      <source src={currentSrc.mp4} type="video/mp4" />
     </video>
   );
 };
@@ -778,143 +799,32 @@ function Home() {
 
             {episodeStarted && countdown === null && (
               <div className="character-display">
-                <CharacterVideo
-                  className={`character-video ${!currentSpeaker || currentSpeaker === null ? 'active' : 'hidden'}`}
-                  webm={transitionVideo?.webm ? `${window.location.origin}${transitionVideo.webm}` : '/bothshutup.webm'}
-                  mp4={transitionVideo?.mp4 ? `${window.location.origin}${transitionVideo.mp4}` : '/bothshutup.mp4'}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  key="transition-video"
-                />
-                
-                {guestVideos.normal && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'normal' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${guestVideos.normal.webm}`}
-                    mp4={`${window.location.origin}${guestVideos.normal.mp4}`}
+                {!currentSpeaker ? (
+                  <video
+                    className="character-video"
+                    src={transitionVideo?.webm ? `${window.location.origin}${transitionVideo.webm}` : '/bothshutup.mp4'}
                     autoPlay
                     loop
                     muted
                     playsInline
                     preload="auto"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
-                )}
-                {guestVideos.happy && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'happy' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${guestVideos.happy.webm}`}
-                    mp4={`${window.location.origin}${guestVideos.happy.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
+                ) : currentSpeaker === 'Pepe' ? (
+                  <SingleVideo 
+                    videoSources={guestVideos} 
+                    speaker="Pepe" 
+                    emotion={currentEmotion} 
                   />
-                )}
-                {guestVideos.angry && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'angry' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${guestVideos.angry.webm}`}
-                    mp4={`${window.location.origin}${guestVideos.angry.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-                {guestVideos.sad && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'sad' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${guestVideos.sad.webm}`}
-                    mp4={`${window.location.origin}${guestVideos.sad.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-                {guestVideos.screaming && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'screaming' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${guestVideos.screaming.webm}`}
-                    mp4={`${window.location.origin}${guestVideos.screaming.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-                {guestVideos.thinking && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Pepe' && currentEmotion === 'thinking' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${guestVideos.thinking.webm}`}
-                    mp4={`${window.location.origin}${guestVideos.thinking.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
+                ) : (
+                  <SingleVideo 
+                    videoSources={hostVideos} 
+                    speaker="Mr Cock" 
+                    emotion={currentEmotion} 
                   />
                 )}
                 
-                {hostVideos.normal && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'normal' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${hostVideos.normal.webm}`}
-                    mp4={`${window.location.origin}${hostVideos.normal.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-                {hostVideos.angry && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'angry' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${hostVideos.angry.webm}`}
-                    mp4={`${window.location.origin}${hostVideos.angry.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-                {hostVideos.sad && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'sad' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${hostVideos.sad.webm}`}
-                    mp4={`${window.location.origin}${hostVideos.sad.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-                {hostVideos.thinking && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'thinking' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${hostVideos.thinking.webm}`}
-                    mp4={`${window.location.origin}${hostVideos.thinking.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-                {hostVideos.laughing && (
-                  <CharacterVideo
-                    className={`character-video ${currentSpeaker === 'Mr Cock' && currentEmotion === 'laughing' ? 'active' : 'hidden'}`}
-                    webm={`${window.location.origin}${hostVideos.laughing.webm}`}
-                    mp4={`${window.location.origin}${hostVideos.laughing.mp4}`}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
                 
-                {/* Talking Indicators */}
                 {currentSpeaker === 'Pepe' && (
                   <div className="talking-indicator">
                     <span className="indicator-text">🎙️ Pepe Speaking</span>
