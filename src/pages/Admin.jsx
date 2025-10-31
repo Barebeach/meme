@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
-const ADMIN_PASSWORD = 'memetalk2025'; // Change this to something secure
-const API_URL = window.location.origin; // Works in both dev and production
+const ADMIN_PASSWORD = 'memetalk2025';
+const API_URL = import.meta.env.DEV ? 'http://localhost:3000' : window.location.origin;
 
 function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

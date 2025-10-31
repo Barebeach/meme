@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { VideoPlayer, unlockAllVideos } from '../components/VideoPlayer'
 
+const API_URL = import.meta.env.DEV ? 'http://localhost:3000' : window.location.origin;
+
 function Home() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -59,21 +61,21 @@ function Home() {
     
     const loadVideoMappings = async () => {
       try {
-        const hostRes = await fetch(`${window.location.origin}/api/videos/hosts/mrcock`);
+        const hostRes = await fetch(`${API_URL}/api/videos/hosts/mrcock`);
         if (hostRes.ok) {
           const hostData = await hostRes.json();
           setHostVideos(hostData);
           console.log('✅ Host videos loaded:', hostData);
         }
         
-        const guestRes = await fetch(`${window.location.origin}/api/videos/guests/${currentGuest}`);
+        const guestRes = await fetch(`${API_URL}/api/videos/guests/${currentGuest}`);
         if (guestRes.ok) {
           const guestData = await guestRes.json();
           setGuestVideos(guestData);
           console.log('✅ Guest videos loaded:', guestData);
         }
         
-        const transitionRes = await fetch(`${window.location.origin}/api/videos/transition`);
+        const transitionRes = await fetch(`${API_URL}/api/videos/transition`);
         if (transitionRes.ok) {
           const transitionData = await transitionRes.json();
           setTransitionVideo(transitionData);
@@ -86,7 +88,7 @@ function Home() {
     
     const checkBroadcastState = async () => {
       try {
-        const stateRes = await fetch(`${window.location.origin}/api/admin/broadcast-state`);
+        const stateRes = await fetch(`${API_URL}/api/admin/broadcast-state`);
         if (stateRes.ok) {
           const state = await stateRes.json();
           
@@ -114,7 +116,7 @@ function Home() {
 
     const loadEpisodes = async () => {
       try {
-        const episodesRes = await fetch(`${window.location.origin}/api/episodes`);
+        const episodesRes = await fetch(`${API_URL}/api/episodes`);
         if (episodesRes.ok) {
           const episodesData = await episodesRes.json();
           setEpisodes(episodesData);
@@ -159,7 +161,7 @@ function Home() {
       
       console.log(`🎤 Requesting audio for: ${msg.user} - "${msg.message.substring(0, 50)}..."`);
       
-      const response = await fetch(`${window.location.origin}/api/generate-audio`, {
+      const response = await fetch(`${API_URL}/api/generate-audio`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: msg.message, voice })
@@ -340,7 +342,7 @@ function Home() {
   // Initialize Socket.io connection
   useEffect(() => {
     // Connect to the same server (works in both dev and production)
-    const newSocket = io(window.location.origin, {
+    const newSocket = io(API_URL, {
       transports: ['websocket', 'polling'], // Try WebSocket first, fallback to polling
       reconnection: true, // Auto-reconnect
       reconnectionDelay: 1000, // Wait 1s before reconnecting
