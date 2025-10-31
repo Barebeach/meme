@@ -43,17 +43,7 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
-/* Character Display Container */
-.character-display {
-  position: relative;
-  width: 100%;
-  min-height: 500px;
-  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
+/* Character display styles moved to VideoPlayer.css */
 
 /* Chat */
 .chat-section {
