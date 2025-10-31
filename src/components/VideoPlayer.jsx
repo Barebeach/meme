@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import './VideoPlayer.css';
 
 export const VideoPlayer = ({ 
   hostVideos, 

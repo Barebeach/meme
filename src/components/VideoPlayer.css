@@ -1,0 +1,45 @@
+/* VIDEO PLAYER - OVERRIDES ALL OLD CSS */
+
+.video-element {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+}
+
+.character-display .video-element {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Mobile - Force correct sizing */
+@media (max-width: 1024px) {
+  .video-element {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 400px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-element {
+    max-height: 300px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-element {
+    max-height: 250px !important;
+  }
+}
+
