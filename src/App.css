@@ -8,6 +8,7 @@
 /* Internal modular CSS files */
 @import './styles/base.css';
 @import './styles/animations.css';
+@import './styles/navigation.css';
 @import './components/VideoPlayer.css';
 
 * {
