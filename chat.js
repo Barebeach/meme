@@ -20,7 +20,7 @@ let isConversationActive = false;
 let conversationHistory = [];
 let banterCount = 0;
 const MAX_BANTER_BEFORE_PAUSE = 1;
-const PAUSE_DURATION = 8000;
+const PAUSE_DURATION = 3000;
 const EPISODE_DURATION = 15 * 60 * 1000;
 let episodeStartTime = null;
 
@@ -414,7 +414,7 @@ function sleep(ms) {
 function calculateSpeakingTime(text) {
   const words = text.split(' ').length;
   const baseTime = (words / 3) * 1000;
-  return Math.max(3000, baseTime + 2000);
+  return Math.max(3000, baseTime + 300);
 }
 
 async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
@@ -498,7 +498,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let mrCockWaitTime = mrCockSpeakTime;
           if (mrCockResult && mrCockResult.audioPath) {
             const actualMrCockDuration = await getAudioDuration(mrCockResult.audioPath);
-            mrCockWaitTime = Math.max(mrCockSpeakTime, actualMrCockDuration * 1000 + 200);
+            mrCockWaitTime = Math.max(mrCockSpeakTime, actualMrCockDuration * 1000);
             console.log(`⏱️ Mr Cock speaking for ${mrCockWaitTime}ms (audio: ${(actualMrCockDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Mr Cock speaking for ${mrCockWaitTime}ms (calculated)`);
@@ -545,7 +545,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         let mrCockAskWaitTime = mrCockSpeakTime;
         if (mrCockResult2 && mrCockResult2.audioPath) {
           const actualMrCockAskDuration = await getAudioDuration(mrCockResult2.audioPath);
-          mrCockAskWaitTime = Math.max(mrCockSpeakTime, actualMrCockAskDuration * 1000 + 200);
+          mrCockAskWaitTime = Math.max(mrCockSpeakTime, actualMrCockAskDuration * 1000);
           console.log(`⏱️ Mr Cock speaking for ${mrCockAskWaitTime}ms (audio: ${(actualMrCockAskDuration * 1000).toFixed(0)}ms)`);
         } else {
           console.log(`⏱️ Mr Cock speaking for ${mrCockAskWaitTime}ms (calculated)`);
@@ -578,7 +578,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         let pepeWaitTime = pepeSpeakTime;
         if (pepeResult && pepeResult.audioPath) {
           const actualPepeDuration = await getAudioDuration(pepeResult.audioPath);
-          pepeWaitTime = Math.max(pepeSpeakTime, actualPepeDuration * 1000 + 200);
+          pepeWaitTime = Math.max(pepeSpeakTime, actualPepeDuration * 1000);
           console.log(`⏱️ Pepe speaking for ${pepeWaitTime}ms (audio: ${(actualPepeDuration * 1000).toFixed(0)}ms)`);
         } else {
           console.log(`⏱️ Pepe speaking for ${pepeWaitTime}ms (calculated)`);
@@ -642,7 +642,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let mrCockBanterWaitTime = mrCockBanterTime;
           if (mrCockBanterResult && mrCockBanterResult.audioPath) {
             const actualMrCockBanterDuration = await getAudioDuration(mrCockBanterResult.audioPath);
-            mrCockBanterWaitTime = Math.max(mrCockBanterTime, actualMrCockBanterDuration * 1000 + 200);
+            mrCockBanterWaitTime = Math.max(mrCockBanterTime, actualMrCockBanterDuration * 1000);
             console.log(`⏱️ Mr Cock speaking for ${mrCockBanterWaitTime}ms (audio: ${(actualMrCockBanterDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Mr Cock speaking for ${mrCockBanterWaitTime}ms (calculated)`);
@@ -686,7 +686,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let pepeBanterWaitTime = pepeBanterTime;
           if (pepeBanterResult && pepeBanterResult.audioPath) {
             const actualPepeBanterDuration = await getAudioDuration(pepeBanterResult.audioPath);
-            pepeBanterWaitTime = Math.max(pepeBanterTime, actualPepeBanterDuration * 1000 + 200);
+            pepeBanterWaitTime = Math.max(pepeBanterTime, actualPepeBanterDuration * 1000);
             console.log(`⏱️ Pepe speaking for ${pepeBanterWaitTime}ms (audio: ${(actualPepeBanterDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Pepe speaking for ${pepeBanterWaitTime}ms (calculated)`);

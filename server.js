@@ -125,11 +125,11 @@ app.get('/api/admin/broadcast-state', (req, res) => {
 
 app.post('/api/admin/start-website', async (req, res) => {
   broadcastState.isLive = true;
-  broadcastState.countdown = 90;
+  broadcastState.countdown = 10;
   broadcastState.startTime = new Date().toISOString();
   broadcastState.episodeStarted = false;
 
-  console.log('🚀 Website started! Beginning 90 second countdown...');
+  console.log('🚀 Website started! Beginning 10 second countdown...');
   
   const countdownInterval = setInterval(() => {
     if (broadcastState.countdown > 0) {
