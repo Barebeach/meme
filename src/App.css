@@ -17,6 +17,9 @@
 /* Feature Components */
 @import './components/VideoPlayer.css';
 
+/* Pages */
+@import './styles/admin.css';
+
 /* TODO: Create these files next:
    - ./styles/chat.css (chat messages, input, scrollbar)
    - ./styles/episodes.css (episode cards, list)
