@@ -539,6 +539,15 @@ body::after {
   aspect-ratio: 16 / 9;
 }
 
+@media (max-width: 1024px) {
+  .video-wrapper {
+    min-height: 300px !important;
+    max-height: 450px !important;
+    height: 450px !important;
+    aspect-ratio: auto !important;
+  }
+}
+
 .main-video {
   width: 100%;
   height: auto;
@@ -853,7 +862,9 @@ body::after {
 }
 
 @media (max-width: 1024px) {
-  .character-video {
+  .character-video,
+  .video-wrapper video,
+  .character-display video {
     position: static !important;
     transform: none !important;
     top: auto !important;
@@ -862,6 +873,7 @@ body::after {
     height: 100% !important;
     max-width: 100% !important;
     max-height: 100% !important;
+    object-fit: contain !important;
   }
 }
 
@@ -933,10 +945,13 @@ body::after {
 }
 
 @media (max-width: 1024px) {
-  .countdown-promo-video {
+  .countdown-promo-video,
+  .countdown-overlay video {
     position: static !important;
     width: 100% !important;
     height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     object-fit: contain !important;
   }
 }
@@ -1900,7 +1915,10 @@ body::after {
 
   .character-video,
   .idle-display,
-  .countdown-promo-video {
+  .countdown-promo-video,
+  .video-wrapper video,
+  .character-display video,
+  video {
     position: static !important;
     display: block !important;
     max-height: 320px !important;
@@ -3183,7 +3201,10 @@ body::after {
 
   .character-video,
   .idle-display,
-  .countdown-promo-video {
+  .countdown-promo-video,
+  .video-wrapper video,
+  .character-display video,
+  video {
     position: static !important;
     display: block !important;
     max-height: 280px !important;
