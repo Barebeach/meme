@@ -22,6 +22,8 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const R2_BASE_URL = 'https://pub-2210718f3f20481b84992800d4ae8bd1.r2.dev';
+
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
 
@@ -237,11 +239,26 @@ app.post('/api/admin/upload-video', upload.single('video'), (req, res) => {
 
 app.get('/api/videos/hosts/:id', (req, res) => {
   const videos = {
-    angry: { webm: '/angrily coock.webm', mp4: '/angrily coock.mp4' },
-    laughing: { webm: '/laughing coock.webm', mp4: '/laughing coock.mp4' },
-    sad: { webm: '/sad coock.webm', mp4: '/sad coock.mp4' },
-    thinking: { webm: '/sarcastically coock.webm', mp4: '/sarcastically coock.mp4' },
-    normal: { webm: '/serious cooock.webm', mp4: '/serious cooock.mp4' }
+    angry: { 
+      webm: `${R2_BASE_URL}/angrily%20coock.webm`, 
+      mp4: `${R2_BASE_URL}/angrily%20coock.mp4` 
+    },
+    laughing: { 
+      webm: `${R2_BASE_URL}/laughing%20coock.webm`, 
+      mp4: `${R2_BASE_URL}/laughing%20coock.mp4` 
+    },
+    sad: { 
+      webm: `${R2_BASE_URL}/sad%20coock.webm`, 
+      mp4: `${R2_BASE_URL}/sad%20coock.mp4` 
+    },
+    thinking: { 
+      webm: `${R2_BASE_URL}/sarcastically%20coock.webm`, 
+      mp4: `${R2_BASE_URL}/sarcastically%20coock.mp4` 
+    },
+    normal: { 
+      webm: `${R2_BASE_URL}/serious%20cooock.webm`, 
+      mp4: `${R2_BASE_URL}/serious%20cooock.mp4` 
+    }
   };
   
   res.json(videos);
@@ -249,12 +266,30 @@ app.get('/api/videos/hosts/:id', (req, res) => {
 
 app.get('/api/videos/guests/:id', (req, res) => {
   const videos = {
-    angry: { webm: '/angrily pepe.webm', mp4: '/angrily pepe.mp4' },
-    happy: { webm: '/happily pepe.webm', mp4: '/happily pepe.mp4' },
-    sad: { webm: '/sad  pepe.webm', mp4: '/sad  pepe.mp4' },
-    screaming: { webm: '/crazy pepe.webm', mp4: '/crazy pepe.mp4' },
-    thinking: { webm: '/sarcastically  pepe.webm', mp4: '/sarcastically  pepe.mp4' },
-    normal: { webm: '/serious pepe.webm', mp4: '/serious pepe.mp4' }
+    angry: { 
+      webm: `${R2_BASE_URL}/angrily%20pepe.webm`, 
+      mp4: `${R2_BASE_URL}/angrily%20pepe.mp4` 
+    },
+    happy: { 
+      webm: `${R2_BASE_URL}/happily%20pepe.webm`, 
+      mp4: `${R2_BASE_URL}/happily%20pepe.mp4` 
+    },
+    sad: { 
+      webm: `${R2_BASE_URL}/sad%20pepe.webm`, 
+      mp4: `${R2_BASE_URL}/sad%20pepe.mp4` 
+    },
+    screaming: { 
+      webm: `${R2_BASE_URL}/crazy%20pepe.webm`, 
+      mp4: `${R2_BASE_URL}/crazy%20pepe.mp4` 
+    },
+    thinking: { 
+      webm: `${R2_BASE_URL}/sarcastically%20pepe.webm`, 
+      mp4: `${R2_BASE_URL}/sarcastically%20pepe.mp4` 
+    },
+    normal: { 
+      webm: `${R2_BASE_URL}/serious%20pepe.webm`, 
+      mp4: `${R2_BASE_URL}/serious%20pepe.mp4` 
+    }
   };
   
   res.json(videos);
@@ -818,8 +853,8 @@ let currentEpisode = {
 
 app.get('/api/videos/transition', (req, res) => {
   res.json({ 
-    webm: '/bothshutup.webm',
-    mp4: '/bothshutup.mp4'
+    webm: `${R2_BASE_URL}/bothshutup.webm`,
+    mp4: `${R2_BASE_URL}/bothshutup.mp4`
   });
 });
 
