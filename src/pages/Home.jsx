@@ -6,37 +6,75 @@ const SingleVideo = ({ videoSources, speaker, emotion }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (!videoSources || !emotion) return;
+    console.log('🎬 SingleVideo UPDATE:', { speaker, emotion, videoSources });
+    
+    if (!videoSources || !emotion) {
+      console.error('❌ Missing videoSources or emotion!', { videoSources, emotion });
+      return;
+    }
     
     const emotionVideo = videoSources[emotion];
-    if (emotionVideo) {
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      const preferredSrc = isMobile ? emotionVideo.mp4 : (emotionVideo.webm || emotionVideo.mp4);
-      
-      console.log(`📹 Switching to: ${speaker} - ${emotion} (${isMobile ? 'MP4 for mobile' : 'WebM'})`);
-      setCurrentSrc(preferredSrc);
+    if (!emotionVideo) {
+      console.error(`❌ No video found for emotion: ${emotion}`, Object.keys(videoSources));
+      return;
     }
+    
+    console.log(`✅ Found emotion video:`, emotionVideo);
+    
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const preferredSrc = isMobile ? emotionVideo.mp4 : (emotionVideo.webm || emotionVideo.mp4);
+    
+    console.log(`📹 SWITCHING TO: ${speaker} - ${emotion}`);
+    console.log(`📱 Device: ${isMobile ? 'MOBILE (using MP4)' : 'DESKTOP (using WebM)'}`);
+    console.log(`🎥 Video URL: ${preferredSrc}`);
+    
+    setCurrentSrc(preferredSrc);
   }, [videoSources, emotion, speaker]);
 
   useEffect(() => {
-    if (videoRef.current && currentSrc) {
-      const video = videoRef.current;
-      video.src = currentSrc;
-      video.load();
-      
+    if (!videoRef.current || !currentSrc) {
+      console.log('⏸️ Video ref or src not ready', { hasRef: !!videoRef.current, currentSrc });
+      return;
+    }
+    
+    const video = videoRef.current;
+    console.log(`🎥 Setting video.src = ${currentSrc.substring(0, 80)}...`);
+    
+    video.onerror = (e) => {
+      console.error('❌ VIDEO LOAD ERROR:', e);
+      console.error('Failed URL:', currentSrc);
+    };
+    
+    video.onloadeddata = () => {
+      console.log('✅ Video loaded successfully!');
+    };
+    
+    video.src = currentSrc;
+    video.load();
+    
+    setTimeout(() => {
       const playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.catch(err => {
-          console.log('📱 Video play blocked, will retry:', err.message);
-          setTimeout(() => {
-            video.play().catch(e => console.log('Retry failed:', e.message));
-          }, 100);
-        });
+        playPromise
+          .then(() => {
+            console.log('✅ Video playing!');
+          })
+          .catch(err => {
+            console.error('❌ Video play blocked:', err.message);
+            setTimeout(() => {
+              video.play()
+                .then(() => console.log('✅ Retry successful!'))
+                .catch(e => console.error('❌ Retry failed:', e.message));
+            }, 200);
+          });
       }
-    }
+    }, 50);
   }, [currentSrc]);
 
-  if (!currentSrc) return null;
+  if (!currentSrc) {
+    console.log('⚠️ No currentSrc, not rendering video');
+    return null;
+  }
 
   return (
     <video
