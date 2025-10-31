@@ -157,20 +157,23 @@ function Home() {
     console.log(`🔊 PREPARING: ${msg.user}`);
 
     try {
-      const voice = msg.isHost ? 'onyx' : msg.isGuest ? 'fable' : 'alloy';
+      if (!msg.audioPath) {
+        console.error(`❌ No audio path provided for ${msg.user}`);
+        isPlayingAudioRef.current = false;
+        if (audioQueueRef.current.length > 0) {
+          processAudioQueue();
+        }
+        return;
+      }
       
-      console.log(`🎤 Requesting audio for: ${msg.user} - "${msg.message.substring(0, 50)}..."`);
+      console.log(`⚡ FETCHING PRE-GENERATED AUDIO: ${msg.audioPath}`);
       
-      const response = await fetch(`${API_URL}/api/generate-audio`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: msg.message, voice })
-      });
+      const response = await fetch(`${API_URL}${msg.audioPath}`);
       
-      console.log(`📡 Audio API response status: ${response.status}`);
+      console.log(`📡 Audio fetch status: ${response.status}`);
       
       if (response.ok) {
-        console.log(`✅ Audio received for: ${msg.user}`);
+        console.log(`✅ Audio loaded INSTANTLY for: ${msg.user}`);
         const audioBlob = await response.blob();
         const audioUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioUrl);

@@ -469,6 +469,12 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           const mrCockSpeakTime = calculateSpeakingTime(mrCockAnswer);
           const mrCockSegments = analyzeEmotionalSegments(mrCockAnswer, mrCockSpeakTime);
           
+          console.log('🎙️ Mr Cock generating audio FIRST...');
+          const mrCockResult = await generateSpeech(mrCockAnswer, 'onyx', 'Mr Cock', 'normal', {
+            question: userQuestion.question,
+            username: userQuestion.username
+          }, null, recordingCallbacks);
+          
           const mrCockDialogue = {
             id: Date.now(),
             user: 'Mr Cock',
@@ -476,6 +482,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
             timestamp: 'Just now',
             isHost: true,
             hasAudio: true,
+            audioPath: mrCockResult?.audioPath,
             emotionSegments: mrCockSegments,
             questionData: {
               question: userQuestion.question,
@@ -488,12 +495,6 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           if (recordingCallbacks && recordingCallbacks.isRecording && recordingCallbacks.addDialogue) {
             recordingCallbacks.addDialogue(mrCockDialogue);
           }
-          
-          console.log('🎙️ Mr Cock answering the question himself...');
-          const mrCockResult = await generateSpeech(mrCockAnswer, 'onyx', 'Mr Cock', 'normal', {
-            question: userQuestion.question,
-            username: userQuestion.username
-          }, null, recordingCallbacks);
           
           let mrCockWaitTime = mrCockSpeakTime;
           if (mrCockResult && mrCockResult.audioPath) {
@@ -516,6 +517,12 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         
         const pepeResponsePromise = getPepeResponse(`${userQuestion.username} asked: "${userQuestion.question}"`, false, userQuestion.username);
         
+        console.log('🎙️ Mr Cock generating audio FIRST...');
+        const mrCockResult2 = await generateSpeech(mrCockAsks, 'onyx', 'Mr Cock', 'normal', {
+          question: userQuestion.question,
+          username: userQuestion.username
+        }, null, recordingCallbacks);
+        
         const mrCockDialogue = {
           id: Date.now(),
           user: 'Mr Cock',
@@ -523,6 +530,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           timestamp: 'Just now',
           isHost: true,
           hasAudio: true,
+          audioPath: mrCockResult2?.audioPath,
           emotionSegments: mrCockSegments,
           questionData: {
             question: userQuestion.question,
@@ -535,12 +543,6 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         if (recordingCallbacks && recordingCallbacks.isRecording && recordingCallbacks.addDialogue) {
           recordingCallbacks.addDialogue(mrCockDialogue);
         }
-        
-        console.log('🎙️ Mr Cock generating audio...');
-        const mrCockResult2 = await generateSpeech(mrCockAsks, 'onyx', 'Mr Cock', 'normal', {
-          question: userQuestion.question,
-          username: userQuestion.username
-        }, null, recordingCallbacks);
         
         let mrCockAskWaitTime = mrCockSpeakTime;
         if (mrCockResult2 && mrCockResult2.audioPath) {
@@ -562,6 +564,9 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         const pepeEmotion = pepeSegments.length > 0 ? pepeSegments[0].emotion : 'normal';
         console.log(`😠 Pepe emotions: ${pepeSegments.map(s => s.emotion).join(', ')}`);
         
+        console.log('🐸 Pepe generating audio FIRST...');
+        const pepeResult = await generateSpeech(pepeAnswer, 'fable', 'Pepe', pepeEmotion, null, pepeSegments, recordingCallbacks);
+        
         io.emit('podcast_dialogue', {
           id: Date.now(),
           user: 'Pepe',
@@ -569,12 +574,10 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           timestamp: 'Just now',
           isGuest: true,
           hasAudio: true,
+          audioPath: pepeResult?.audioPath,
           emotion: pepeEmotion,
           emotionSegments: pepeSegments
         });
-        
-        console.log('🐸 Pepe answering user question...');
-        const pepeResult = await generateSpeech(pepeAnswer, 'fable', 'Pepe', pepeEmotion, null, pepeSegments, recordingCallbacks);
         let pepeWaitTime = pepeSpeakTime;
         if (pepeResult && pepeResult.audioPath) {
           const actualPepeDuration = await getAudioDuration(pepeResult.audioPath);
@@ -624,20 +627,21 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           const topic = randomTopics[Math.floor(Math.random() * randomTopics.length)];
           const mrCockBanter = await getMrCockResponse(`Ask Pepe about ${topic}`, false);
           
+          console.log('⚡ PARALLEL GENERATION: Starting both audio and Pepe response...');
+          const pepeBanterPromise = getPepeResponse(mrCockBanter, false, 'everyone watching');
+          
+          console.log('🎙️ Mr Cock generating audio FIRST for:', topic);
+          const mrCockBanterResult = await generateSpeech(mrCockBanter, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
+          
           io.emit('podcast_dialogue', {
             id: Date.now(),
             user: 'Mr Cock',
             message: mrCockBanter,
             timestamp: 'Just now',
             isHost: true,
-            hasAudio: true
+            hasAudio: true,
+            audioPath: mrCockBanterResult?.audioPath
           });
-          
-          console.log('⚡ PARALLEL GENERATION: Starting Pepe\'s banter response while Mr Cock speaks...');
-          const pepeBanterPromise = getPepeResponse(mrCockBanter, false, 'everyone watching');
-          
-          console.log('🎙️ Mr Cock asking about:', topic);
-          const mrCockBanterResult = await generateSpeech(mrCockBanter, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
           const mrCockBanterTime = calculateSpeakingTime(mrCockBanter);
           let mrCockBanterWaitTime = mrCockBanterTime;
           if (mrCockBanterResult && mrCockBanterResult.audioPath) {
@@ -670,6 +674,9 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           const pepeBanterEmotion = pepeBanterSegments.length > 0 ? pepeBanterSegments[0].emotion : 'normal';
           console.log(`😠 Pepe emotions: ${pepeBanterSegments.map(s => s.emotion).join(', ')}`);
           
+          console.log('🐸 Pepe generating audio FIRST...');
+          const pepeBanterResult = await generateSpeech(pepeBanter, 'fable', 'Pepe', pepeBanterEmotion, null, pepeBanterSegments, recordingCallbacks);
+          
           io.emit('podcast_dialogue', {
             id: Date.now(),
             user: 'Pepe',
@@ -677,12 +684,10 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
             timestamp: 'Just now',
             isGuest: true,
             hasAudio: true,
+            audioPath: pepeBanterResult?.audioPath,
             emotion: pepeBanterEmotion,
             emotionSegments: pepeBanterSegments
           });
-          
-          console.log('🐸 Pepe answering banter...');
-          const pepeBanterResult = await generateSpeech(pepeBanter, 'fable', 'Pepe', pepeBanterEmotion, null, pepeBanterSegments, recordingCallbacks);
           let pepeBanterWaitTime = pepeBanterTime;
           if (pepeBanterResult && pepeBanterResult.audioPath) {
             const actualPepeBanterDuration = await getAudioDuration(pepeBanterResult.audioPath);
