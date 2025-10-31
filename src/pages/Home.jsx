@@ -1,44 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
-
-const MultiVideoPlayer = ({ videoSources, speaker, currentEmotion }) => {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  
-  if (!videoSources || Object.keys(videoSources).length === 0) {
-    return null;
-  }
-
-  return (
-    <>
-      {Object.entries(videoSources).map(([emotion, urls]) => {
-        const isActive = emotion === currentEmotion;
-        const videoUrl = isMobile ? urls.mp4 : (urls.webm || urls.mp4);
-        
-        return (
-          <video
-            key={`${speaker}-${emotion}`}
-            className={`character-video ${isActive ? 'active' : 'hidden'}`}
-            src={videoUrl}
-            autoPlay={isActive}
-            loop
-            muted
-            playsInline
-            preload="auto"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              display: isActive ? 'block' : 'none'
-            }}
-          />
-        );
-      })}
-    </>
-  );
-};
+import { VideoPlayer, unlockAllVideos } from '../components/VideoPlayer'
 
 function Home() {
   const [messages, setMessages] = useState([]);
@@ -353,51 +315,16 @@ function Home() {
     }
   }, [messages]);
 
-  const unlockAudioAndVideo = async () => {
+  const handleUnlock = async () => {
     if (audioUnlocked) return;
     
-    console.log('📱 User interaction detected - enabling video & audio playback');
-    
-    // Unlock VIDEO playback - play/pause all videos to unlock them
-    const allVideos = document.querySelectorAll('video.character-video');
-    console.log(`🎬 Found ${allVideos.length} videos to unlock`);
-    
-    for (const video of allVideos) {
-      try {
-        video.muted = true;
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          await playPromise;
-          video.pause();
-          console.log('✅ Video unlocked');
-        }
-      } catch (error) {
-        console.log('⚠️ Video unlock failed (this is OK):', error.message);
-      }
-    }
-    
-    // Unlock AUDIO playback (CRITICAL for mobile!)
-    try {
-      const dummyAudio = new Audio();
-      dummyAudio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
-      await dummyAudio.play();
-      dummyAudio.pause();
-      dummyAudio.remove();
-      console.log('✅ Audio unlocked for mobile');
-    } catch (error) {
-      console.log('⚠️ Could not unlock audio:', error.message);
-    }
-    
+    await unlockAllVideos();
     setAudioUnlocked(true);
-    console.log('🎉 ALL MEDIA UNLOCKED - Ready to play!');
   };
 
-  // One-time user interaction handler for mobile (iOS Safari requires this)
   useEffect(() => {
     const handleFirstInteraction = () => {
-      unlockAudioAndVideo();
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('touchstart', handleFirstInteraction);
+      handleUnlock();
     };
     
     document.addEventListener('click', handleFirstInteraction, { once: true });
@@ -409,42 +336,6 @@ function Home() {
     };
   }, [audioUnlocked]);
 
-  // Explicitly play active videos and pause hidden ones
-  useEffect(() => {
-    if (!episodeStarted || !audioUnlocked) return;
-    
-    const playActiveVideos = async () => {
-      const activeVideos = document.querySelectorAll('video.character-video.active');
-      const hiddenVideos = document.querySelectorAll('video.character-video.hidden');
-      
-      console.log(`🎬 Playing ${activeVideos.length} active videos, pausing ${hiddenVideos.length} hidden`);
-      
-      // Play active videos
-      for (const video of activeVideos) {
-        if (video.paused) {
-          try {
-            video.muted = true;
-            await video.play();
-            console.log('✅ Active video playing');
-          } catch (error) {
-            console.log('📱 Video play failed, retrying...', error.message);
-            setTimeout(() => {
-              video.play().catch(e => console.log('Retry failed:', e.message));
-            }, 100);
-          }
-        }
-      }
-      
-      // Pause hidden videos
-      for (const video of hiddenVideos) {
-        if (!video.paused) {
-          video.pause();
-        }
-      }
-    };
-    
-    playActiveVideos();
-  }, [currentSpeaker, currentEmotion, episodeStarted, audioUnlocked, countdown]);
 
   // Initialize Socket.io connection
   useEffect(() => {
@@ -843,38 +734,19 @@ function Home() {
 
             {episodeStarted && countdown === null && (
               <div className="character-display">
-                {!currentSpeaker ? (
-                  <video
-                    className="character-video"
-                    src={(() => {
-                      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                      return isMobile ? transitionVideo?.mp4 : (transitionVideo?.webm || transitionVideo?.mp4);
-                    })()}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                ) : currentSpeaker === 'Pepe' ? (
-                  <MultiVideoPlayer 
-                    videoSources={guestVideos} 
-                    speaker="Pepe" 
-                    currentEmotion={currentEmotion} 
-                  />
-                ) : (
-                  <MultiVideoPlayer 
-                    videoSources={hostVideos} 
-                    speaker="Mr Cock" 
-                    currentEmotion={currentEmotion} 
-                  />
-                )}
+                <VideoPlayer
+                  hostVideos={hostVideos}
+                  guestVideos={guestVideos}
+                  transitionVideo={transitionVideo}
+                  currentSpeaker={currentSpeaker}
+                  currentEmotion={currentEmotion}
+                  isUnlocked={audioUnlocked}
+                />
                 
                 {!audioUnlocked && (
                   <div 
                     className="audio-unlock-prompt"
-                    onClick={unlockAudioAndVideo}
+                    onClick={handleUnlock}
                     style={{
                       position: 'absolute',
                       top: '50%',
