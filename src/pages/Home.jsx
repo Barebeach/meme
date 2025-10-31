@@ -59,6 +59,7 @@ function Home() {
   const [episodeEnded, setEpisodeEnded] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [episodes, setEpisodes] = useState([]);
+  const [audioUnlocked, setAudioUnlocked] = useState(false);
   
   const chatEndRef = useRef(null);
   const chatMessagesRef = useRef(null);
@@ -263,14 +264,18 @@ function Home() {
           };
           
           // START audio playback
-          audio.play().then(() => {
-            // ONLY set speaker AFTER audio actually starts playing!
-            const newSpeaker = msg.isGuest ? 'Pepe' : msg.isHost ? 'Mr Cock' : null;
-            const isHost = msg.isHost || false;
-            const validEmotion = getVideoForEmotion(isHost ? hostVideos : guestVideos, msg.emotion || 'normal', isHost) ? (msg.emotion || 'normal') : 'normal';
-            console.log(`🔊 Audio playing NOW - switching video to: ${newSpeaker || 'TRANSITION (bothshutup)'} (${validEmotion})`);
-            setCurrentSpeaker(newSpeaker);
-            setCurrentEmotion(validEmotion);
+          const playPromise = audio.play();
+          
+          // ALWAYS switch video immediately (don't wait for audio on mobile)
+          const newSpeaker = msg.isGuest ? 'Pepe' : msg.isHost ? 'Mr Cock' : null;
+          const isHost = msg.isHost || false;
+          const validEmotion = getVideoForEmotion(isHost ? hostVideos : guestVideos, msg.emotion || 'normal', isHost) ? (msg.emotion || 'normal') : 'normal';
+          console.log(`🔊 Switching video to: ${newSpeaker || 'TRANSITION (bothshutup)'} (${validEmotion})`);
+          setCurrentSpeaker(newSpeaker);
+          setCurrentEmotion(validEmotion);
+          
+          playPromise.then(() => {
+            console.log(`✅ Audio playing successfully for ${msg.user}`);
             
             // 🎬 NOW schedule emotion changes - SYNCED with audio start!
             if (msg.emotionSegments && msg.emotionSegments.length > 0) {
@@ -298,10 +303,18 @@ function Home() {
               setCurrentQuestion(null);
             }
           }).catch(err => {
-            console.error('Audio play error:', err);
-            emotionTimeouts.forEach(timeout => clearTimeout(timeout));
-            setCurrentSpeaker(null);
-            resolve();
+            console.error('⚠️ Audio play blocked (mobile autoplay policy):', err.message);
+            console.log('📱 Video will still play, but audio is muted. User needs to interact with page.');
+            // Video will still switch (already done above), just no audio
+            // Still schedule emotion changes
+            if (msg.emotionSegments && msg.emotionSegments.length > 0) {
+              msg.emotionSegments.forEach((segment, index) => {
+                const timeout = setTimeout(() => {
+                  setCurrentEmotion(segment.emotion || 'normal');
+                }, segment.startTime);
+                emotionTimeouts.push(timeout);
+              });
+            }
           });
         });
       }
@@ -338,17 +351,33 @@ function Home() {
   // One-time user interaction handler for mobile (iOS Safari requires this)
   useEffect(() => {
     const handleFirstInteraction = async () => {
-      console.log('📱 User interaction detected - enabling video playback');
+      console.log('📱 User interaction detected - enabling video & audio playback');
+      
+      // Unlock VIDEO playback
       const allVideos = document.querySelectorAll('video.character-video');
       for (const video of allVideos) {
         try {
           video.muted = true;
           await video.play();
-          video.pause(); // Pause immediately, just to "unlock" playback capability
+          video.pause();
         } catch (error) {
           // Silently fail - this is just to unlock playback
         }
       }
+      
+      // Unlock AUDIO playback (CRITICAL for mobile!)
+      try {
+        const dummyAudio = new Audio();
+        dummyAudio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+        await dummyAudio.play();
+        dummyAudio.pause();
+        dummyAudio.remove();
+        console.log('✅ Audio unlocked for mobile');
+        setAudioUnlocked(true);
+      } catch (error) {
+        console.log('⚠️ Could not unlock audio:', error.message);
+      }
+      
       // Remove listeners after first interaction
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('touchstart', handleFirstInteraction);
@@ -826,6 +855,37 @@ function Home() {
                   />
                 )}
                 
+                {!audioUnlocked && (
+                  <div 
+                    className="audio-unlock-prompt"
+                    onClick={() => {
+                      const event = new Event('click');
+                      document.dispatchEvent(event);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      background: 'rgba(0, 0, 0, 0.9)',
+                      color: '#00ff41',
+                      padding: '30px 40px',
+                      borderRadius: '15px',
+                      border: '2px solid #00ff41',
+                      fontSize: '20px',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      zIndex: 1000,
+                      textAlign: 'center',
+                      animation: 'pulse 2s infinite'
+                    }}
+                  >
+                    🔊 TAP TO ENABLE AUDIO
+                    <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.8 }}>
+                      Required for mobile playback
+                    </div>
+                  </div>
+                )}
                 
                 {currentSpeaker === 'Pepe' && (
                   <div className="talking-indicator">
