@@ -382,8 +382,9 @@ async function generateSpeech(text, voice = 'alloy', speaker = null, emotion = '
           const audioFilename = `${speaker.toLowerCase().replace(' ', '')}-${Date.now()}.mp3`;
           const audioPath = path.join(recordingDir, audioFilename);
           fs.writeFileSync(audioPath, buffer);
-          savedAudioPath = audioPath;
-          console.log(`💾 Saved audio: ${audioFilename} (${(buffer.length / 1024).toFixed(1)}KB)`);
+          const webPath = audioPath.replace(/\\/g, '/').split('memetalk-app/')[1];
+          savedAudioPath = `/${webPath}`;
+          console.log(`💾 Saved audio: ${audioFilename} -> ${savedAudioPath} (${(buffer.length / 1024).toFixed(1)}KB)`);
           
           if (recordingCallbacks.onAudioSaved) {
             recordingCallbacks.onAudioSaved(audioFilename, {
@@ -765,6 +766,9 @@ async function endEpisodeOutro(io, getAudioDuration, recordingCallbacks) {
   
   const outroMessage = "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!";
   
+  console.log('🎙️ Mr Cock generating outro audio FIRST...');
+  const outroResult = await generateSpeech(outroMessage, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
+  
   io.emit('podcast_dialogue', {
     id: Date.now(),
     user: 'Mr Cock',
@@ -772,12 +776,11 @@ async function endEpisodeOutro(io, getAudioDuration, recordingCallbacks) {
     timestamp: 'Just now',
     isHost: true,
     hasAudio: true,
+    audioPath: outroResult?.audioPath,
     emotion: 'normal',
     isOutro: true
   });
   
-  console.log('🎙️ Mr Cock delivering outro...');
-  await generateSpeech(outroMessage, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
   const outroTime = calculateSpeakingTime(outroMessage);
   console.log(`⏱️ Outro speaking for ${outroTime}ms`);
   
@@ -809,21 +812,27 @@ async function startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broad
   const intro = "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.";
   const pepeIntro = "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!";
   
+  console.log('🎙️ Mr Cock generating intro audio FIRST...');
+  const introResult = await generateSpeech(intro, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
+  
   io.emit('podcast_dialogue', {
     id: Date.now(),
     user: 'Mr Cock',
     message: intro,
     timestamp: 'Just now',
     isHost: true,
-    hasAudio: true
+    hasAudio: true,
+    audioPath: introResult?.audioPath
   });
   
-  console.log('🎙️ Mr Cock introducing...');
-  await generateSpeech(intro, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
   const introTime = calculateSpeakingTime(intro);
   
   setTimeout(async () => {
     const pepeIntroEmotion = detectEmotion(pepeIntro);
+    
+    console.log('🐸 Pepe generating intro audio FIRST...');
+    const pepeIntroResult = await generateSpeech(pepeIntro, 'fable', 'Pepe', pepeIntroEmotion, null, null, recordingCallbacks);
+    
     io.emit('podcast_dialogue', {
       id: Date.now(),
       user: 'Pepe',
@@ -831,11 +840,10 @@ async function startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broad
       timestamp: 'Just now',
       isGuest: true,
       hasAudio: true,
+      audioPath: pepeIntroResult?.audioPath,
       emotion: pepeIntroEmotion
     });
     
-    console.log('🐸 Pepe responding to intro...');
-    await generateSpeech(pepeIntro, 'fable', 'Pepe', pepeIntroEmotion, null, null, recordingCallbacks);
     const pepeIntroTime = calculateSpeakingTime(pepeIntro);
     
     setTimeout(() => {
