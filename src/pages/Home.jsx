@@ -194,9 +194,14 @@ function Home() {
             console.log(`✅ Finished playing ${msg.user}`);
             // Clear all emotion timeouts
             emotionTimeouts.forEach(timeout => clearTimeout(timeout));
-            // CLEAR speaker to show "bothshutup" video
-            console.log(`🎬 Switching to TRANSITION video (bothshutup)`);
-            setCurrentSpeaker(null);
+            // DON'T clear speaker yet - keep showing until next audio is ready
+            // Only show transition if there's a delay
+            setTimeout(() => {
+              if (!isPlayingAudioRef.current || audioQueueRef.current.length === 0) {
+                console.log(`🎬 Switching to TRANSITION video (bothshutup) after delay`);
+                setCurrentSpeaker(null);
+              }
+            }, 300);
             
             // If Pepe just finished answering a question, clear it from screen
             if (msg.isGuest && currentQuestion) {
@@ -224,7 +229,12 @@ function Home() {
           audio.onerror = () => {
             console.error(`❌ Error playing ${msg.user}`);
             emotionTimeouts.forEach(timeout => clearTimeout(timeout));
-            setCurrentSpeaker(null);
+            // Keep showing speaker, don't immediately switch to transition
+            setTimeout(() => {
+              if (!isPlayingAudioRef.current || audioQueueRef.current.length === 0) {
+                setCurrentSpeaker(null);
+              }
+            }, 300);
             // Also clear question if there was an error
             if (msg.isGuest && currentQuestion) {
               setCurrentQuestion(null);
