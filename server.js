@@ -241,23 +241,28 @@ app.get('/api/videos/hosts/:id', (req, res) => {
   const videos = {
     angry: { 
       webm: `${R2_BASE_URL}/angrily%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/angrily%20coock.mp4` 
+      mp4: `${R2_BASE_URL}/angrily%20coock.mp4`,
+      gif: `${R2_BASE_URL}/angrily%20coock.gif`
     },
     laughing: { 
       webm: `${R2_BASE_URL}/laughing%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/laughing%20coock.mp4` 
+      mp4: `${R2_BASE_URL}/laughing%20coock.mp4`,
+      gif: `${R2_BASE_URL}/laughing%20coock.gif`
     },
     sad: { 
       webm: `${R2_BASE_URL}/sad%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/sad%20coock.mp4` 
+      mp4: `${R2_BASE_URL}/sad%20coock.mp4`,
+      gif: `${R2_BASE_URL}/sad%20coock.gif`
     },
     thinking: { 
       webm: `${R2_BASE_URL}/sarcastically%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/sarcastically%20coock.mp4` 
+      mp4: `${R2_BASE_URL}/sarcastically%20coock.mp4`,
+      gif: `${R2_BASE_URL}/sarcastically%20coock.gif`
     },
     normal: { 
       webm: `${R2_BASE_URL}/serious%20cooock.webm`, 
-      mp4: `${R2_BASE_URL}/serious%20cooock.mp4` 
+      mp4: `${R2_BASE_URL}/serious%20cooock.mp4`,
+      gif: `${R2_BASE_URL}/serious%20cooock.gif`
     }
   };
   
@@ -268,27 +273,33 @@ app.get('/api/videos/guests/:id', (req, res) => {
   const videos = {
     angry: { 
       webm: `${R2_BASE_URL}/angrily%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/angrily%20pepe.mp4` 
+      mp4: `${R2_BASE_URL}/angrily%20pepe.mp4`,
+      gif: `${R2_BASE_URL}/angrily%20pepe.gif`
     },
     happy: { 
       webm: `${R2_BASE_URL}/happily%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/happily%20pepe.mp4` 
+      mp4: `${R2_BASE_URL}/happily%20pepe.mp4`,
+      gif: `${R2_BASE_URL}/happily%20pepe.gif`
     },
     sad: { 
       webm: `${R2_BASE_URL}/sad%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/sad%20pepe.mp4` 
+      mp4: `${R2_BASE_URL}/sad%20pepe.mp4`,
+      gif: `${R2_BASE_URL}/sad%20pepe.gif`
     },
     screaming: { 
       webm: `${R2_BASE_URL}/crazy%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/crazy%20pepe.mp4` 
+      mp4: `${R2_BASE_URL}/crazy%20pepe.mp4`,
+      gif: `${R2_BASE_URL}/crazy%20pepe.gif`
     },
     thinking: { 
       webm: `${R2_BASE_URL}/sarcastically%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/sarcastically%20pepe.mp4` 
+      mp4: `${R2_BASE_URL}/sarcastically%20pepe.mp4`,
+      gif: `${R2_BASE_URL}/sarcastically%20pepe.gif`
     },
     normal: { 
       webm: `${R2_BASE_URL}/serious%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/serious%20pepe.mp4` 
+      mp4: `${R2_BASE_URL}/serious%20pepe.mp4`,
+      gif: `${R2_BASE_URL}/serious%20pepe.gif`
     }
   };
   
@@ -854,7 +865,8 @@ let currentEpisode = {
 app.get('/api/videos/transition', (req, res) => {
   res.json({ 
     webm: `${R2_BASE_URL}/bothshutup.webm`,
-    mp4: `${R2_BASE_URL}/bothshutup.mp4`
+    mp4: `${R2_BASE_URL}/bothshutup.mp4`,
+    gif: `${R2_BASE_URL}/bothshutup.gif`
   });
 });
 
