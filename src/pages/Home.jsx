@@ -3,6 +3,7 @@ import { io } from 'socket.io-client'
 
 const SingleVideo = ({ videoSources, speaker, emotion }) => {
   const [currentSrc, setCurrentSrc] = useState({ webm: '', mp4: '' });
+  const videoRef = useRef(null);
 
   useEffect(() => {
     if (!videoSources || !emotion) return;
@@ -16,11 +17,20 @@ const SingleVideo = ({ videoSources, speaker, emotion }) => {
     }
   }, [videoSources, emotion]);
 
+  useEffect(() => {
+    if (videoRef.current && currentSrc.webm) {
+      videoRef.current.load();
+      videoRef.current.play().catch(err => {
+        console.log('Video autoplay blocked:', err.message);
+      });
+    }
+  }, [currentSrc]);
+
   if (!currentSrc.webm && !currentSrc.mp4) return null;
 
   return (
     <video
-      key={`${speaker}-${emotion}`}
+      ref={videoRef}
       className="character-video"
       autoPlay
       loop
@@ -348,37 +358,42 @@ function Home() {
     }
   }, [messages]);
 
+  const unlockAudioAndVideo = async () => {
+    if (audioUnlocked) return;
+    
+    console.log('📱 User interaction detected - enabling video & audio playback');
+    
+    // Unlock VIDEO playback
+    const allVideos = document.querySelectorAll('video.character-video');
+    for (const video of allVideos) {
+      try {
+        video.muted = true;
+        await video.play();
+        video.pause();
+      } catch (error) {
+        // Silently fail - this is just to unlock playback
+      }
+    }
+    
+    // Unlock AUDIO playback (CRITICAL for mobile!)
+    try {
+      const dummyAudio = new Audio();
+      dummyAudio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+      await dummyAudio.play();
+      dummyAudio.pause();
+      dummyAudio.remove();
+      console.log('✅ Audio unlocked for mobile');
+      setAudioUnlocked(true);
+    } catch (error) {
+      console.log('⚠️ Could not unlock audio:', error.message);
+      setAudioUnlocked(true);
+    }
+  };
+
   // One-time user interaction handler for mobile (iOS Safari requires this)
   useEffect(() => {
-    const handleFirstInteraction = async () => {
-      console.log('📱 User interaction detected - enabling video & audio playback');
-      
-      // Unlock VIDEO playback
-      const allVideos = document.querySelectorAll('video.character-video');
-      for (const video of allVideos) {
-        try {
-          video.muted = true;
-          await video.play();
-          video.pause();
-        } catch (error) {
-          // Silently fail - this is just to unlock playback
-        }
-      }
-      
-      // Unlock AUDIO playback (CRITICAL for mobile!)
-      try {
-        const dummyAudio = new Audio();
-        dummyAudio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
-        await dummyAudio.play();
-        dummyAudio.pause();
-        dummyAudio.remove();
-        console.log('✅ Audio unlocked for mobile');
-        setAudioUnlocked(true);
-      } catch (error) {
-        console.log('⚠️ Could not unlock audio:', error.message);
-      }
-      
-      // Remove listeners after first interaction
+    const handleFirstInteraction = () => {
+      unlockAudioAndVideo();
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('touchstart', handleFirstInteraction);
     };
@@ -390,7 +405,7 @@ function Home() {
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('touchstart', handleFirstInteraction);
     };
-  }, []);
+  }, [audioUnlocked]);
 
   // Explicitly play active videos (critical for mobile browsers)
   useEffect(() => {
@@ -858,10 +873,7 @@ function Home() {
                 {!audioUnlocked && (
                   <div 
                     className="audio-unlock-prompt"
-                    onClick={() => {
-                      const event = new Event('click');
-                      document.dispatchEvent(event);
-                    }}
+                    onClick={unlockAudioAndVideo}
                     style={{
                       position: 'absolute',
                       top: '50%',
