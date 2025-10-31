@@ -1,91 +1,42 @@
 import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
-const SingleVideo = ({ videoSources, speaker, emotion }) => {
-  const [currentSrc, setCurrentSrc] = useState('');
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    console.log('🎬 SingleVideo UPDATE:', { speaker, emotion, videoSources });
-    
-    if (!videoSources || !emotion) {
-      console.error('❌ Missing videoSources or emotion!', { videoSources, emotion });
-      return;
-    }
-    
-    const emotionVideo = videoSources[emotion];
-    if (!emotionVideo) {
-      console.error(`❌ No video found for emotion: ${emotion}`, Object.keys(videoSources));
-      return;
-    }
-    
-    console.log(`✅ Found emotion video:`, emotionVideo);
-    
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const preferredSrc = isMobile ? emotionVideo.mp4 : (emotionVideo.webm || emotionVideo.mp4);
-    
-    console.log(`📹 SWITCHING TO: ${speaker} - ${emotion}`);
-    console.log(`📱 Device: ${isMobile ? 'MOBILE (using MP4)' : 'DESKTOP (using WebM)'}`);
-    console.log(`🎥 Video URL: ${preferredSrc}`);
-    
-    setCurrentSrc(preferredSrc);
-  }, [videoSources, emotion, speaker]);
-
-  useEffect(() => {
-    if (!videoRef.current || !currentSrc) {
-      console.log('⏸️ Video ref or src not ready', { hasRef: !!videoRef.current, currentSrc });
-      return;
-    }
-    
-    const video = videoRef.current;
-    console.log(`🎥 Setting video.src = ${currentSrc.substring(0, 80)}...`);
-    
-    video.onerror = (e) => {
-      console.error('❌ VIDEO LOAD ERROR:', e);
-      console.error('Failed URL:', currentSrc);
-    };
-    
-    video.onloadeddata = () => {
-      console.log('✅ Video loaded successfully!');
-    };
-    
-    video.src = currentSrc;
-    video.load();
-    
-    setTimeout(() => {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('✅ Video playing!');
-          })
-          .catch(err => {
-            console.error('❌ Video play blocked:', err.message);
-            setTimeout(() => {
-              video.play()
-                .then(() => console.log('✅ Retry successful!'))
-                .catch(e => console.error('❌ Retry failed:', e.message));
-            }, 200);
-          });
-      }
-    }, 50);
-  }, [currentSrc]);
-
-  if (!currentSrc) {
-    console.log('⚠️ No currentSrc, not rendering video');
+const MultiVideoPlayer = ({ videoSources, speaker, currentEmotion }) => {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  
+  if (!videoSources || Object.keys(videoSources).length === 0) {
     return null;
   }
 
   return (
-    <video
-      ref={videoRef}
-      className="character-video"
-      loop
-      muted
-      playsInline
-      preload="auto"
-      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-    />
+    <>
+      {Object.entries(videoSources).map(([emotion, urls]) => {
+        const isActive = emotion === currentEmotion;
+        const videoUrl = isMobile ? urls.mp4 : (urls.webm || urls.mp4);
+        
+        return (
+          <video
+            key={`${speaker}-${emotion}`}
+            className={`character-video ${isActive ? 'active' : 'hidden'}`}
+            src={videoUrl}
+            autoPlay={isActive}
+            loop
+            muted
+            playsInline
+            preload="auto"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              display: isActive ? 'block' : 'none'
+            }}
+          />
+        );
+      })}
+    </>
   );
 };
 
@@ -407,15 +358,21 @@ function Home() {
     
     console.log('📱 User interaction detected - enabling video & audio playback');
     
-    // Unlock VIDEO playback
+    // Unlock VIDEO playback - play/pause all videos to unlock them
     const allVideos = document.querySelectorAll('video.character-video');
+    console.log(`🎬 Found ${allVideos.length} videos to unlock`);
+    
     for (const video of allVideos) {
       try {
         video.muted = true;
-        await video.play();
-        video.pause();
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          await playPromise;
+          video.pause();
+          console.log('✅ Video unlocked');
+        }
       } catch (error) {
-        // Silently fail - this is just to unlock playback
+        console.log('⚠️ Video unlock failed (this is OK):', error.message);
       }
     }
     
@@ -427,11 +384,12 @@ function Home() {
       dummyAudio.pause();
       dummyAudio.remove();
       console.log('✅ Audio unlocked for mobile');
-      setAudioUnlocked(true);
     } catch (error) {
       console.log('⚠️ Could not unlock audio:', error.message);
-      setAudioUnlocked(true);
     }
+    
+    setAudioUnlocked(true);
+    console.log('🎉 ALL MEDIA UNLOCKED - Ready to play!');
   };
 
   // One-time user interaction handler for mobile (iOS Safari requires this)
@@ -451,33 +409,33 @@ function Home() {
     };
   }, [audioUnlocked]);
 
-  // Explicitly play active videos (critical for mobile browsers)
+  // Explicitly play active videos and pause hidden ones
   useEffect(() => {
+    if (!episodeStarted || !audioUnlocked) return;
+    
     const playActiveVideos = async () => {
-      // Find all video elements with 'active' class
       const activeVideos = document.querySelectorAll('video.character-video.active');
+      const hiddenVideos = document.querySelectorAll('video.character-video.hidden');
       
+      console.log(`🎬 Playing ${activeVideos.length} active videos, pausing ${hiddenVideos.length} hidden`);
+      
+      // Play active videos
       for (const video of activeVideos) {
-        try {
-          // Ensure video is muted (required for autoplay on mobile)
-          video.muted = true;
-          // Attempt to play
-          await video.play();
-        } catch (error) {
-          console.log('📱 Video play attempt failed (normal on some mobile browsers):', error.message);
-          // If autoplay fails, try again after a short delay
-          setTimeout(async () => {
-            try {
-              await video.play();
-            } catch (retryError) {
-              console.error('📱 Video play retry failed:', retryError);
-            }
-          }, 100);
+        if (video.paused) {
+          try {
+            video.muted = true;
+            await video.play();
+            console.log('✅ Active video playing');
+          } catch (error) {
+            console.log('📱 Video play failed, retrying...', error.message);
+            setTimeout(() => {
+              video.play().catch(e => console.log('Retry failed:', e.message));
+            }, 100);
+          }
         }
       }
       
-      // Pause hidden videos to save resources
-      const hiddenVideos = document.querySelectorAll('video.character-video.hidden');
+      // Pause hidden videos
       for (const video of hiddenVideos) {
         if (!video.paused) {
           video.pause();
@@ -485,10 +443,8 @@ function Home() {
       }
     };
     
-    if (episodeStarted) {
-      playActiveVideos();
-    }
-  }, [currentSpeaker, currentEmotion, episodeStarted, countdown]);
+    playActiveVideos();
+  }, [currentSpeaker, currentEmotion, episodeStarted, audioUnlocked, countdown]);
 
   // Initialize Socket.io connection
   useEffect(() => {
@@ -902,16 +858,16 @@ function Home() {
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 ) : currentSpeaker === 'Pepe' ? (
-                  <SingleVideo 
+                  <MultiVideoPlayer 
                     videoSources={guestVideos} 
                     speaker="Pepe" 
-                    emotion={currentEmotion} 
+                    currentEmotion={currentEmotion} 
                   />
                 ) : (
-                  <SingleVideo 
+                  <MultiVideoPlayer 
                     videoSources={hostVideos} 
                     speaker="Mr Cock" 
-                    emotion={currentEmotion} 
+                    currentEmotion={currentEmotion} 
                   />
                 )}
                 
