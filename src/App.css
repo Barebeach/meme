@@ -1,4 +1,14 @@
+/* ==================================
+   MEMETALK.TV - MODULAR CSS
+   ================================== */
+   
+/* External imports */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Internal modular CSS files */
+@import './styles/base.css';
+@import './styles/animations.css';
+@import './components/VideoPlayer.css';
 
 * {
   margin: 0;
