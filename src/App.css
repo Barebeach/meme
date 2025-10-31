@@ -866,6 +866,19 @@ body::after {
     max-height: 320px !important;
     height: 320px !important;
   }
+  
+  .character-video.active,
+  .character-video.hidden {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 320px !important;
+  }
+  
+  .character-video.hidden {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -873,6 +886,19 @@ body::after {
     min-height: 200px !important;
     max-height: 280px !important;
     height: 280px !important;
+  }
+  
+  .character-video.active,
+  .character-video.hidden {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 280px !important;
+  }
+  
+  .character-video.hidden {
+    display: none !important;
   }
 }
 
