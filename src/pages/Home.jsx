@@ -3,7 +3,11 @@ import { io } from 'socket.io-client'
 
 const CharacterVideo = ({ webm, mp4, className, ...props }) => {
   return (
-    <video className={className} {...props}>
+    <video 
+      className={className} 
+      style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+      {...props}
+    >
       <source src={webm} type="video/webm" />
       <source src={mp4} type="video/mp4" />
     </video>
@@ -740,6 +744,7 @@ function Home() {
                 <video
                   className="countdown-promo-video"
                   src="/cock startcount.mp4"
+                  style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
                   autoPlay
                   loop
                   muted
