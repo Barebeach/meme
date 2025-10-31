@@ -173,15 +173,24 @@ function Home() {
       console.log(`📡 Audio fetch status: ${response.status}`);
       
       if (response.ok) {
-        console.log(`✅ Audio loaded INSTANTLY for: ${msg.user}`);
+        const fetchEndTime = performance.now();
+        console.log(`✅ Audio loaded INSTANTLY for: ${msg.user} (fetch took ${(fetchEndTime - performance.now() + 50).toFixed(0)}ms)`);
         const audioBlob = await response.blob();
+        console.log(`📦 Blob size: ${(audioBlob.size / 1024).toFixed(1)}KB, type: ${audioBlob.type}`);
         const audioUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioUrl);
+        audio.type = 'audio/mpeg';
         
         // FAST PRELOAD - wait for "canplay" not "canplaythrough" (much faster!)
         await new Promise((resolve) => {
-          audio.oncanplay = () => resolve(); // Fires as soon as playback can start
-          audio.onerror = () => resolve();
+          audio.oncanplay = () => {
+            console.log(`🎵 Audio ready to play for: ${msg.user}`);
+            resolve();
+          };
+          audio.onerror = (e) => {
+            console.error(`❌ Audio load error for ${msg.user}:`, e);
+            resolve();
+          };
           audio.load();
           // Timeout fallback - don't wait more than 500ms
           setTimeout(resolve, 500);
@@ -191,10 +200,21 @@ function Home() {
         
         // Wait for audio to finish before playing next
         const emotionTimeouts = [];
+        const audioStartTime = performance.now();
+        
         await new Promise((resolve) => {
           audio.onended = () => {
             URL.revokeObjectURL(audioUrl);
-            console.log(`✅ Finished playing ${msg.user}`);
+            const audioEndTime = performance.now();
+            const audioDuration = audioEndTime - audioStartTime;
+            console.log(`✅ Finished playing ${msg.user} (duration: ${(audioDuration / 1000).toFixed(1)}s)`);
+            
+            if (audioQueueRef.current.length > 0) {
+              console.log(`⚡ NEXT SPEAKER READY: Queue has ${audioQueueRef.current.length} messages waiting`);
+            } else {
+              console.log(`⏸️ NO NEXT SPEAKER: Queue is empty - will show transition`);
+            }
+            
             // Clear all emotion timeouts
             emotionTimeouts.forEach(timeout => clearTimeout(timeout));
             // DON'T clear speaker yet - keep showing until next audio is ready
@@ -305,10 +325,14 @@ function Home() {
       setCurrentSpeaker(null);
     }
 
+    const processingEndTime = performance.now();
     isPlayingAudioRef.current = false;
     
     // Play next in queue
     if (audioQueueRef.current.length > 0) {
+      const nextProcessStartTime = performance.now();
+      const gap = nextProcessStartTime - processingEndTime;
+      console.log(`🔄 Processing next in queue (${audioQueueRef.current.length} remaining) - Transition gap: ${gap.toFixed(0)}ms`);
       processAudioQueue();
     }
   };
