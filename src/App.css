@@ -920,6 +920,25 @@ body::after {
   pointer-events: none;
 }
 
+@media (max-width: 1024px) {
+  .character-video.active,
+  .character-video.hidden {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+  }
+  
+  .character-video.hidden {
+    display: none !important;
+  }
+}
+
 /* Idle Display */
 .idle-display {
   position: relative;
