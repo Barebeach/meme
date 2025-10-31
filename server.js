@@ -10,7 +10,6 @@ import ffmpeg from 'fluent-ffmpeg';
 import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
 import ffprobeInstaller from '@ffprobe-installer/ffprobe';
 
-// Import chat system
 import {
   questions,
   connectedUsers,
@@ -37,22 +36,20 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
     credentials: true
   },
-  // Enhanced WebSocket configuration for Railway
-  transports: ['websocket', 'polling'], // Try WebSocket first, fallback to polling
-  allowEIO3: true, // Support older clients
-  pingTimeout: 60000, // 60 seconds before considering connection dead
-  pingInterval: 25000, // Send ping every 25 seconds
-  upgradeTimeout: 30000, // 30 seconds to upgrade connection
-  maxHttpBufferSize: 1e6, // 1MB buffer
-  allowUpgrades: true, // Allow transport upgrades
-  perMessageDeflate: false, // Disable compression for better compatibility
+  transports: ['websocket', 'polling'],
+  allowEIO3: true,
+  pingTimeout: 60000,
+  pingInterval: 25000,
+  upgradeTimeout: 30000,
+  maxHttpBufferSize: 1e6,
+  allowUpgrades: true,
+  perMessageDeflate: false,
   httpCompression: false
 });
 
 app.use(cors());
 app.use(express.json());
 
-// ⚠️ CRITICAL: Define multer storage BEFORE using it
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(__dirname, 'public', 'uploads', req.body.type, req.body.characterId);
@@ -73,10 +70,8 @@ const upload = multer({
   }
 });
 
-// Setup chat handlers from chat module
 setupChatHandlers(io);
 
-// Enhanced connection logging for Railway debugging
 io.engine.on("connection_error", (err) => {
   console.error('❌ Socket.IO Connection Error:', err);
   console.error('   Code:', err.code);
@@ -104,7 +99,6 @@ io.on('connection', (socket) => {
     });
   });
   
-// Listen for chat messages to add to recording
 io.on('chat_message_recorded', (userMsg) => {
     if (isRecording) {
       currentRecording.chat.push(userMsg);
@@ -182,7 +176,6 @@ app.get('/api/episodes', (req, res) => {
   }
 });
 
-// Generate audio from text (TTS)
 app.post('/api/generate-audio', async (req, res) => {
   try {
     const { text, voice = 'onyx' } = req.body;
@@ -243,31 +236,25 @@ app.post('/api/admin/upload-video', upload.single('video'), (req, res) => {
 });
 
 app.get('/api/videos/hosts/:id', (req, res) => {
-  const characterId = req.params.id;
-  
-  // Map emotion names to WebM files in public/ folder (Mr Cock only)
   const videos = {
-    angry: '/angrily coock.webm',
-    laughing: '/laughing coock.webm',
-    sad: '/sad coock.webm',
-    thinking: '/sarcastically coock.webm',
-    normal: '/serious cooock.webm'
+    angry: { webm: '/angrily coock.webm', mp4: '/angrily coock.mp4' },
+    laughing: { webm: '/laughing coock.webm', mp4: '/laughing coock.mp4' },
+    sad: { webm: '/sad coock.webm', mp4: '/sad coock.mp4' },
+    thinking: { webm: '/sarcastically coock.webm', mp4: '/sarcastically coock.mp4' },
+    normal: { webm: '/serious cooock.webm', mp4: '/serious cooock.mp4' }
   };
   
   res.json(videos);
 });
 
 app.get('/api/videos/guests/:id', (req, res) => {
-  const characterId = req.params.id;
-  
-  // Map emotion names to WebM files in public/ folder (Pepe only)
   const videos = {
-    angry: '/angrily pepe.webm',
-    happy: '/happily pepe.webm',
-    sad: '/sad  pepe.webm',
-    screaming: '/crazy pepe.webm',
-    thinking: '/sarcastically  pepe.webm',
-    normal: '/serious pepe.webm'
+    angry: { webm: '/angrily pepe.webm', mp4: '/angrily pepe.mp4' },
+    happy: { webm: '/happily pepe.webm', mp4: '/happily pepe.mp4' },
+    sad: { webm: '/sad  pepe.webm', mp4: '/sad  pepe.mp4' },
+    screaming: { webm: '/crazy pepe.webm', mp4: '/crazy pepe.mp4' },
+    thinking: { webm: '/sarcastically  pepe.webm', mp4: '/sarcastically  pepe.mp4' },
+    normal: { webm: '/serious pepe.webm', mp4: '/serious pepe.mp4' }
   };
   
   res.json(videos);
@@ -292,7 +279,6 @@ let currentRecording = {
 let isRecording = false;
 let recordingDir = null;
 
-// Recording callbacks for chat module
 const recordingCallbacks = {
   isRecording: () => isRecording,
   getRecordingDir: () => recordingDir,
@@ -831,8 +817,10 @@ let currentEpisode = {
 };
 
 app.get('/api/videos/transition', (req, res) => {
-  // Return WebM transition video from public/ folder
-  res.json({ video: '/bothshutup.webm' });
+  res.json({ 
+    webm: '/bothshutup.webm',
+    mp4: '/bothshutup.mp4'
+  });
 });
 
 app.post('/api/start-episode', async (req, res) => {
@@ -912,16 +900,10 @@ app.post('/api/recording/stop', async (req, res) => {
   }
 });
 
-// ============================================
-// STATIC FILE SERVING (AFTER all API routes!)
-// ============================================
-
-// Serve specific static directories
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
-app.use(express.static(path.join(__dirname, 'public'))); // Serve public folder for images like popcat.jpg
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve frontend build if it exists
 const distPath = path.join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
@@ -930,9 +912,7 @@ if (fs.existsSync(distPath)) {
   console.log('⚠️ No dist folder found, frontend not available');
 }
 
-// Catch-all route - serve React app for any route not handled above
 app.use((req, res, next) => {
-  // Only serve index.html for GET requests that don't start with /api
   if (req.method === 'GET' && !req.path.startsWith('/api')) {
     const indexPath = path.join(__dirname, 'dist', 'index.html');
     if (fs.existsSync(indexPath)) {

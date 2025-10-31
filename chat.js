@@ -1,41 +1,3 @@
-/**
- * ==========================================================================
- * CHAT SYSTEM MODULE - MemeTalk.tv
- * ==========================================================================
- * 
- * This module contains ALL chat-related functionality including:
- * 
- * 1. AI RESPONSE GENERATION
- *    - getMrCockResponse() - Generates Mr. Cock's sophisticated responses
- *    - getPepeResponse() - Generates Pepe's savage responses
- *    - generateSpeech() - Text-to-speech using OpenAI
- * 
- * 2. MESSAGE VALIDATION & DETECTION
- *    - isQuestion() - Detects if a message is a question
- *    - isSpam() - Spam detection
- * 
- * 3. EMOTION DETECTION & ANALYSIS
- *    - detectEmotion() - Detects emotion from text
- *    - detectEmotionForSentence() - Per-sentence emotion detection
- *    - analyzeEmotionalSegments() - Breaks text into emotional segments
- *    - getValidEmotion() - Validates emotions for characters
- * 
- * 4. CONVERSATION LOOP & EPISODE CONTROL
- *    - startConversationLoop() - Main conversation loop (15-minute episodes)
- *    - startEpisodeIntro() - Episode introduction sequence
- *    - endEpisodeOutro() - Episode outro and cleanup
- * 
- * 5. SOCKET.IO HANDLERS
- *    - setupChatHandlers() - Sets up all chat-related socket handlers
- * 
- * 6. STATE MANAGEMENT
- *    - questions[] - Array of submitted questions
- *    - connectedUsers - Map of connected users
- *    - conversationQueue - Queue of questions to answer
- * 
- * ==========================================================================
- */
-
 import OpenAI from 'openai';
 import fs from 'fs';
 import path from 'path';
@@ -44,18 +6,15 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// OpenAI Configuration
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-// Chat State
 const questions = [];
 const userLastMessage = new Map();
 const connectedUsers = new Map();
 const MESSAGE_COOLDOWN = 2000;
 
-// Conversation State
 let conversationQueue = [];
 let isConversationActive = false;
 let conversationHistory = [];
@@ -65,7 +24,6 @@ const PAUSE_DURATION = 8000;
 const EPISODE_DURATION = 15 * 60 * 1000;
 let episodeStartTime = null;
 
-// Emotion Configuration
 let lastEmotion = 'normal';
 let emotionRotationIndex = 0;
 const availableEmotions = ['normal', 'angry', 'happy', 'sad', 'laughing', 'thinking', 'screaming'];
@@ -74,10 +32,6 @@ const characterEmotions = {
   'mrcock': ['normal', 'angry', 'sad', 'laughing', 'thinking'],
   'pepe': ['normal', 'angry', 'happy', 'sad', 'screaming', 'thinking']
 };
-
-// ============================================
-// MESSAGE VALIDATION & DETECTION
-// ============================================
 
 function isQuestion(text) {
   const lowerText = text.toLowerCase().trim();
@@ -101,20 +55,17 @@ function isQuestion(text) {
 }
 
 function isSpam(text) {
-  // Repeated characters spam
   if (/(.)\1{10,}/.test(text)) {
     console.log('Spam: Too many repeated characters');
     return true;
   }
   
-  // Too many emojis
   const emojiCount = (text.match(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu) || []).length;
   if (emojiCount > 20) {
     console.log('Spam: Too many emojis');
     return true;
   }
   
-  // FUD and negative words detection (case-insensitive, with common obfuscations)
   const lowerText = text.toLowerCase();
   const fudWords = [
     'scam', 'sc@m', 'sc4m', 'scammer', 'sc@mmer',
@@ -137,14 +88,12 @@ function isSpam(text) {
     }
   }
   
-  // URL/Link detection - block any links
   const urlPattern = /(https?:\/\/|www\.|[a-zA-Z0-9-]+\.(com|net|org|io|co|tv|gg|xyz|me|info|biz|app|site|online|link|click|cc|tk|ml|ga|cf|gq))/i;
   if (urlPattern.test(text)) {
     console.log('Spam: URL/Link detected');
     return true;
   }
   
-  // Common obfuscated URLs
   const obfuscatedUrlPattern = /(h t t p|w w w|dot com|\.c o m|d o t)/i;
   if (obfuscatedUrlPattern.test(text)) {
     console.log('Spam: Obfuscated URL detected');
@@ -153,10 +102,6 @@ function isSpam(text) {
   
   return false;
 }
-
-// ============================================
-// EMOTION DETECTION & VALIDATION
-// ============================================
 
 function getValidEmotion(emotion, character) {
   const validEmotions = characterEmotions[character] || ['normal'];
@@ -284,10 +229,6 @@ function detectEmotion(text) {
   return lastEmotion;
 }
 
-// ============================================
-// AI RESPONSE GENERATION
-// ============================================
-
 async function getMrCockResponse(context, isAnswering = false) {
   try {
     const systemPrompt = `You are Mr. Cock, the sophisticated meme journalist who balances PRETENTIOUS INTELLECTUALISM with SAVAGE HUMOR. You're NPR meets Comedy Central - treating dumb topics seriously while dropping hilarious zingers.
@@ -405,10 +346,6 @@ ${shouldAskQuestion ? 'Now YOU ask Mr. Cock something. Be creative - could be ph
   }
 }
 
-// ============================================
-// TEXT-TO-SPEECH GENERATION
-// ============================================
-
 async function generateSpeech(text, voice = 'alloy', speaker = null, emotion = 'normal', questionData = null, emotionSegments = null, recordingCallbacks = null) {
   try {
     const characterId = speaker === 'Mr Cock' ? 'mrcock' : speaker === 'Pepe' ? 'pepe' : null;
@@ -437,7 +374,6 @@ async function generateSpeech(text, voice = 'alloy', speaker = null, emotion = '
     const buffer = Buffer.from(await mp3.arrayBuffer());
     let savedAudioPath = null;
     
-    // If recording callbacks are provided, use them
     if (recordingCallbacks && recordingCallbacks.isRecording && recordingCallbacks.getRecordingDir && speaker) {
       const recordingDir = recordingCallbacks.getRecordingDir();
       
@@ -449,7 +385,6 @@ async function generateSpeech(text, voice = 'alloy', speaker = null, emotion = '
           savedAudioPath = audioPath;
           console.log(`💾 Saved audio: ${audioFilename} (${(buffer.length / 1024).toFixed(1)}KB)`);
           
-          // Notify recording system
           if (recordingCallbacks.onAudioSaved) {
             recordingCallbacks.onAudioSaved(audioFilename, {
               speaker,
@@ -472,10 +407,6 @@ async function generateSpeech(text, voice = 'alloy', speaker = null, emotion = '
   }
 }
 
-// ============================================
-// UTILITY FUNCTIONS
-// ============================================
-
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -485,10 +416,6 @@ function calculateSpeakingTime(text) {
   const baseTime = (words / 3) * 1000;
   return Math.max(3000, baseTime + 2000);
 }
-
-// ============================================
-// CONVERSATION LOOP
-// ============================================
 
 async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
   if (isConversationActive) return;
@@ -571,7 +498,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let mrCockWaitTime = mrCockSpeakTime;
           if (mrCockResult && mrCockResult.audioPath) {
             const actualMrCockDuration = await getAudioDuration(mrCockResult.audioPath);
-            mrCockWaitTime = Math.max(mrCockSpeakTime, actualMrCockDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
+            mrCockWaitTime = Math.max(mrCockSpeakTime, actualMrCockDuration * 1000 + 200);
             console.log(`⏱️ Mr Cock speaking for ${mrCockWaitTime}ms (audio: ${(actualMrCockDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Mr Cock speaking for ${mrCockWaitTime}ms (calculated)`);
@@ -581,14 +508,12 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           continue;
         }
         
-        // ⚡⚡⚡ ULTRA-FAST MODE: Start BOTH responses IMMEDIATELY IN PARALLEL! ⚡⚡⚡
         console.log('⚡⚡⚡ ULTRA-FAST: Starting BOTH Mr Cock and Pepe generation in parallel!');
         
         const mrCockAsks = `${userQuestion.username} from chat asks: "${userQuestion.question}" Let me pose this to our guest. Pepe, your thoughts?`;
         const mrCockSpeakTime = calculateSpeakingTime(mrCockAsks);
         const mrCockSegments = analyzeEmotionalSegments(mrCockAsks, mrCockSpeakTime);
         
-        // Start Pepe's text response IMMEDIATELY (runs in parallel with everything)
         const pepeResponsePromise = getPepeResponse(`${userQuestion.username} asked: "${userQuestion.question}"`, false, userQuestion.username);
         
         const mrCockDialogue = {
@@ -605,14 +530,12 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           }
         };
         
-        // Emit dialogue to frontend IMMEDIATELY (so users see it right away)
         io.emit('podcast_dialogue', mrCockDialogue);
         
         if (recordingCallbacks && recordingCallbacks.isRecording && recordingCallbacks.addDialogue) {
           recordingCallbacks.addDialogue(mrCockDialogue);
         }
         
-        // Start Mr Cock's audio generation (runs in parallel with Pepe's text response)
         console.log('🎙️ Mr Cock generating audio...');
         const mrCockResult2 = await generateSpeech(mrCockAsks, 'onyx', 'Mr Cock', 'normal', {
           question: userQuestion.question,
@@ -622,7 +545,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         let mrCockAskWaitTime = mrCockSpeakTime;
         if (mrCockResult2 && mrCockResult2.audioPath) {
           const actualMrCockAskDuration = await getAudioDuration(mrCockResult2.audioPath);
-          mrCockAskWaitTime = Math.max(mrCockSpeakTime, actualMrCockAskDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
+          mrCockAskWaitTime = Math.max(mrCockSpeakTime, actualMrCockAskDuration * 1000 + 200);
           console.log(`⏱️ Mr Cock speaking for ${mrCockAskWaitTime}ms (audio: ${(actualMrCockAskDuration * 1000).toFixed(0)}ms)`);
         } else {
           console.log(`⏱️ Mr Cock speaking for ${mrCockAskWaitTime}ms (calculated)`);
@@ -630,7 +553,6 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         
         await sleep(mrCockAskWaitTime);
         
-        // ⚡ Pepe's response should be ready (or almost ready) by now!
         console.log('⚡ Waiting for Pepe\'s response (should be ready soon)...');
         const pepeAnswer = await pepeResponsePromise;
         console.log('🐸 Pepe response:', pepeAnswer);
@@ -656,7 +578,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         let pepeWaitTime = pepeSpeakTime;
         if (pepeResult && pepeResult.audioPath) {
           const actualPepeDuration = await getAudioDuration(pepeResult.audioPath);
-          pepeWaitTime = Math.max(pepeSpeakTime, actualPepeDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
+          pepeWaitTime = Math.max(pepeSpeakTime, actualPepeDuration * 1000 + 200);
           console.log(`⏱️ Pepe speaking for ${pepeWaitTime}ms (audio: ${(actualPepeDuration * 1000).toFixed(0)}ms)`);
         } else {
           console.log(`⏱️ Pepe speaking for ${pepeWaitTime}ms (calculated)`);
@@ -711,7 +633,6 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
             hasAudio: true
           });
           
-          // ⚡ START GENERATING PEPE'S BANTER RESPONSE IN PARALLEL (while Mr Cock is speaking)
           console.log('⚡ PARALLEL GENERATION: Starting Pepe\'s banter response while Mr Cock speaks...');
           const pepeBanterPromise = getPepeResponse(mrCockBanter, false, 'everyone watching');
           
@@ -721,7 +642,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let mrCockBanterWaitTime = mrCockBanterTime;
           if (mrCockBanterResult && mrCockBanterResult.audioPath) {
             const actualMrCockBanterDuration = await getAudioDuration(mrCockBanterResult.audioPath);
-            mrCockBanterWaitTime = Math.max(mrCockBanterTime, actualMrCockBanterDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
+            mrCockBanterWaitTime = Math.max(mrCockBanterTime, actualMrCockBanterDuration * 1000 + 200);
             console.log(`⏱️ Mr Cock speaking for ${mrCockBanterWaitTime}ms (audio: ${(actualMrCockBanterDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Mr Cock speaking for ${mrCockBanterWaitTime}ms (calculated)`);
@@ -741,7 +662,6 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
             continue;
           }
           
-          // ⚡ Pepe's banter response should be ready (or almost ready) by now!
           console.log('⚡ Waiting for Pepe\'s banter response (should be ready soon)...');
           const pepeBanter = await pepeBanterPromise;
           
@@ -766,7 +686,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           let pepeBanterWaitTime = pepeBanterTime;
           if (pepeBanterResult && pepeBanterResult.audioPath) {
             const actualPepeBanterDuration = await getAudioDuration(pepeBanterResult.audioPath);
-            pepeBanterWaitTime = Math.max(pepeBanterTime, actualPepeBanterDuration * 1000 + 200); // Reduced from 1000ms to 200ms pause
+            pepeBanterWaitTime = Math.max(pepeBanterTime, actualPepeBanterDuration * 1000 + 200);
             console.log(`⏱️ Pepe speaking for ${pepeBanterWaitTime}ms (audio: ${(actualPepeBanterDuration * 1000).toFixed(0)}ms)`);
           } else {
             console.log(`⏱️ Pepe speaking for ${pepeBanterWaitTime}ms (calculated)`);
@@ -924,10 +844,6 @@ async function startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broad
   return true;
 }
 
-// ============================================
-// SOCKET.IO HANDLERS
-// ============================================
-
 function setupChatHandlers(io) {
   io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
@@ -941,8 +857,7 @@ function setupChatHandlers(io) {
         return;
       }
       
-      // Assign a random color to the user (3 vibrant colors)
-      const userColors = ['#8b5cf6', '#06b6d4', '#f59e0b']; // Purple, Cyan, Amber
+      const userColors = ['#8b5cf6', '#06b6d4', '#f59e0b'];
       const randomColor = userColors[Math.floor(Math.random() * userColors.length)];
       
       connectedUsers.set(socket.id, { 
@@ -998,7 +913,6 @@ function setupChatHandlers(io) {
         return;
       }
       
-      // Check message length (200 character limit)
       if (message.length > 200) {
         console.log(`Message too long from ${user.username}: ${message.length} characters`);
         socket.emit('error', `Message too long! Maximum 200 characters (you sent ${message.length}).`);
@@ -1013,13 +927,12 @@ function setupChatHandlers(io) {
         message: message,
         timestamp: 'Just now',
         isYou: false,
-        userColor: user.color || '#8b5cf6' // Include user's color
+        userColor: user.color || '#8b5cf6'
       };
       
       console.log('Broadcasting message:', userMsg);
       io.emit('message', userMsg);
       
-      // Let server know about chat message for recording
       io.emit('chat_message_recorded', userMsg);
       
       const questionCheck = isQuestion(message);
@@ -1045,7 +958,6 @@ function setupChatHandlers(io) {
         let targetName = questionCheck.target === 'pepe' ? 'Pepe' : questionCheck.target === 'mrcock' ? 'Mr. Cock' : 'Mr Cock and Pepe';
         let ackMessage = `Question for ${targetName} from ${user.username} added to the show! They'll answer it shortly.`;
         
-        // Get broadcast state from server
         io.emit('get_broadcast_state');
         
         io.emit('message', {
@@ -1072,11 +984,6 @@ function setupChatHandlers(io) {
   });
 }
 
-// ============================================
-// EXPORTS
-// ============================================
-
-// Export state getter functions
 export function getIsConversationActive() {
   return isConversationActive;
 }
@@ -1086,36 +993,22 @@ export function setConversationActive(value) {
 }
 
 export {
-  // Chat state
   questions,
   connectedUsers,
   conversationQueue,
-  
-  // Message validation
   isQuestion,
   isSpam,
-  
-  // AI functions
   getMrCockResponse,
   getPepeResponse,
   generateSpeech,
-  
-  // Emotion functions
   detectEmotion,
   detectEmotionForSentence,
   analyzeEmotionalSegments,
   getValidEmotion,
-  
-  // Conversation control
   startConversationLoop,
   startEpisodeIntro,
   endEpisodeOutro,
-  
-  // Socket handlers
   setupChatHandlers,
-  
-  // Utilities
   calculateSpeakingTime,
   sleep
 };
-
