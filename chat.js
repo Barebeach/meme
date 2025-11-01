@@ -23,6 +23,7 @@ const MAX_BANTER_BEFORE_PAUSE = 1;
 const PAUSE_DURATION = 3000;
 const EPISODE_DURATION = 15 * 60 * 1000;
 let episodeStartTime = null;
+let messageIdCounter = 0;
 
 let lastEmotion = 'normal';
 let emotionRotationIndex = 0;
@@ -412,6 +413,10 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function generateUniqueId() {
+  return `${Date.now()}-${messageIdCounter++}`;
+}
+
 function calculateSpeakingTime(text) {
   const words = text.split(' ').length;
   const baseTime = (words / 3) * 1000;
@@ -477,7 +482,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           }, null, recordingCallbacks);
           
           const mrCockDialogue = {
-            id: Date.now(),
+            id: generateUniqueId(),
             user: 'Mr Cock',
             message: mrCockAnswer,
             timestamp: 'Just now',
@@ -525,7 +530,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         }, null, recordingCallbacks);
         
         const mrCockDialogue = {
-          id: Date.now(),
+          id: generateUniqueId(),
           user: 'Mr Cock',
           message: mrCockAsks,
           timestamp: 'Just now',
@@ -569,7 +574,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
         const pepeResult = await generateSpeech(pepeAnswer, 'fable', 'Pepe', pepeEmotion, null, pepeSegments, recordingCallbacks);
         
         io.emit('podcast_dialogue', {
-          id: Date.now(),
+          id: generateUniqueId(),
           user: 'Pepe',
           message: pepeAnswer,
           timestamp: 'Just now',
@@ -635,7 +640,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           const mrCockBanterResult = await generateSpeech(mrCockBanter, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
           
           io.emit('podcast_dialogue', {
-            id: Date.now(),
+            id: generateUniqueId(),
             user: 'Mr Cock',
             message: mrCockBanter,
             timestamp: 'Just now',
@@ -657,7 +662,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           if (conversationQueue.length > 0) {
             console.log('🚨 USER QUESTION! Interrupting before Pepe responds!');
             io.emit('message', {
-              id: Date.now(),
+              id: generateUniqueId(),
               user: 'System',
               message: '💬 Hold up! Mr Cock is taking your question now!',
               timestamp: 'Just now',
@@ -679,7 +684,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           const pepeBanterResult = await generateSpeech(pepeBanter, 'fable', 'Pepe', pepeBanterEmotion, null, pepeBanterSegments, recordingCallbacks);
           
           io.emit('podcast_dialogue', {
-            id: Date.now(),
+            id: generateUniqueId(),
             user: 'Pepe',
             message: pepeBanter,
             timestamp: 'Just now',
@@ -711,7 +716,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           console.log(`⏸️ Taking a break... Waiting ${PAUSE_DURATION/1000}s for user questions`);
           
           io.emit('message', {
-            id: Date.now(),
+            id: generateUniqueId(),
             user: 'System',
             message: '🎙️ Mr Cock and Pepe are waiting for your questions! Ask them anything!',
             timestamp: 'Just now',
@@ -770,7 +775,7 @@ async function endEpisodeOutro(io, getAudioDuration, recordingCallbacks) {
   const outroResult = await generateSpeech(outroMessage, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
   
   io.emit('podcast_dialogue', {
-    id: Date.now(),
+    id: generateUniqueId(),
     user: 'Mr Cock',
     message: outroMessage,
     timestamp: 'Just now',
@@ -823,7 +828,7 @@ async function startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broad
   console.log('✅ BOTH intro audios ready! Emitting Mr Cock first...');
   
   io.emit('podcast_dialogue', {
-    id: Date.now(),
+    id: generateUniqueId(),
     user: 'Mr Cock',
     message: intro,
     timestamp: 'Just now',
@@ -838,7 +843,7 @@ async function startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broad
     console.log('✅ Mr Cock intro done, emitting Pepe (audio already ready!)');
     
     io.emit('podcast_dialogue', {
-      id: Date.now(),
+      id: generateUniqueId(),
       user: 'Pepe',
       message: pepeIntro,
       timestamp: 'Just now',
@@ -889,7 +894,7 @@ function setupChatHandlers(io) {
       io.emit('user_count', displayCount);
       
       io.emit('message', {
-        id: Date.now(),
+        id: generateUniqueId(),
         user: 'System',
         message: `${username} joined the chat`,
         timestamp: 'Just now',
@@ -978,7 +983,7 @@ function setupChatHandlers(io) {
         io.emit('get_broadcast_state');
         
         io.emit('message', {
-          id: Date.now() + 999,
+          id: generateUniqueId(),
           user: 'System',
           message: ackMessage,
           timestamp: 'Just now',
