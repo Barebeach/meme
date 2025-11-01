@@ -659,20 +659,7 @@ async function startConversationLoop(io, getAudioDuration, recordingCallbacks) {
           }
           await sleep(mrCockBanterWaitTime);
           
-          if (conversationQueue.length > 0) {
-            console.log('🚨 USER QUESTION! Interrupting before Pepe responds!');
-            io.emit('message', {
-              id: generateUniqueId(),
-              user: 'System',
-              message: '💬 Hold up! Mr Cock is taking your question now!',
-              timestamp: 'Just now',
-              isSystem: true
-            });
-            banterCount = 0;
-            continue;
-          }
-          
-          console.log('⚡ Waiting for Pepe\'s banter response (should be ready soon)...');
+          console.log('⚡ Waiting for Pepe\'s banter response (should be ready soon)...') ;
           const pepeBanter = await pepeBanterPromise;
           
           const pepeBanterTime = calculateSpeakingTime(pepeBanter);
