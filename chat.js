@@ -812,8 +812,15 @@ async function startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broad
   const intro = "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.";
   const pepeIntro = "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!";
   
-  console.log('🎙️ Mr Cock generating intro audio FIRST...');
-  const introResult = await generateSpeech(intro, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks);
+  console.log('⚡⚡⚡ PARALLEL GENERATION: Generating BOTH intro audios at the same time!');
+  const pepeIntroEmotion = detectEmotion(pepeIntro);
+  
+  const [introResult, pepeIntroResult] = await Promise.all([
+    generateSpeech(intro, 'onyx', 'Mr Cock', 'normal', null, null, recordingCallbacks),
+    generateSpeech(pepeIntro, 'fable', 'Pepe', pepeIntroEmotion, null, null, recordingCallbacks)
+  ]);
+  
+  console.log('✅ BOTH intro audios ready! Emitting Mr Cock first...');
   
   io.emit('podcast_dialogue', {
     id: Date.now(),
@@ -827,11 +834,8 @@ async function startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broad
   
   const introTime = calculateSpeakingTime(intro);
   
-  setTimeout(async () => {
-    const pepeIntroEmotion = detectEmotion(pepeIntro);
-    
-    console.log('🐸 Pepe generating intro audio FIRST...');
-    const pepeIntroResult = await generateSpeech(pepeIntro, 'fable', 'Pepe', pepeIntroEmotion, null, null, recordingCallbacks);
+  setTimeout(() => {
+    console.log('✅ Mr Cock intro done, emitting Pepe (audio already ready!)');
     
     io.emit('podcast_dialogue', {
       id: Date.now(),
