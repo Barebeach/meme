@@ -70,8 +70,10 @@ export async function generateSpeech(text, voice = 'alloy', speaker = null, emot
           const audioFilename = `${speaker.toLowerCase().replace(' ', '')}-${Date.now()}.mp3`;
           const audioPath = path.join(targetDir, audioFilename);
           fs.writeFileSync(audioPath, buffer);
-          const webPath = audioPath.replace(/\\/g, '/').split('memetalk-app/')[1];
-          savedAudioPath = `/${webPath}`;
+          
+          // Convert to web path - make it work on both localhost and production
+          const relativePath = path.relative(process.cwd(), audioPath).replace(/\\/g, '/');
+          savedAudioPath = `/${relativePath}`;
           console.log(`💾 Saved audio: ${audioFilename} -> ${savedAudioPath} (${(buffer.length / 1024).toFixed(1)}KB)`);
           
           if (recordingCallbacks && recordingCallbacks.onAudioSaved) {
