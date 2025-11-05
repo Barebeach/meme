@@ -164,6 +164,13 @@ function Home() {
     if (isPlayingAudioRef.current || audioQueueRef.current.length === 0) {
       return;
     }
+    
+    // On mobile, if audio isn't unlocked yet, show the unlock prompt
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile && !audioUnlocked) {
+      console.log('📱 Mobile detected - waiting for user to enable audio...');
+      return; // Wait for user to tap the unlock button
+    }
 
     isPlayingAudioRef.current = true;
     const msg = audioQueueRef.current.shift(); // Get first item
@@ -374,8 +381,17 @@ function Home() {
   const handleUnlock = async () => {
     if (audioUnlocked) return;
     
+    console.log('🔓 Unlocking audio for mobile...');
     await unlockAllVideos();
     setAudioUnlocked(true);
+    
+    // If there are items in the audio queue, start processing them NOW
+    if (audioQueueRef.current.length > 0 && !isPlayingAudioRef.current) {
+      console.log(`🎵 Audio unlocked! Processing ${audioQueueRef.current.length} queued audio items...`);
+      processAudioQueue();
+    } else {
+      console.log('✅ Audio unlocked! Ready for playback.');
+    }
   };
 
   useEffect(() => {
@@ -590,14 +606,8 @@ function Home() {
     console.log('Sending message:', message);
     socket.emit('send_message', { message });
     
-    setMessages(prev => [...prev, {
-      id: `${Date.now()}-${Math.random()}`,
-      user: username,
-      message: message,
-      timestamp: 'Just now',
-      isYou: true,
-      userColor: '#8b5cf6' // Default color for own messages
-    }]);
+    // DON'T add message locally - backend will broadcast it back
+    // This prevents duplicate messages in chat
     
     setNewMessage('');
   };

@@ -167,15 +167,30 @@ export const VideoPlayer = ({
 };
 
 export const unlockAllVideos = async () => {
+  console.log('🔓 Attempting to unlock audio context...');
+  
+  // Create a silent audio to unlock audio context on mobile
   const dummyAudio = new Audio();
   dummyAudio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
-  try {
-    await dummyAudio.play();
-    dummyAudio.pause();
-  } catch (err) {
-    console.log('Audio unlock failed');
-  }
+  dummyAudio.volume = 0.01; // Very low volume
   
-  return true;
+  try {
+    // Try to play the dummy audio
+    await dummyAudio.play();
+    console.log('✅ Audio context unlocked successfully!');
+    
+    // Pause and cleanup
+    setTimeout(() => {
+      dummyAudio.pause();
+      dummyAudio.src = '';
+    }, 100);
+    
+    return true;
+  } catch (err) {
+    console.error('❌ Audio unlock failed:', err.message);
+    // Even if it fails, return true so the UI can proceed
+    // (some browsers might still allow audio after user interaction)
+    return true;
+  }
 };
 
