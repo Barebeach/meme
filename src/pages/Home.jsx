@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { VideoPlayer, unlockAllVideos } from '../components/VideoPlayer'
+import { initSpeechSynthesis, speak, stopSpeech, getVoices } from '../utils/speechSynthesis'
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : window.location.origin;
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function Home() {
   const [messages, setMessages] = useState([]);
@@ -168,7 +170,6 @@ function Home() {
     }
     
     // On mobile, if audio isn't unlocked yet, show the unlock prompt
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile && !audioUnlocked) {
       console.log('📱 Mobile detected - waiting for user to enable audio...');
       return; // Wait for user to tap the unlock button
@@ -178,6 +179,60 @@ function Home() {
     const msg = audioQueueRef.current.shift(); // Get first item
 
     console.log(`🔊 PREPARING: ${msg.user}`);
+
+    // MOBILE: Use Web Speech API (browser TTS) - ALWAYS works!
+    if (isMobile) {
+      console.log('📱 Mobile: Using Text-to-Speech (no audio files needed!)');
+      
+      try {
+        // Switch video immediately
+        const newSpeaker = msg.isGuest ? 'Pepe' : msg.isHost ? 'Mr Cock' : null;
+        const isHost = msg.isHost || false;
+        const validEmotion = getVideoForEmotion(isHost ? hostVideos : guestVideos, msg.emotion || 'normal', isHost) ? (msg.emotion || 'normal') : 'normal';
+        console.log(`🔊 Switching video to: ${newSpeaker || 'TRANSITION (bothshutup)'} (${validEmotion})`);
+        setCurrentSpeaker(newSpeaker);
+        setCurrentEmotion(validEmotion);
+        
+        // Show question if present
+        if (msg.questionData) {
+          setCurrentQuestion(msg.questionData);
+        } else if (msg.isHost && currentQuestion) {
+          setCurrentQuestion(null);
+        }
+        
+        // Speak the text using browser TTS
+        await speak(msg.message, { speaker: msg.user });
+        
+        console.log(`✅ Finished speaking: ${msg.user}`);
+        
+        // Clear question if guest finished
+        if (msg.isGuest && currentQuestion) {
+          setCurrentQuestion(null);
+        }
+        
+        // Clear speaker if no more in queue
+        setTimeout(() => {
+          if (!isPlayingAudioRef.current) {
+            setCurrentSpeaker(null);
+          }
+        }, 100);
+        
+      } catch (error) {
+        console.error('❌ TTS error:', error);
+      }
+      
+      isPlayingAudioRef.current = false;
+      
+      // Play next in queue
+      if (audioQueueRef.current.length > 0) {
+        processAudioQueue();
+      }
+      
+      return;
+    }
+
+    // DESKTOP: Use pre-generated audio files (original code)
+    console.log(`💻 Desktop: Using pre-generated audio files`);
 
     try {
       if (!msg.audioPath) {
@@ -408,7 +463,28 @@ function Home() {
     }
     
     console.log('🔓 Unlocking audio for mobile...');
-    await unlockAllVideos();
+    
+    // Mobile: Initialize Speech Synthesis (browser TTS)
+    if (isMobile) {
+      console.log('📱 Mobile: Initializing Web Speech API...');
+      const ttsAvailable = initSpeechSynthesis();
+      if (ttsAvailable) {
+        console.log('✅ Text-to-Speech ready!');
+        
+        // Load voices (some browsers need a delay)
+        setTimeout(() => {
+          const voices = getVoices();
+          console.log(`🎤 Available voices: ${voices.length}`);
+          if (voices.length > 0) {
+            console.log(`   Using: ${voices[0].name}`);
+          }
+        }, 100);
+      }
+    } else {
+      // Desktop: Use the old audio unlock method
+      await unlockAllVideos();
+    }
+    
     setAudioUnlocked(true);
     setShowPlayButton(false);
     console.log('✅ setAudioUnlocked(true) called');
