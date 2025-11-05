@@ -32,6 +32,7 @@ function Home() {
   const [audioUnlocked, setAudioUnlocked] = useState(false);
   const [selectedEpisode, setSelectedEpisode] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
   
   const chatEndRef = useRef(null);
   const chatMessagesRef = useRef(null);
@@ -39,6 +40,7 @@ function Home() {
   const audioQueueRef = useRef([]);
   const isPlayingAudioRef = useRef(false);
   const lastMessageTimeRef = useRef(0);
+  const currentAudioRef = useRef(null);
   
   const getVideoForEmotion = (videoMap, emotion, isHost) => {
     if (isHost) {
@@ -202,6 +204,9 @@ function Home() {
         const audio = new Audio(audioUrl);
         audio.type = 'audio/mpeg';
         
+        // Store in ref so manual play button can access it
+        currentAudioRef.current = audio;
+        
         // FAST PRELOAD - wait for "canplay" not "canplaythrough" (much faster!)
         await new Promise((resolve) => {
           audio.oncanplay = () => {
@@ -303,6 +308,9 @@ function Home() {
           playPromise.then(() => {
             console.log(`✅ Audio playing successfully for ${msg.user}`);
             
+            // Hide play button and clear current audio ref
+            setShowPlayButton(false);
+            
             // 🎬 NOW schedule emotion changes - SYNCED with audio start!
             if (msg.emotionSegments && msg.emotionSegments.length > 0) {
               console.log(`🎭 Scheduling ${msg.emotionSegments.length} emotion changes...`);
@@ -330,7 +338,14 @@ function Home() {
             }
           }).catch(err => {
             console.error('⚠️ Audio play blocked (mobile autoplay policy):', err.message);
-            console.log('📱 Video will still play, but audio is muted. User needs to interact with page.');
+            console.log('📱 Showing PLAY button for user to enable audio');
+            
+            // Show the play button for user to manually enable audio
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+              setShowPlayButton(true);
+            }
+            
             // Video will still switch (already done above), just no audio
             // Still schedule emotion changes
             if (msg.emotionSegments && msg.emotionSegments.length > 0) {
@@ -384,6 +399,7 @@ function Home() {
     console.log('🔓 Unlocking audio for mobile...');
     await unlockAllVideos();
     setAudioUnlocked(true);
+    setShowPlayButton(false);
     
     // If there are items in the audio queue, start processing them NOW
     if (audioQueueRef.current.length > 0 && !isPlayingAudioRef.current) {
@@ -391,6 +407,32 @@ function Home() {
       processAudioQueue();
     } else {
       console.log('✅ Audio unlocked! Ready for playback.');
+    }
+  };
+
+  const handleManualPlay = async () => {
+    console.log('🎵 User clicked PLAY button - attempting to play audio...');
+    
+    // First, unlock audio context
+    if (!audioUnlocked) {
+      await unlockAllVideos();
+      setAudioUnlocked(true);
+    }
+    
+    // If there's a current audio waiting, try to play it
+    if (currentAudioRef.current) {
+      try {
+        await currentAudioRef.current.play();
+        console.log('✅ Audio started playing after manual trigger!');
+        setShowPlayButton(false);
+      } catch (err) {
+        console.error('❌ Still blocked:', err);
+        alert('Please enable audio in your browser settings');
+      }
+    } else if (audioQueueRef.current.length > 0 && !isPlayingAudioRef.current) {
+      // No current audio, but queue has items - start processing
+      processAudioQueue();
+      setShowPlayButton(false);
     }
   };
 
@@ -831,32 +873,44 @@ function Home() {
               
               {episodeStarted && countdown === null && (
                 <>
-                  {!audioUnlocked && (
+                  {(!audioUnlocked || showPlayButton) && (
                     <div 
                     className="audio-unlock-prompt"
-                    onClick={handleUnlock}
+                    onClick={showPlayButton ? handleManualPlay : handleUnlock}
                     style={{
                       position: 'absolute',
                       top: '50%',
                       left: '50%',
                       transform: 'translate(-50%, -50%)',
-                      background: 'rgba(0, 0, 0, 0.9)',
+                      background: 'rgba(0, 0, 0, 0.95)',
                       color: '#00ff41',
-                      padding: '30px 40px',
-                      borderRadius: '15px',
-                      border: '2px solid #00ff41',
-                      fontSize: '20px',
+                      padding: '30px 50px',
+                      borderRadius: '20px',
+                      border: '3px solid #00ff41',
+                      fontSize: '24px',
                       fontWeight: 'bold',
                       cursor: 'pointer',
                       zIndex: 1000,
                       textAlign: 'center',
-                      animation: 'pulse 2s infinite'
+                      animation: 'pulse 2s infinite',
+                      boxShadow: '0 0 30px rgba(0, 255, 65, 0.5)'
                     }}
                   >
-                    🔊 TAP TO ENABLE AUDIO
-                    <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.8 }}>
-                      Required for mobile playback
-                    </div>
+                    {showPlayButton ? (
+                      <>
+                        ▶️ TAP TO PLAY AUDIO
+                        <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.9 }}>
+                          Audio is ready - tap to start!
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        🔊 TAP TO ENABLE AUDIO
+                        <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.8 }}>
+                          Required for mobile playback
+                        </div>
+                      </>
+                    )}
                   </div>
                 )}
                 
