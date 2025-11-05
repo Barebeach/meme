@@ -88,7 +88,7 @@ function Stream() {
       setCurrentSpeaker(speaker);
       setCurrentEmotion(emotion || 'normal');
     });
-    
+
     // Dialogue events - play audio and sync video
     let emotionTimeouts = [];
     
@@ -266,7 +266,7 @@ function Stream() {
           const transitionData = await transitionRes.json();
           setTransitionVideo(transitionData);
           console.log('✅ Transition video loaded');
-        } else {
+      } else {
           console.warn('⚠️ Transition video not available (status:', transitionRes.status, ')');
         }
       } catch (err) {

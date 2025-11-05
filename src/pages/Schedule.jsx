@@ -59,11 +59,11 @@ function Schedule() {
       
       // Only show future dates (today and onwards)
       if (date >= today) {
-        const monthYear = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-        if (!groups[monthYear]) {
-          groups[monthYear] = [];
-        }
-        groups[monthYear].push(slot);
+      const monthYear = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      if (!groups[monthYear]) {
+        groups[monthYear] = [];
+      }
+      groups[monthYear].push(slot);
       }
     });
     return groups;
