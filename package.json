@@ -8,6 +8,7 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
+    "preinstall": "npm config set loglevel verbose",
     "dev": "vite",
     "server": "node server.js",
     "start": "node server.js",
