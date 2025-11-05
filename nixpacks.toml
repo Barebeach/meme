@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["nodejs_20"]
+nixPkgs = ["nodejs_20", "dejavu_fonts"]
 nixLibs = ["nodejs_20"]
 
 [phases.install]

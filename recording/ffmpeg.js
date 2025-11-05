@@ -151,30 +151,37 @@ export async function createEpisodeVideo(recording, timestamp, recordingDir) {
         // Add question overlay if this segment has question data
         let videoFilters = [];
         if (segment.questionText && segment.questionUsername) {
-          console.log(`📝 Adding question overlay to segment ${i}: @${segment.questionUsername}`);
-          
-          // Escape special characters for FFmpeg drawtext
-          const escapedUsername = segment.questionUsername.replace(/[:'\[\]]/g, '\\$&').replace(/'/g, "\\'");
-          const escapedQuestion = segment.questionText.replace(/[:'\[\]]/g, '\\$&').replace(/'/g, "\\'");
+          console.log(`📝 Question overlay requested for segment ${i}: @${segment.questionUsername}`);
           
           // Get system fonts
           const regularFont = getSystemFontPath('arial.ttf');
           const boldFont = getSystemFontPath('arialbd.ttf') || regularFont;
           
-          const fontParam = regularFont ? `:fontfile=${regularFont}` : '';
-          const boldFontParam = boldFont ? `:fontfile=${boldFont}` : '';
-          
-          // Add semi-transparent background box and text overlay
-          videoFilters.push(
-            // Background box
-            `drawbox=x=(iw-min(iw*0.85\\,650))/2:y=ih*0.15:w=min(iw*0.85\\,650):h=120:color=0x8b5cf626:t=fill`,
-            // Border
-            `drawbox=x=(iw-min(iw*0.85\\,650))/2:y=ih*0.15:w=min(iw*0.85\\,650):h=120:color=0x8b5cf64D:t=2`,
-            // Username label
-            `drawtext=text='@${escapedUsername} asked\\:':fontsize=16:fontcolor=0xa78bfa:x=(w-text_w)/2:y=ih*0.15+20${fontParam}`,
-            // Question text
-            `drawtext=text='${escapedQuestion}':fontsize=18:fontcolor=white:x=(w-text_w)/2:y=ih*0.15+50${boldFontParam}`
-          );
+          // Only add text overlay if fonts are available
+          if (regularFont) {
+            console.log(`   ✅ Fonts found - adding text overlay`);
+            
+            // Escape special characters for FFmpeg drawtext
+            const escapedUsername = segment.questionUsername.replace(/[:'\[\]]/g, '\\$&').replace(/'/g, "\\'");
+            const escapedQuestion = segment.questionText.replace(/[:'\[\]]/g, '\\$&').replace(/'/g, "\\'");
+            
+            const fontParam = `:fontfile=${regularFont}`;
+            const boldFontParam = boldFont ? `:fontfile=${boldFont}` : fontParam;
+            
+            // Add semi-transparent background box and text overlay
+            videoFilters.push(
+              // Background box
+              `drawbox=x=(iw-min(iw*0.85\\,650))/2:y=ih*0.15:w=min(iw*0.85\\,650):h=120:color=0x8b5cf626:t=fill`,
+              // Border
+              `drawbox=x=(iw-min(iw*0.85\\,650))/2:y=ih*0.15:w=min(iw*0.85\\,650):h=120:color=0x8b5cf64D:t=2`,
+              // Username label
+              `drawtext=text='@${escapedUsername} asked\\:':fontsize=16:fontcolor=0xa78bfa:x=(w-text_w)/2:y=ih*0.15+20${fontParam}`,
+              // Question text
+              `drawtext=text='${escapedQuestion}':fontsize=18:fontcolor=white:x=(w-text_w)/2:y=ih*0.15+50${boldFontParam}`
+            );
+          } else {
+            console.log(`   ⚠️  No fonts found on system - skipping text overlay (video will still work!)`);
+          }
         }
         
         // Apply video filters if any
