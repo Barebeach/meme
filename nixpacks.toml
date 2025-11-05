@@ -1,8 +1,9 @@
 [phases.setup]
 nixPkgs = ["nodejs_20"]
+nixLibs = ["nodejs_20"]
 
 [phases.install]
-cmds = ["npm install --force --legacy-peer-deps --no-optional --ignore-scripts || npm install --force --legacy-peer-deps --no-optional"]
+cmds = ["npm install --legacy-peer-deps --ignore-scripts"]
 
 [phases.build]
 cmds = ["npm run build"]
