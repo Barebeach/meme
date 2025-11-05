@@ -105,11 +105,20 @@ export function createRecordingCallbacks(onBroadcastStop) {
       currentRecording.dialogue.push(dialogue);
     },
     onEpisodeEnd: () => {
+      console.log('\n🎬🎬🎬 onEpisodeEnd CALLBACK TRIGGERED! 🎬🎬🎬');
+      console.log(`   isRecording: ${isRecording}`);
+      console.log(`   recordingDir: ${recordingDir}`);
+      console.log(`   videoSegments: ${currentRecording.videoSegments.length}`);
+      console.log(`   audioFiles: ${currentRecording.audioFiles.length}`);
+      
       currentEpisode.isLive = false;
       if (onBroadcastStop) {
+        console.log('   Calling onBroadcastStop...');
         onBroadcastStop();
       }
+      console.log('   Calling saveRecording...');
       saveRecording();
+      console.log('   saveRecording completed!');
     }
   };
 }
@@ -135,14 +144,22 @@ function getNextEpisodeNumber() {
  * Start recording an episode
  */
 export function startRecording() {
+  console.log('\n🔴🔴🔴 startRecording FUNCTION CALLED! 🔴🔴🔴');
   isRecording = true;
   
   // Get the next episode number
   const nextEpisodeNumber = getNextEpisodeNumber();
+  console.log(`   Next episode number: ${nextEpisodeNumber}`);
   
   recordingDir = path.join(__dirname, '..', 'temp', `episode-${nextEpisodeNumber}-${Date.now()}`);
+  console.log(`   Recording dir: ${recordingDir}`);
+  
   if (!fs.existsSync(recordingDir)) {
+    console.log('   Creating recording directory...');
     fs.mkdirSync(recordingDir, { recursive: true });
+    console.log('   ✅ Directory created!');
+  } else {
+    console.log('   ✅ Directory already exists');
   }
   
   currentRecording = {
@@ -160,6 +177,7 @@ export function startRecording() {
     }
   };
   console.log('🔴 RECORDING STARTED - Episode', currentRecording.episodeNumber);
+  console.log(`   isRecording: ${isRecording}`);
   console.log('📁 Temp directory:', recordingDir);
 }
 
@@ -167,8 +185,11 @@ export function startRecording() {
  * Save the recording and create video
  */
 export async function saveRecording() {
+  console.log('\n💾💾💾 saveRecording FUNCTION CALLED! 💾💾💾');
+  console.log(`   isRecording: ${isRecording}`);
+  
   if (!isRecording) {
-    console.log('⚠️ saveRecording called but not recording');
+    console.log('⚠️⚠️⚠️ saveRecording called but isRecording=false! NOT SAVING!');
     return;
   }
   
@@ -183,13 +204,16 @@ export async function saveRecording() {
     console.error('❌ CRITICAL: No video segments recorded!');
     console.error('   This episode will NOT have a video file.');
     console.error('   Check if TTS was working and speaker parameter was passed.');
+    console.error('   Audio files saved: ${currentRecording.audioFiles.length}');
   }
   
   if (!recordingDir || !fs.existsSync(recordingDir)) {
     console.error('❌ CRITICAL: Recording directory missing!');
+    console.error(`   Expected: ${recordingDir}`);
     console.error('   Video creation will fail.');
   }
   
+  console.log('✅ Setting isRecording = false');
   isRecording = false;
   currentRecording.endTime = new Date().toISOString();
   
