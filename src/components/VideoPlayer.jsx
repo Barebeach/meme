@@ -12,23 +12,26 @@ export const VideoPlayer = ({
   // Use two video refs for smooth crossfading
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
-  const imgRef = useRef(null);
+  const mobileVideoRef = useRef(null);
   const [currentSrc, setCurrentSrc] = useState('');
   const [activeVideo, setActiveVideo] = useState(1); // 1 or 2
+  const [videoKey, setVideoKey] = useState(0); // Force remount on mobile
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   useEffect(() => {
     let newSrc = '';
     
     if (!currentSpeaker && transitionVideo) {
-      // MAIN PAGE: PREFER WebM for smaller file size & faster loading
-      newSrc = isMobile ? transitionVideo.gif : (transitionVideo.webm || transitionVideo.mp4);
+      // Mobile: Use MP4 (smaller & more compatible than GIF!)
+      // Desktop: Use WebM for best quality
+      newSrc = isMobile ? transitionVideo.mp4 : (transitionVideo.webm || transitionVideo.mp4);
     } else if (currentSpeaker === 'Mr Cock' && hostVideos) {
       // Try requested emotion, fallback to normal
       const urls = hostVideos[currentEmotion] || hostVideos['normal'];
       if (urls) {
-        // MAIN PAGE: PREFER WebM for smaller file size & faster loading
-        newSrc = isMobile ? urls.gif : (urls.webm || urls.mp4);
+        // Mobile: Use MP4 (smaller & more compatible than GIF!)
+        // Desktop: Use WebM for best quality
+        newSrc = isMobile ? urls.mp4 : (urls.webm || urls.mp4);
       }
       if (!hostVideos[currentEmotion] && currentEmotion !== 'normal') {
         console.warn(`⚠️ Missing Mr Cock emotion: ${currentEmotion}, using normal`);
@@ -37,8 +40,9 @@ export const VideoPlayer = ({
       // Try requested emotion, fallback to normal
       const urls = guestVideos[currentEmotion] || guestVideos['normal'];
       if (urls) {
-        // MAIN PAGE: PREFER WebM for smaller file size & faster loading
-        newSrc = isMobile ? urls.gif : (urls.webm || urls.mp4);
+        // Mobile: Use MP4 (smaller & more compatible than GIF!)
+        // Desktop: Use WebM for best quality
+        newSrc = isMobile ? urls.mp4 : (urls.webm || urls.mp4);
       }
       if (!guestVideos[currentEmotion] && currentEmotion !== 'normal') {
         console.warn(`⚠️ Missing Pepe emotion: ${currentEmotion}, using normal`);
@@ -46,7 +50,12 @@ export const VideoPlayer = ({
     }
 
     if (newSrc && newSrc !== currentSrc) {
+      console.log(`📱 Video source changing to: ${newSrc}`);
       setCurrentSrc(newSrc);
+      // Force mobile video to remount by changing key
+      if (isMobile) {
+        setVideoKey(prev => prev + 1);
+      }
     }
   }, [currentSpeaker, currentEmotion, hostVideos, guestVideos, transitionVideo, isMobile, currentSrc]);
 
@@ -54,11 +63,16 @@ export const VideoPlayer = ({
     if (!currentSrc) return;
 
     if (isMobile) {
-      // Mobile: GIFs load automatically, no play() needed
-      // Force reload by adding timestamp to prevent caching
-      if (imgRef.current) {
-        console.log(`📱 Mobile: Switching GIF to: ${currentSrc}`);
-        imgRef.current.src = `${currentSrc}?t=${Date.now()}`;
+      // Mobile: Simple video element with autoplay
+      // Video will remount due to key change, causing autoplay
+      if (mobileVideoRef.current) {
+        console.log(`📱 Mobile: Playing video: ${currentSrc}`);
+        // Force play after a tiny delay to ensure video is ready
+        setTimeout(() => {
+          mobileVideoRef.current?.play().catch(err => {
+            console.log('📱 Mobile autoplay (will work due to muted attribute):', err.message);
+          });
+        }, 50);
       }
     } else {
       // Desktop needs audio unlocked before playing videos
@@ -124,11 +138,16 @@ export const VideoPlayer = ({
 
   if (isMobile) {
     return (
-      <img
-        ref={imgRef}
+      <video
+        key={videoKey}
+        ref={mobileVideoRef}
         src={currentSrc}
-        alt="Character animation"
         className="video-element"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
         style={{
           width: '100%',
           height: 'auto',
