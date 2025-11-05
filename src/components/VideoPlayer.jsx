@@ -51,14 +51,18 @@ export const VideoPlayer = ({
   }, [currentSpeaker, currentEmotion, hostVideos, guestVideos, transitionVideo, isMobile, currentSrc]);
 
   useEffect(() => {
-    if (!currentSrc || !isUnlocked) return;
+    if (!currentSrc) return;
 
     if (isMobile) {
       // Mobile: GIFs load automatically, no play() needed
+      // Force reload by adding timestamp to prevent caching
       if (imgRef.current) {
-        imgRef.current.src = currentSrc;
+        console.log(`📱 Mobile: Switching GIF to: ${currentSrc}`);
+        imgRef.current.src = `${currentSrc}?t=${Date.now()}`;
       }
     } else {
+      // Desktop needs audio unlocked before playing videos
+      if (!isUnlocked) return;
       // Desktop: Smooth crossfade between two video elements
       const currentVideo = activeVideo === 1 ? videoRef1.current : videoRef2.current;
       const nextVideo = activeVideo === 1 ? videoRef2.current : videoRef1.current;
@@ -114,7 +118,7 @@ export const VideoPlayer = ({
         };
       }
     }
-  }, [currentSrc, isUnlocked, isMobile, activeVideo]);
+  }, [currentSrc, isUnlocked, isMobile, activeVideo, currentSpeaker, currentEmotion]);
 
   if (!currentSrc) return null;
 

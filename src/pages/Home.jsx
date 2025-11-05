@@ -191,6 +191,15 @@ function Home() {
       
       console.log(`⚡ FETCHING PRE-GENERATED AUDIO: ${msg.audioPath}`);
       
+      // Create Audio object IMMEDIATELY (before async operations)
+      // This is CRITICAL for mobile - audio must be created synchronously
+      const audio = new Audio();
+      audio.type = 'audio/mpeg';
+      audio.preload = 'auto';
+      
+      // Store in ref so manual play button can access it
+      currentAudioRef.current = audio;
+      
       const response = await fetch(`${API_URL}${msg.audioPath}`);
       
       console.log(`📡 Audio fetch status: ${response.status}`);
@@ -201,11 +210,9 @@ function Home() {
         const audioBlob = await response.blob();
         console.log(`📦 Blob size: ${(audioBlob.size / 1024).toFixed(1)}KB, type: ${audioBlob.type}`);
         const audioUrl = URL.createObjectURL(audioBlob);
-        const audio = new Audio(audioUrl);
-        audio.type = 'audio/mpeg';
         
-        // Store in ref so manual play button can access it
-        currentAudioRef.current = audio;
+        // Set source AFTER creating Audio object
+        audio.src = audioUrl;
         
         // FAST PRELOAD - wait for "canplay" not "canplaythrough" (much faster!)
         await new Promise((resolve) => {
