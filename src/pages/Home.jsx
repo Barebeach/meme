@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { VideoPlayer, unlockAllVideos } from '../components/VideoPlayer'
 
-const API_URL = import.meta.env.DEV ? 'http://localhost:3000' : window.location.origin;
+const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : window.location.origin;
 
 function Home() {
   const [messages, setMessages] = useState([]);
@@ -23,12 +23,15 @@ function Home() {
   const [hostVideos, setHostVideos] = useState({});
   const [guestVideos, setGuestVideos] = useState({});
   const [currentGuest, setCurrentGuest] = useState('pepe');
+  const [currentGuestInfo, setCurrentGuestInfo] = useState(null); // Meme name, image from application
   const [transitionVideo, setTransitionVideo] = useState(null);
   const [showTransition, setShowTransition] = useState(false);
   const [episodeEnded, setEpisodeEnded] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [episodes, setEpisodes] = useState([]);
   const [audioUnlocked, setAudioUnlocked] = useState(false);
+  const [selectedEpisode, setSelectedEpisode] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const chatEndRef = useRef(null);
   const chatMessagesRef = useRef(null);
@@ -91,6 +94,17 @@ function Home() {
         const stateRes = await fetch(`${API_URL}/api/admin/broadcast-state`);
         if (stateRes.ok) {
           const state = await stateRes.json();
+          
+          // Update guest info if custom guest is set
+          if (state.isCustomGuest && state.guestData) {
+            setCurrentGuestInfo({
+              name: state.guestData.memeName,
+              image: state.guestData.memeImage
+            });
+            console.log(`🎭 Custom guest detected: ${state.guestData.memeName}`);
+          } else {
+            setCurrentGuestInfo(null); // Reset to default Pepe
+          }
           
           if (state.isLive) {
             if (state.countdown !== null && state.countdown > 0) {
@@ -218,13 +232,16 @@ function Home() {
             // Clear all emotion timeouts
             emotionTimeouts.forEach(timeout => clearTimeout(timeout));
             // DON'T clear speaker yet - keep showing until next audio is ready
-            // Only show transition if there's a delay
+            // Quick check if next speaker is coming (minimal delay for smooth flow)
             setTimeout(() => {
-              if (!isPlayingAudioRef.current || audioQueueRef.current.length === 0) {
-                console.log(`🎬 Switching to TRANSITION video (bothshutup) after delay`);
+              // Only check if audio is currently playing - don't care about queue length!
+              if (!isPlayingAudioRef.current) {
+                console.log(`🎬 Switching to TRANSITION video (bothshutup) - no audio playing`);
                 setCurrentSpeaker(null);
+              } else {
+                console.log(`⚡ SKIPPING TRANSITION: Audio still playing!`);
               }
-            }, 300);
+            }, 100);
             
             // If Pepe just finished answering a question, clear it from screen
             if (msg.isGuest && currentQuestion) {
@@ -417,12 +434,21 @@ function Home() {
 
     // Listen for USER messages ONLY (not podcast dialogue)
     newSocket.on('message', (msg) => {
-      setMessages(prev => [...prev, msg]);
+      // Ensure unique ID for every message to prevent React key conflicts
+      const uniqueMsg = {
+        ...msg,
+        id: msg.id ? `${msg.id}-${Math.random()}` : `${Date.now()}-${Math.random()}`
+      };
+      setMessages(prev => [...prev, uniqueMsg]);
     });
 
     // Listen for PODCAST DIALOGUE (separate from chat) - ADD TO AUDIO QUEUE!
     newSocket.on('podcast_dialogue', (msg) => {
-      console.log('Podcast dialogue received:', msg);
+      console.log('🎤 PODCAST DIALOGUE RECEIVED:', msg);
+      console.log('   Speaker:', msg.user);
+      console.log('   Has Audio:', msg.hasAudio);
+      console.log('   Audio Path:', msg.audioPath);
+      
       setDialogueMessages(prev => [...prev, msg]); // Store in separate dialogue list
       
       // Add to audio queue for playback
@@ -529,7 +555,7 @@ function Home() {
     }
     
     setMessages(prev => [...prev, {
-      id: Date.now(),
+      id: `${Date.now()}-${Math.random()}`,
       user: 'System',
       message: `✅ Welcome, ${name}! You can now chat and ask questions.`,
       timestamp: 'Just now',
@@ -565,7 +591,7 @@ function Home() {
     socket.emit('send_message', { message });
     
     setMessages(prev => [...prev, {
-      id: Date.now(),
+      id: `${Date.now()}-${Math.random()}`,
       user: username,
       message: message,
       timestamp: 'Just now',
@@ -609,18 +635,12 @@ function Home() {
     }
 
     lastMessageTimeRef.current = now;
-    const questionMessage = `@pepe ${message}`;
-    console.log('Asking Pepe:', questionMessage);
+    const guestName = currentGuestInfo?.name || 'Pepe';
+    const questionMessage = `@guest ${message}`;
+    console.log(`Asking ${guestName}:`, questionMessage);
     socket.emit('send_message', { message: questionMessage });
     
-    setMessages(prev => [...prev, {
-      id: Date.now(),
-      user: username,
-      message: questionMessage,
-      timestamp: 'Just now',
-      isYou: true,
-      userColor: '#8b5cf6'
-    }]);
+    // Don't add message locally - let socket broadcast handle it to avoid duplicates
     
     setNewMessage('');
   };
@@ -658,18 +678,11 @@ function Home() {
     }
 
     lastMessageTimeRef.current = now;
-    const questionMessage = `@mrcock ${message}`;
-    console.log('Asking Mr. Cock:', questionMessage);
+    const questionMessage = `@host ${message}`;
+    console.log('Asking Host (Mr. Cock):', questionMessage);
     socket.emit('send_message', { message: questionMessage });
     
-    setMessages(prev => [...prev, {
-      id: Date.now(),
-      user: username,
-      message: questionMessage,
-      timestamp: 'Just now',
-      isYou: true,
-      userColor: '#8b5cf6'
-    }]);
+    // Don't add message locally - let socket broadcast handle it to avoid duplicates
     
     setNewMessage('');
   };
@@ -690,13 +703,38 @@ function Home() {
     
     // Add to chat
     setMessages(prev => [...prev, {
-      id: Date.now(),
+      id: `${Date.now()}-${Math.random()}`,
       user: username,
       message: question.trim(),
       timestamp: 'Just now',
       isYou: true
     }]);
   };
+
+  // Video Modal Functions
+  const openEpisodeModal = (episode) => {
+    setSelectedEpisode(episode);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  };
+
+  const closeEpisodeModal = () => {
+    setIsModalOpen(false);
+    setSelectedEpisode(null);
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+  };
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        closeEpisodeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isModalOpen]);
 
 
   return (
@@ -756,7 +794,6 @@ function Home() {
             {!episodeStarted && countdown === null && !episodeEnded && (
               <div className="countdown-overlay">
                 <div className="countdown-text">⏳ Waiting for broadcast to start...</div>
-                <div className="countdown-subtitle">Admin will start the show soon</div>
               </div>
             )}
             
@@ -771,19 +808,21 @@ function Home() {
 
             {/* Question overlay removed per user request */}
 
-            {episodeStarted && countdown === null && (
-              <div className="character-display">
-                <VideoPlayer
-                  hostVideos={hostVideos}
-                  guestVideos={guestVideos}
-                  transitionVideo={transitionVideo}
-                  currentSpeaker={currentSpeaker}
-                  currentEmotion={currentEmotion}
-                  isUnlocked={audioUnlocked}
-                />
-                
-                {!audioUnlocked && (
-                  <div 
+            {/* Always show video player - shows transition video when not live */}
+            <div className="character-display">
+              <VideoPlayer
+                hostVideos={hostVideos}
+                guestVideos={guestVideos}
+                transitionVideo={transitionVideo}
+                currentSpeaker={currentSpeaker}
+                currentEmotion={currentEmotion}
+                isUnlocked={audioUnlocked}
+              />
+              
+              {episodeStarted && countdown === null && (
+                <>
+                  {!audioUnlocked && (
+                    <div 
                     className="audio-unlock-prompt"
                     onClick={handleUnlock}
                     style={{
@@ -811,31 +850,31 @@ function Home() {
                   </div>
                 )}
                 
-                {currentSpeaker === 'Pepe' && (
-                  <div className="talking-indicator">
-                    <span className="indicator-text">🎙️ Pepe Speaking</span>
+                {currentQuestion && (currentSpeaker === 'Pepe' || currentSpeaker === 'Mr Cock') && (
+                  <div className="talking-indicator question-indicator">
+                    <span className="indicator-label">💬 @{currentQuestion.username} asked:</span>
+                    <span className="indicator-question">{currentQuestion.question}</span>
                   </div>
                 )}
-                {currentSpeaker === 'Mr Cock' && (
+                {currentSpeaker === 'Mr Cock' && !currentQuestion && (
                   <div className="talking-indicator">
                     <span className="indicator-text">🎩 Mr. Cock Speaking</span>
                   </div>
                 )}
-              </div>
-            )}
+                {currentSpeaker === 'Pepe' && !currentQuestion && (
+                  <div className="talking-indicator">
+                    <span className="indicator-text">🐸 Pepe Speaking</span>
+                  </div>
+                )}
+                </>
+              )}
+            </div>
 
             {/* Ask Question Button */}
             {episodeStarted && username && (
               <button className="ask-question-btn" onClick={handleAskQuestion}>
                 Ask our Guest?
               </button>
-            )}
-            
-            {/* Auto-recording indicator */}
-            {episodeStarted && (
-              <div style={{ marginTop: '10px', textAlign: 'center', color: '#e74c3c', fontSize: '14px' }}>
-                ⏺️ This episode is being recorded automatically
-              </div>
             )}
           </div>
         </div>
@@ -844,12 +883,60 @@ function Home() {
         <div className="chat-section">
           {/* Username Overlay - Shows over chat */}
           {showUsernameModal && (
-            <div className="chat-username-overlay">
-              <div className="username-overlay-content">
-                <h2 className="username-overlay-title">Live Chat</h2>
-                <p className="username-overlay-subtitle">Choose a username to join the chat</p>
+            <div className="chat-username-overlay" style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100%',
+              height: '100%',
+              background: 'rgba(0, 0, 0, 0.5)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1000,
+              borderRadius: '24px',
+              pointerEvents: 'none'
+            }}>
+              <div className="username-overlay-content" style={{
+                background: 'linear-gradient(135deg, rgba(30, 30, 40, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%)',
+                border: '2px solid rgba(139, 92, 246, 0.6)',
+                borderRadius: '20px',
+                padding: '32px',
+                minWidth: '320px',
+                maxWidth: '400px',
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(139, 92, 246, 0.2)',
+                backdropFilter: 'blur(20px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                pointerEvents: 'auto',
+                margin: '0 auto'
+              }}>
+                <h2 className="username-overlay-title" style={{
+                  fontSize: '28px',
+                  fontWeight: '800',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  marginBottom: '8px',
+                  textAlign: 'center'
+                }}>Live Chat</h2>
+                <p className="username-overlay-subtitle" style={{
+                  fontSize: '15px',
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  marginBottom: '24px',
+                  textAlign: 'center'
+                }}>Choose a username to join the chat</p>
                 
-                <form onSubmit={handleUsernameSubmit} className="username-overlay-form">
+                <form onSubmit={handleUsernameSubmit} className="username-overlay-form" style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px'
+                }}>
                   <input
                     type="text"
                     placeholder="Enter your username..."
@@ -858,16 +945,52 @@ function Home() {
                     className="username-overlay-input"
                     maxLength={20}
                     autoFocus
+                    style={{
+                      width: '100%',
+                      padding: '14px 18px',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      border: '2px solid rgba(139, 92, 246, 0.3)',
+                      borderRadius: '12px',
+                      color: 'white',
+                      fontSize: '16px',
+                      outline: 'none',
+                      transition: 'all 0.3s ease'
+                    }}
                   />
-                  <p className="username-overlay-hint">2-20 characters</p>
+                  <p className="username-overlay-hint" style={{
+                    fontSize: '13px',
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    marginTop: '-8px'
+                  }}>2-20 characters</p>
                   
                   {rateLimitMessage && (
-                    <div className="username-overlay-error">
+                    <div className="username-overlay-error" style={{
+                      padding: '12px',
+                      background: 'rgba(239, 68, 68, 0.15)',
+                      border: '1px solid rgba(239, 68, 68, 0.4)',
+                      borderRadius: '8px',
+                      color: '#ef4444',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      textAlign: 'center'
+                    }}>
                       {rateLimitMessage}
                     </div>
                   )}
                   
-                  <button type="submit" className="username-overlay-submit">
+                  <button type="submit" className="username-overlay-submit" style={{
+                    width: '100%',
+                    padding: '14px 24px',
+                    background: 'linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%)',
+                    border: 'none',
+                    borderRadius: '12px',
+                    color: 'white',
+                    fontSize: '16px',
+                    fontWeight: '700',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)'
+                  }}>
                     Join Chat
                   </button>
                 </form>
@@ -931,7 +1054,7 @@ function Home() {
                 onClick={handleAskPepe}
                 title="Send question to Pepe"
               >
-                🐸 Ask Pepe
+                🐸 Ask Guest
               </button>
               <button 
                 type="button" 
@@ -939,7 +1062,7 @@ function Home() {
                 onClick={handleAskCock}
                 title="Send question to Mr. Cock"
               >
-                🐓 Ask Cock
+                🐓 Ask Host
               </button>
               <button 
                 type="button" 
@@ -955,8 +1078,8 @@ function Home() {
                 <div className="help-tooltip">
                   <strong>💡 How to use chat:</strong>
                   <p>• <strong>Regular chat:</strong> Type and press Enter</p>
-                  <p>• <strong>Ask Pepe:</strong> Type your question, click "Ask Pepe"</p>
-                  <p>• <strong>Ask Mr. Cock:</strong> Type your question, click "Ask Cock"</p>
+                  <p>• <strong>Ask Guest:</strong> Type your question, click "Ask Guest"</p>
+                  <p>• <strong>Ask Host:</strong> Type your question, click "Ask Host"</p>
                   <p>• Questions will be answered live on the show!</p>
                 </div>
               )}
@@ -973,16 +1096,16 @@ function Home() {
         </div>
         
         <div className="episodes-grid">
-          {episodes.length > 0 ? episodes.map((episode) => (
+          {episodes.length > 0 ? episodes.map((episode, index) => (
             <div 
-              key={episode.number}
+              key={`${episode.number}-${index}-${episode.date || ''}`}
               className="episode-card"
-              onClick={() => window.open(`/episodes/${episode.videoFile}`, '_blank')}
+              onClick={() => openEpisodeModal(episode)}
             >
               <div className="episode-thumbnail">
                 <video 
                   className="episode-preview"
-                  src={`/episodes/${episode.videoFile}`}
+                  src={episode.videoUrl || `/episodes/${episode.videoFile}`}
                   muted
                   preload="metadata"
                 />
@@ -1010,6 +1133,37 @@ function Home() {
           )}
         </div>
       </section>
+
+      {/* Video Player Modal */}
+      {isModalOpen && selectedEpisode && (
+        <div className="video-modal-overlay" onClick={closeEpisodeModal}>
+          <div className="video-modal-container" onClick={(e) => e.stopPropagation()}>
+            <div className="video-modal-close" onClick={closeEpisodeModal}></div>
+            
+            <div className="video-modal-player-wrapper">
+              <video
+                className="video-modal-player"
+                src={selectedEpisode.videoUrl || `/episodes/${selectedEpisode.videoFile}`}
+                controls
+                autoPlay
+                controlsList="nodownload"
+              />
+            </div>
+            
+            <div className="video-modal-info">
+              <div className="video-modal-meta">
+                <span className="video-modal-ep-badge">EPISODE {selectedEpisode.number}</span>
+                <span>{selectedEpisode.views || 0} views</span>
+                <span>•</span>
+                <span>{selectedEpisode.date}</span>
+              </div>
+              <h2 className="video-modal-title">{selectedEpisode.title}</h2>
+              <p className="video-modal-guest">{selectedEpisode.guest || 'Guest'}</p>
+              <p className="video-modal-desc">{selectedEpisode.description}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

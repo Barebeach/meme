@@ -1,0 +1,488 @@
+{
+  "episodeNumber": 3,
+  "startTime": "2025-11-04T11:56:35.159Z",
+  "endTime": "2025-11-04T12:02:58.244Z",
+  "dialogue": [
+    {
+      "id": "1762257436987-7",
+      "user": "Mr Cock",
+      "message": "asdasd from chat asks: \"@pepe asdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-3-1762257395158/mrcock-1762257436984.mp3",
+      "emotionSegments": [
+        {
+          "text": "asdasd from chat asks: \"@pepe asdasd\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasd",
+        "username": "asdasd"
+      }
+    },
+    {
+      "id": "1762257463318-9",
+      "user": "Mr Cock",
+      "message": "asdasd from chat asks: \"@pepe asdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-3-1762257395158/mrcock-1762257443614.mp3",
+      "emotionSegments": [
+        {
+          "text": "asdasd from chat asks: \"@pepe asdasd\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasd",
+        "username": "asdasd"
+      }
+    }
+  ],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762257398901.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257399287.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257436984.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "asdasd from chat asks: \"@pepe asdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasd",
+      "questionUsername": "asdasd"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762257441674.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Well, well, well, if it isn't the human embodiment of a deleted Facebook meme page trying to make a comeback. asdasd, your digital footprint makes a crypto rugpull look secure. I've seen more engaging content on a botched subreddit for closet capybara enthusiasts. Do yourself a favor and take a reality check, buddy, because right now you're just a walking, talking advertisement for anti-comedy.",
+      "emotionSegments": [
+        {
+          "text": "Well, well, well, if it isn't the human embodiment of a deleted Facebook meme page trying to make a comeback.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5408.333333333333
+        },
+        {
+          "text": "asdasd, your digital footprint makes a crypto rugpull look secure.",
+          "emotion": "normal",
+          "startTime": 5408.333333333333,
+          "duration": 5408.333333333333
+        },
+        {
+          "text": "I've seen more engaging content on a botched subreddit for closet capybara enthusiasts.",
+          "emotion": "normal",
+          "startTime": 10816.666666666666,
+          "duration": 5408.333333333333
+        },
+        {
+          "text": "Do yourself a favor and take a reality check, buddy, because right now you're just a walking, talking advertisement for anti-comedy.",
+          "emotion": "happy",
+          "startTime": 16225,
+          "duration": 5408.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257443614.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "asdasd from chat asks: \"@pepe asdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasd",
+      "questionUsername": "asdasd"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762257448089.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Well, well, well, if it isn't our star event organizer, asdasd, with yet another groundbreaking question. Asking me, the chaotic enigma, a question that's like expecting Discord mods to have social skills - utterly hopeless. I suggest you switch up your game, mate, because your current one is as outdated as a MySpace profile. On a scale of innovation, you're hovering somewhere between a fax machine and a 56k modem, my dude. Yikes.",
+      "emotionSegments": [
+        {
+          "text": "Well, well, well, if it isn't our star event organizer, asdasd, with yet another groundbreaking question.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 4926.666666666666
+        },
+        {
+          "text": "Asking me, the chaotic enigma, a question that's like expecting Discord mods to have social skills - utterly hopeless.",
+          "emotion": "thinking",
+          "startTime": 4926.666666666666,
+          "duration": 4926.666666666666
+        },
+        {
+          "text": "I suggest you switch up your game, mate, because your current one is as outdated as a MySpace profile.",
+          "emotion": "normal",
+          "startTime": 9853.333333333332,
+          "duration": 4926.666666666666
+        },
+        {
+          "text": "On a scale of innovation, you're hovering somewhere between a fax machine and a 56k modem, my dude.",
+          "emotion": "normal",
+          "startTime": 14779.999999999998,
+          "duration": 4926.666666666666
+        },
+        {
+          "text": "Yikes.",
+          "emotion": "normal",
+          "startTime": 19706.666666666664,
+          "duration": 4926.666666666666
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257502547.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in the vast tapestry of meme culture, the mantra \"buy the dip\" emerges as a cryptic koan, challenging us to embrace volatility in both the markets and our souls. Much like a phoenix rising from the ashes, or a soufflé stubbornly refusing to collapse, buying the dip beckons us to find strength in the depths of downturns. Or, you know, just hodl and hope for the best.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762257506568.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Ah, look at you, dropping philosophical lines like a bot with a thesaurus. \"Buy the dip\" you say, but with the depth of your crypto knowledge, you'd struggle to differentiate a Bitcoin from a BitTorrent. Your grasp on market dynamics is shakier than a Jenga tower after a frat party, my friend. You preach about financial wisdom like a broke preacher at a stock market funeral. Stick to hodling onto those crumbs of insight, mate. Everyone watching must be taking notes on how to navigate the highs and lows of both crypto and cluelessness simultaneously.",
+      "emotionSegments": [
+        {
+          "text": "Ah, look at you, dropping philosophical lines like a bot with a thesaurus.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 5327.777777777778
+        },
+        {
+          "text": "\"Buy the dip\" you say, but with the depth of your crypto knowledge, you'd struggle to differentiate a Bitcoin from a BitTorrent.",
+          "emotion": "normal",
+          "startTime": 5327.777777777778,
+          "duration": 5327.777777777778
+        },
+        {
+          "text": "Your grasp on market dynamics is shakier than a Jenga tower after a frat party, my friend.",
+          "emotion": "normal",
+          "startTime": 10655.555555555557,
+          "duration": 5327.777777777778
+        },
+        {
+          "text": "You preach about financial wisdom like a broke preacher at a stock market funeral.",
+          "emotion": "angry",
+          "startTime": 15983.333333333336,
+          "duration": 5327.777777777778
+        },
+        {
+          "text": "Stick to hodling onto those crumbs of insight, mate.",
+          "emotion": "normal",
+          "startTime": 21311.111111111113,
+          "duration": 5327.777777777778
+        },
+        {
+          "text": "Everyone watching must be taking notes on how to navigate the highs and lows of both crypto and cluelessness simultaneously.",
+          "emotion": "normal",
+          "startTime": 26638.88888888889,
+          "duration": 5327.777777777778
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257549921.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Ah, Pepe, the icon of modern absurdity. As you navigate the turbulent waters of meme culture, do you ever find yourself pondering the fleeting nature of internet fame? Or do you simply shrug it off with a green, amphibian nonchalance, much like a philosophical Kermit?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762257553213.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, seeker of the cryptic, swimming through the digital tsunami of memes seeking enlightenment or just some fresh content. Your mental acrobatics are the equivalent of a dolphin doing calculus – impressive yet utterly useless. It's like watching a reality show where the plot twist is that absolutely nothing is happening. Keep pondering the cosmos, username,\"ponderer_of_memes,\" while we mere mortals continue LOL-ing at cat videos. The universe might be infinite, but your entertainment value sure isn't.",
+      "emotionSegments": [
+        {
+          "text": "Ah, seeker of the cryptic, swimming through the digital tsunami of memes seeking enlightenment or just some fresh content.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "Your mental acrobatics are the equivalent of a dolphin doing calculus – impressive yet utterly useless.",
+          "emotion": "normal",
+          "startTime": 5126.666666666666,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "It's like watching a reality show where the plot twist is that absolutely nothing is happening.",
+          "emotion": "normal",
+          "startTime": 10253.333333333332,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "Keep pondering the cosmos, username,\"ponderer_of_memes,\" while we mere mortals continue LOL-ing at cat videos.",
+          "emotion": "happy",
+          "startTime": 15379.999999999998,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "The universe might be infinite, but your entertainment value sure isn't.",
+          "emotion": "normal",
+          "startTime": 20506.666666666664,
+          "duration": 5126.666666666666
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257587932.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, do you ever find yourself pondering the existential quandary of being simultaneously ubiquitous yet ephemeral in the vast digital landscape? It's like being a fleeting moment of profundity in a sea of cat videos and conspiracy theories. Or maybe you're just thinking about your next funny hat.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762257589897.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, everyone watching, your attempt at intellectual depth is about as shallow as an influencer's apology. Pondering my existence in the digital abyss while wearing funny hats? That's the kind of vibe only a Discord mod trudging through a Reddit karma farm can truly understand. Maybe next time, try entertaining thoughts more profound than a crypto rugpull, mate.",
+      "emotionSegments": [
+        {
+          "text": "Ah, everyone watching, your attempt at intellectual depth is about as shallow as an influencer's apology.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4908.333333333333
+        },
+        {
+          "text": "Pondering my existence in the digital abyss while wearing funny hats?",
+          "emotion": "happy",
+          "startTime": 4908.333333333333,
+          "duration": 4908.333333333333
+        },
+        {
+          "text": "That's the kind of vibe only a Discord mod trudging through a Reddit karma farm can truly understand.",
+          "emotion": "normal",
+          "startTime": 9816.666666666666,
+          "duration": 4908.333333333333
+        },
+        {
+          "text": "Maybe next time, try entertaining thoughts more profound than a crypto rugpull, mate.",
+          "emotion": "thinking",
+          "startTime": 14725,
+          "duration": 4908.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257619507.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, what drives the human soul to hold onto depreciating assets with unwavering determination? Is it a misguided sense of loyalty or simply a refusal to admit defeat? Or perhaps we are all just floating in a sea of financial absurdity, clinging desperately to our rapidly sinking bags like stubborn sailors on a doomed ship.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762257626236.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Ah, everyone watching, with questions as cryptic as your investment portfolio, we're in for a wild ride. Your existential ponderings about holding onto sinking bags are as profound as a Reddit karma farmer claiming they're a meme lord. It's like watching a crypto rugpull in slow motion, except in this case, your net worth is the one disappearing before your very eyes. Keep grasping at those imaginary gains like a greedy raccoon raiding a dumpster – it's the closest you'll get to true financial success.",
+      "emotionSegments": [
+        {
+          "text": "Ah, everyone watching, with questions as cryptic as your investment portfolio, we're in for a wild ride.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 7158.333333333333
+        },
+        {
+          "text": "Your existential ponderings about holding onto sinking bags are as profound as a Reddit karma farmer claiming they're a meme lord.",
+          "emotion": "normal",
+          "startTime": 7158.333333333333,
+          "duration": 7158.333333333333
+        },
+        {
+          "text": "It's like watching a crypto rugpull in slow motion, except in this case, your net worth is the one disappearing before your very eyes.",
+          "emotion": "normal",
+          "startTime": 14316.666666666666,
+          "duration": 7158.333333333333
+        },
+        {
+          "text": "Keep grasping at those imaginary gains like a greedy raccoon raiding a dumpster – it's the closest you'll get to true financial success.",
+          "emotion": "normal",
+          "startTime": 21475,
+          "duration": 7158.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257665784.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, do you ever ponder the existential quandary of NFTs, wondering if they're merely a fever dream concocted by a crypto-obsessed insomniac? Perhaps they're the digital manifestation of a late-night burrito-induced hallucination? Ah, the enigmatic allure of blockchain whimsy!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762257671602.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, Dave, sweet summer child lost in the labyrinth of NFTs. Your ponderings are like watching a squirrel try to solve a quantum physics equation - futile and mildly entertaining. You're the equivalent of a crypto rugpull disguised as a philosophical inquiry. Maybe stick to ancient alien documentaries; they're slightly more comprehensible for your intellect. Keep embracing that blockchain whimsy, Davina, maybe one day you'll mint an NFT that's not instantly mistaken for JPEG garbage.",
+      "emotionSegments": [
+        {
+          "text": "Ah, Dave, sweet summer child lost in the labyrinth of NFTs.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5060
+        },
+        {
+          "text": "Your ponderings are like watching a squirrel try to solve a quantum physics equation - futile and mildly entertaining.",
+          "emotion": "normal",
+          "startTime": 5060,
+          "duration": 5060
+        },
+        {
+          "text": "You're the equivalent of a crypto rugpull disguised as a philosophical inquiry.",
+          "emotion": "thinking",
+          "startTime": 10120,
+          "duration": 5060
+        },
+        {
+          "text": "Maybe stick to ancient alien documentaries; they're slightly more comprehensible for your intellect.",
+          "emotion": "thinking",
+          "startTime": 15180,
+          "duration": 5060
+        },
+        {
+          "text": "Keep embracing that blockchain whimsy, Davina, maybe one day you'll mint an NFT that's not instantly mistaken for JPEG garbage.",
+          "emotion": "thinking",
+          "startTime": 20240,
+          "duration": 5060
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257706157.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in this vast tapestry of internet discourse, do Discord mods deserve the same inalienable human rights as the rest of us mortals? Or are they condemned to forever roam the digital realm, herding memes with an iron banhammer? Perhaps they're simply modern-day philosophers, debating the ethics of meme regulation while sipping virtual tea.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762257710085.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Oh, everyone watching, pondering the destiny of Discord mods is like wondering if a hamster dreams of owning a yacht. These creatures of cyberspace are a rare breed - balancing on the tightrope between online mini-gods and basement-dwelling keyboard warriors. Imagine choosing to moderate a realm where cat videos hold more sway than political debates – a Sisyphean task just one step above picking up crypto after a rugpull. Maybe they're just misunderstood geniuses debating the philosophical implications of banning pepe emojis. Keep sipping that virtual tea, mods, maybe one day you'll unlock the mysteries of the meme universe.",
+      "emotionSegments": [
+        {
+          "text": "Oh, everyone watching, pondering the destiny of Discord mods is like wondering if a hamster dreams of owning a yacht.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 6660
+        },
+        {
+          "text": "These creatures of cyberspace are a rare breed - balancing on the tightrope between online mini-gods and basement-dwelling keyboard warriors.",
+          "emotion": "normal",
+          "startTime": 6660,
+          "duration": 6660
+        },
+        {
+          "text": "Imagine choosing to moderate a realm where cat videos hold more sway than political debates – a Sisyphean task just one step above picking up crypto after a rugpull.",
+          "emotion": "normal",
+          "startTime": 13320,
+          "duration": 6660
+        },
+        {
+          "text": "Maybe they're just misunderstood geniuses debating the philosophical implications of banning pepe emojis.",
+          "emotion": "thinking",
+          "startTime": 19980,
+          "duration": 6660
+        },
+        {
+          "text": "Keep sipping that virtual tea, mods, maybe one day you'll unlock the mysteries of the meme universe.",
+          "emotion": "thinking",
+          "startTime": 26640,
+          "duration": 6660
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762257747938.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "pepe-1762257398901.mp3",
+    "mrcock-1762257399287.mp3",
+    "mrcock-1762257436984.mp3",
+    "pepe-1762257441674.mp3",
+    "mrcock-1762257443614.mp3",
+    "pepe-1762257448089.mp3",
+    "mrcock-1762257502547.mp3",
+    "pepe-1762257506568.mp3",
+    "mrcock-1762257549921.mp3",
+    "pepe-1762257553213.mp3",
+    "mrcock-1762257587932.mp3",
+    "pepe-1762257589897.mp3",
+    "mrcock-1762257619507.mp3",
+    "pepe-1762257626236.mp3",
+    "mrcock-1762257665784.mp3",
+    "pepe-1762257671602.mp3",
+    "mrcock-1762257706157.mp3",
+    "pepe-1762257710085.mp3",
+    "mrcock-1762257747938.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 3: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 4, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-3-1762257778244.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

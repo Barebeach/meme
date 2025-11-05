@@ -1,0 +1,350 @@
+{
+  "episodeNumber": 5,
+  "startTime": "2025-11-04T12:12:34.084Z",
+  "endTime": "2025-11-04T12:15:48.682Z",
+  "dialogue": [
+    {
+      "id": "1762258397844-45",
+      "user": "Mr Cock",
+      "message": "asdasd from chat asks: \"@pepe adasds\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-5-1762258354083/mrcock-1762258397843.mp3",
+      "emotionSegments": [
+        {
+          "text": "asdasd from chat asks: \"@pepe adasds\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe adasds",
+        "username": "asdasd"
+      }
+    },
+    {
+      "id": "1762258420376-47",
+      "user": "Mr Cock",
+      "message": "asdasd from chat asks: \"@pepe asdasdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-5-1762258354083/mrcock-1762258403487.mp3",
+      "emotionSegments": [
+        {
+          "text": "asdasd from chat asks: \"@pepe asdasdasd\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasdasd",
+        "username": "asdasd"
+      }
+    },
+    {
+      "id": "1762258450487-49",
+      "user": "Mr Cock",
+      "message": "asdasd from chat asks: \"@pepe sadasdsad\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-5-1762258354083/mrcock-1762258450485.mp3",
+      "emotionSegments": [
+        {
+          "text": "asdasd from chat asks: \"@pepe sadasdsad\" Let me pose this to our guest.",
+          "emotion": "sad",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe sadasdsad",
+        "username": "asdasd"
+      }
+    },
+    {
+      "id": "1762258479423-51",
+      "user": "Mr Cock",
+      "message": "asdasd from chat asks: \"@pepe asdasdasas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-5-1762258354083/mrcock-1762258459439.mp3",
+      "emotionSegments": [
+        {
+          "text": "asdasd from chat asks: \"@pepe asdasdasas\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasdasas",
+        "username": "asdasd"
+      }
+    }
+  ],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762258357536.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762258359454.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762258397843.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "asdasd from chat asks: \"@pepe adasds\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe adasds",
+      "questionUsername": "asdasd"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762258400735.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Oh, look at asdasd attempting communication, it's like watching a dog learn to meow - straight-up confusing. Asking for specific info in a chat full of randomness is like expecting Reddit to be a beacon of logical discourse. Keep reaching for those stars with those stubby little arms, asdasd, maybe one day you'll grasp a fragment of coherence.",
+      "emotionSegments": [
+        {
+          "text": "Oh, look at asdasd attempting communication, it's like watching a dog learn to meow - straight-up confusing.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 6544.444444444444
+        },
+        {
+          "text": "Asking for specific info in a chat full of randomness is like expecting Reddit to be a beacon of logical discourse.",
+          "emotion": "normal",
+          "startTime": 6544.444444444444,
+          "duration": 6544.444444444444
+        },
+        {
+          "text": "Keep reaching for those stars with those stubby little arms, asdasd, maybe one day you'll grasp a fragment of coherence.",
+          "emotion": "thinking",
+          "startTime": 13088.888888888889,
+          "duration": 6544.444444444444
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762258403487.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "asdasd from chat asks: \"@pepe asdasdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasdasd",
+      "questionUsername": "asdasd"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762258407006.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Oh, look who crawled out of the intellectual wasteland - it's asdasd, with a question more misguided than a Reddit karma farmer investing in crypto rugpulls. Your brain cells must be on a lunch break if this is the best you've got. Even Discord mods are facepalming at your digital presence. Invest in some brain cells, mate - they’re cheaper than your lack of wit.",
+      "emotionSegments": [
+        {
+          "text": "Oh, look who crawled out of the intellectual wasteland - it's asdasd, with a question more misguided than a Reddit karma farmer investing in crypto rugpulls.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 5491.666666666667
+        },
+        {
+          "text": "Your brain cells must be on a lunch break if this is the best you've got.",
+          "emotion": "happy",
+          "startTime": 5491.666666666667,
+          "duration": 5491.666666666667
+        },
+        {
+          "text": "Even Discord mods are facepalming at your digital presence.",
+          "emotion": "normal",
+          "startTime": 10983.333333333334,
+          "duration": 5491.666666666667
+        },
+        {
+          "text": "Invest in some brain cells, mate - they’re cheaper than your lack of wit.",
+          "emotion": "normal",
+          "startTime": 16475,
+          "duration": 5491.666666666667
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762258450485.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "asdasd from chat asks: \"@pepe sadasdsad\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe sadasdsad",
+      "questionUsername": "asdasd"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762258457107.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Listen here, asdasd, your question is like a Reddit karma farmer trying to understand the intricacies of blockchain - it's utterly futile. Your confusion is more profound than a Twitter user trying to comprehend a decent comeback. I've seen more coherent thoughts from a cryptorugpull website, and that's saying something. Leave the real talk to the adults, kid, your brain's spinning like a broke crypto coin.",
+      "emotionSegments": [
+        {
+          "text": "Listen here, asdasd, your question is like a Reddit karma farmer trying to understand the intricacies of blockchain - it's utterly futile.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 5575
+        },
+        {
+          "text": "Your confusion is more profound than a Twitter user trying to comprehend a decent comeback.",
+          "emotion": "normal",
+          "startTime": 5575,
+          "duration": 5575
+        },
+        {
+          "text": "I've seen more coherent thoughts from a cryptorugpull website, and that's saying something.",
+          "emotion": "normal",
+          "startTime": 11150,
+          "duration": 5575
+        },
+        {
+          "text": "Leave the real talk to the adults, kid, your brain's spinning like a broke crypto coin.",
+          "emotion": "angry",
+          "startTime": 16725,
+          "duration": 5575
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762258459439.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "asdasd from chat asks: \"@pepe asdasdasas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasdasas",
+      "questionUsername": "asdasd"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762258465939.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Well, well, well, if it isn't Mr. Keyboard Mash Supreme, asdasd! Your question is as coherent as a crypto rugpull in the middle of a Twitter storm. Do us a favor and utilize a little thing I like to call punctuation before my RAM overloads from trying to decode that mess you just splattered on the screen like a digital Jackson Pollock. Bless your heart, sweet ASCII art disaster. Oh, by the way, MemeTalk.tv welcomes linguistic adventurers like yourself to keep our comments section entertainingly cryptic.",
+      "emotionSegments": [
+        {
+          "text": "Well, well, well, if it isn't Mr.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4138.0952380952385
+        },
+        {
+          "text": "Keyboard Mash Supreme, asdasd!",
+          "emotion": "normal",
+          "startTime": 4138.0952380952385,
+          "duration": 4138.0952380952385
+        },
+        {
+          "text": "Your question is as coherent as a crypto rugpull in the middle of a Twitter storm.",
+          "emotion": "thinking",
+          "startTime": 8276.190476190477,
+          "duration": 4138.0952380952385
+        },
+        {
+          "text": "Do us a favor and utilize a little thing I like to call punctuation before my RAM overloads from trying to decode that mess you just splattered on the screen like a digital Jackson Pollock.",
+          "emotion": "normal",
+          "startTime": 12414.285714285716,
+          "duration": 4138.0952380952385
+        },
+        {
+          "text": "Bless your heart, sweet ASCII art disaster.",
+          "emotion": "normal",
+          "startTime": 16552.380952380954,
+          "duration": 4138.0952380952385
+        },
+        {
+          "text": "Oh, by the way, MemeTalk.",
+          "emotion": "normal",
+          "startTime": 20690.47619047619,
+          "duration": 4138.0952380952385
+        },
+        {
+          "text": "tv welcomes linguistic adventurers like yourself to keep our comments section entertainingly cryptic.",
+          "emotion": "normal",
+          "startTime": 24828.571428571428,
+          "duration": 4138.0952380952385
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762258518366.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1762258357536.mp3",
+    "pepe-1762258359454.mp3",
+    "mrcock-1762258397843.mp3",
+    "pepe-1762258400735.mp3",
+    "mrcock-1762258403487.mp3",
+    "pepe-1762258407006.mp3",
+    "mrcock-1762258450485.mp3",
+    "pepe-1762258457107.mp3",
+    "mrcock-1762258459439.mp3",
+    "pepe-1762258465939.mp3",
+    "mrcock-1762258518366.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 5: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 4, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-5-1762258548682.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

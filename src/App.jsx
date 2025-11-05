@@ -1,20 +1,56 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import { WalletProvider } from './context/WalletProvider'
 import Home from './pages/Home'
 import Schedule from './pages/Schedule'
 import About from './pages/About'
 import Episodes from './pages/Episodes'
 import Apply from './pages/Apply'
 import Admin from './pages/Admin'
+import Stream from './pages/Stream'
 import './App.css'
 
 function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
+  
+  // Hide navigation on stream/OBS pages
+  const isStreamPage = location.pathname.startsWith('/stream') || location.pathname.startsWith('/obs')
+
   return (
+    <WalletProvider>
     <div className="app">
+      {!isStreamPage && (
       <nav className="top-nav">
         <div className="nav-content">
+          {/* Mobile Menu Button (left) */}
+          <button 
+            className="mobile-menu-btn" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {mobileMenuOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </>
+              )}
+            </svg>
+          </button>
+
+          {/* Logo (center) */}
           <Link to="/" className="logo-section">
             <img src="/memetalk.tv.png" alt="MemeTalk.TV" className="nav-logo" />
           </Link>
+
+          {/* Desktop Menu */}
           <div className="nav-menu">
             <Link to="/" className="nav-link">Live</Link>
             <Link to="/episodes" className="nav-link">Episodes</Link>
@@ -22,6 +58,8 @@ function App() {
             <Link to="/apply" className="nav-link nav-link-apply">Apply</Link>
             <Link to="/about" className="nav-link">About</Link>
           </div>
+
+          {/* Social Links (right) */}
           <div className="social-links">
             <a href="https://www.youtube.com/@memetalktv" target="_blank" rel="noopener noreferrer" className="social-link" title="YouTube">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -40,7 +78,29 @@ function App() {
             </a>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="mobile-menu-dropdown">
+            <Link to="/" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>
+              Live
+            </Link>
+            <Link to="/episodes" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>
+              Episodes
+            </Link>
+            <Link to="/schedule" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>
+              Schedule
+            </Link>
+            <Link to="/apply" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>
+              Apply
+            </Link>
+            <Link to="/about" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>
+              About
+            </Link>
+          </div>
+        )}
       </nav>
+      )}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -49,8 +109,11 @@ function App() {
         <Route path="/apply" element={<Apply />} />
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/stream/:slotId?" element={<Stream />} />
+        <Route path="/obs" element={<Stream />} />
       </Routes>
     </div>
+    </WalletProvider>
   )
 }
 

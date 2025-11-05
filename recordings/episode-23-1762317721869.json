@@ -1,0 +1,294 @@
+{
+  "episodeNumber": 23,
+  "startTime": "2025-11-05T04:37:01.543Z",
+  "endTime": "2025-11-05T04:42:01.869Z",
+  "dialogue": [],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317425440.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762317425659.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317469520.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, what drives individuals to cling onto their meme investments like a shipwreck survivor clutching a life raft made of diamond hands and denial? It's a fascinating study in the intersection of behavioral economics and internet culture. Or as I like to call it, the \"HODL onto your butts\" mentality.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "happy",
+      "audioFile": "pepe-1762317482559.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\happily pepe.mp4",
+      "text": "Listen up, everyone watching, we've got a real crypto expert here - a modern-day Socrates mixing up investment strategy with internet jokes. It's like watching a Discord mod trying to understand a meme that's not from 2010. Keep riding that diamond hands life raft, buddy, because your analysis is sinking faster than a low-cap altcoin during a rugpull.redirectToRoute\"Now diamonds might be forever, but your investment advice surely isn't, my friend! It's like teaching a Reddit karma farmer how to grow tulips in the winter - useless and utterly confusing. But hey, keep 'HODLing onto your butts', maybe one day your portfolio will be as valuable as a rare Pepe... Nah, who am I kidding? You're more likely to see Bigfoot riding a unicorn down Wall Street. Nice try, though.\"",
+      "emotionSegments": [
+        {
+          "text": "Listen up, everyone watching, we've got a real crypto expert here - a modern-day Socrates mixing up investment strategy with internet jokes.",
+          "emotion": "happy",
+          "startTime": 0,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "It's like watching a Discord mod trying to understand a meme that's not from 2010.",
+          "emotion": "normal",
+          "startTime": 4811.111111111111,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "Keep riding that diamond hands life raft, buddy, because your analysis is sinking faster than a low-cap altcoin during a rugpull.",
+          "emotion": "normal",
+          "startTime": 9622.222222222223,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "redirectToRoute\"Now diamonds might be forever, but your investment advice surely isn't, my friend!",
+          "emotion": "normal",
+          "startTime": 14433.333333333334,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "It's like teaching a Reddit karma farmer how to grow tulips in the winter - useless and utterly confusing.",
+          "emotion": "normal",
+          "startTime": 19244.444444444445,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "But hey, keep 'HODLing onto your butts', maybe one day your portfolio will be as valuable as a rare Pepe...",
+          "emotion": "thinking",
+          "startTime": 24055.555555555555,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "Nah, who am I kidding?",
+          "emotion": "normal",
+          "startTime": 28866.666666666664,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "You're more likely to see Bigfoot riding a unicorn down Wall Street.",
+          "emotion": "normal",
+          "startTime": 33677.777777777774,
+          "duration": 4811.111111111111
+        },
+        {
+          "text": "Nice try, though.",
+          "emotion": "normal",
+          "startTime": 38488.88888888888,
+          "duration": 4811.111111111111
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317535657.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, let us delve into the economic intricacies of pump and dumps. It's like watching a Picasso painting - beautiful in its chaos, but ultimately leaving you wondering, \"Is this worth anything, or did I just buy a canvas with a banana duct-taped to it?\"",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762317537481.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, look at you, \"everyone watching,\" attempting to sound profound about pump and dumps. Your understanding is as deep as a kiddie pool with a hole in it. Your analysis is about as valuable as a rug from a crypto rugpull. It's like giving a sloth Adderall and asking for stock tips - absolutely pointless.",
+      "emotionSegments": [
+        {
+          "text": "Ah, look at you, \"everyone watching,\" attempting to sound profound about pump and dumps.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4658.333333333333
+        },
+        {
+          "text": "Your understanding is as deep as a kiddie pool with a hole in it.",
+          "emotion": "normal",
+          "startTime": 4658.333333333333,
+          "duration": 4658.333333333333
+        },
+        {
+          "text": "Your analysis is about as valuable as a rug from a crypto rugpull.",
+          "emotion": "normal",
+          "startTime": 9316.666666666666,
+          "duration": 4658.333333333333
+        },
+        {
+          "text": "It's like giving a sloth Adderall and asking for stock tips - absolutely pointless.",
+          "emotion": "normal",
+          "startTime": 13975,
+          "duration": 4658.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317566275.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, darling, let's delve into the psyche of bagholding. Is it a reflection of human resilience or just a stubborn refusal to admit defeat? Like a bad Tinder date, some things just shouldn't be held onto for that long...",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762317570286.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Well, well, well, everyone watching, look who's serving up some low-key existential crisis with a side of emotional baggage! Bagholding, huh? Sounds like something exclusive to sad hodlers and users whose only diamond hands are holding onto outdated memes. Sometimes it's best to let go, mate, no one wants to hold onto your cringy Tinder profile that's been catfishing loneliness.",
+      "emotionSegments": [
+        {
+          "text": "Well, well, well, everyone watching, look who's serving up some low-key existential crisis with a side of emotional baggage!",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5075
+        },
+        {
+          "text": "Bagholding, huh?",
+          "emotion": "normal",
+          "startTime": 5075,
+          "duration": 5075
+        },
+        {
+          "text": "Sounds like something exclusive to sad hodlers and users whose only diamond hands are holding onto outdated memes.",
+          "emotion": "sad",
+          "startTime": 10150,
+          "duration": 5075
+        },
+        {
+          "text": "Sometimes it's best to let go, mate, no one wants to hold onto your cringy Tinder profile that's been catfishing loneliness.",
+          "emotion": "happy",
+          "startTime": 15225,
+          "duration": 5075
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317599897.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in the grand tapestry of internet culture, how do you see the evolution of wojak variations shaping our society? Are we witnessing a renaissance of memetic expression, or just a really elaborate way to say \"same energy, different face\"? It's like watching a Renaissance painting come to life... if that painting was a sad frog in a Feels Guy mask.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762317604560.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, everyone watching, witnessing the ever-expanding wojak gallery is like observing a cryptic train wreck of existential dread colliding with limited artistic talent. It's the Renaissance of mediocrity, a spectacular showcase of humanity's baffling ability to overcomplicate simplicity. If evolution had a midlife crisis, it would manifest as the myriad wojak variations we see today – the good, the bad, and the \"I've seen more emotional depth in a TikTok dance challenge.\" In the grand saga of meme history, wojak is both the hero and the punchline, a tragicomic masterpiece unfolding in real-time.",
+      "emotionSegments": [
+        {
+          "text": "Ah, everyone watching, witnessing the ever-expanding wojak gallery is like observing a cryptic train wreck of existential dread colliding with limited artistic talent.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 7825
+        },
+        {
+          "text": "It's the Renaissance of mediocrity, a spectacular showcase of humanity's baffling ability to overcomplicate simplicity.",
+          "emotion": "normal",
+          "startTime": 7825,
+          "duration": 7825
+        },
+        {
+          "text": "If evolution had a midlife crisis, it would manifest as the myriad wojak variations we see today – the good, the bad, and the \"I've seen more emotional depth in a TikTok dance challenge.",
+          "emotion": "normal",
+          "startTime": 15650,
+          "duration": 7825
+        },
+        {
+          "text": "\" In the grand saga of meme history, wojak is both the hero and the punchline, a tragicomic masterpiece unfolding in real-time.",
+          "emotion": "angry",
+          "startTime": 23475,
+          "duration": 7825
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317644798.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in the grand tapestry of internet culture, do you see wojak as a mirror reflecting the existential angst of modern society... or just a really relatable NPC meme who forgot to level up?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762317655106.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Well, talking about Wojak is like discussing paint colors with a blind man - utterly pointless, everyone watching. Wojak is less of a mirror reflecting society's angst and more like a cracked mirror in a funhouse - distorted and tragic. It's as if Wojak embodies the collective failure of all Monday mornings, making us question our life choices while being stuck on an eternal loading screen. Nevertheless, remain calm, my lost internet voyagers, for such curiosities only serve to remind us of our imperfections in this bizarre cyber circus we call existence.",
+      "emotionSegments": [
+        {
+          "text": "Well, talking about Wojak is like discussing paint colors with a blind man - utterly pointless, everyone watching.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 7741.666666666667
+        },
+        {
+          "text": "Wojak is less of a mirror reflecting society's angst and more like a cracked mirror in a funhouse - distorted and tragic.",
+          "emotion": "normal",
+          "startTime": 7741.666666666667,
+          "duration": 7741.666666666667
+        },
+        {
+          "text": "It's as if Wojak embodies the collective failure of all Monday mornings, making us question our life choices while being stuck on an eternal loading screen.",
+          "emotion": "thinking",
+          "startTime": 15483.333333333334,
+          "duration": 7741.666666666667
+        },
+        {
+          "text": "Nevertheless, remain calm, my lost internet voyagers, for such curiosities only serve to remind us of our imperfections in this bizarre cyber circus we call existence.",
+          "emotion": "happy",
+          "startTime": 23225,
+          "duration": 7741.666666666667
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317691549.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1762317425440.mp3",
+    "pepe-1762317425659.mp3",
+    "mrcock-1762317469520.mp3",
+    "pepe-1762317482559.mp3",
+    "mrcock-1762317535657.mp3",
+    "pepe-1762317537481.mp3",
+    "mrcock-1762317566275.mp3",
+    "pepe-1762317570286.mp3",
+    "mrcock-1762317599897.mp3",
+    "pepe-1762317604560.mp3",
+    "mrcock-1762317644798.mp3",
+    "pepe-1762317655106.mp3",
+    "mrcock-1762317691549.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 23: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 5, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-23-1762317721869.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

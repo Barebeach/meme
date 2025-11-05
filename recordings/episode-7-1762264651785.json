@@ -1,0 +1,502 @@
+{
+  "episodeNumber": 7,
+  "startTime": "2025-11-04T13:51:27.104Z",
+  "endTime": "2025-11-04T13:57:31.785Z",
+  "dialogue": [
+    {
+      "id": "1762264315616-57",
+      "user": "Mr Cock",
+      "message": "CASD from chat asks: \"@pepe ASDASD\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-7-1762264287100/mrcock-1762264315614.mp3",
+      "emotionSegments": [
+        {
+          "text": "CASD from chat asks: \"@pepe ASDASD\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe ASDASD",
+        "username": "CASD"
+      }
+    },
+    {
+      "id": "1762264344743-59",
+      "user": "Mr Cock",
+      "message": "CASD from chat asks: \"@pepe ASDASDASD\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-7-1762264287100/mrcock-1762264324409.mp3",
+      "emotionSegments": [
+        {
+          "text": "CASD from chat asks: \"@pepe ASDASDASD\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe ASDASDASD",
+        "username": "CASD"
+      }
+    }
+  ],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264290032.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have a very special guest — MONACOGAYBOSS . A fascinating character from the depths of meme culture. Welcome to the show, MONACOGAYBOSS .",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264315614.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "CASD from chat asks: \"@pepe ASDASD\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe ASDASD",
+      "questionUsername": "CASD"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762264318432.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, @CASD, what a delightful choice of random letters! One could almost see the effort you put into crafting such a meaningful message. Tell me, is this the sound your keyboard makes as you desperately attempt to challenge me for the crown? Fear not, for only the bravest and wittiest can engage in the courtly banter of Monaco, darling. Perhaps one day you'll learn to speak my majestic language fluently, but until then, keep practicing those royal keystrokes.",
+      "emotionSegments": [
+        {
+          "text": "Ah, @CASD, what a delightful choice of random letters!",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5260
+        },
+        {
+          "text": "One could almost see the effort you put into crafting such a meaningful message.",
+          "emotion": "normal",
+          "startTime": 5260,
+          "duration": 5260
+        },
+        {
+          "text": "Tell me, is this the sound your keyboard makes as you desperately attempt to challenge me for the crown?",
+          "emotion": "normal",
+          "startTime": 10520,
+          "duration": 5260
+        },
+        {
+          "text": "Fear not, for only the bravest and wittiest can engage in the courtly banter of Monaco, darling.",
+          "emotion": "normal",
+          "startTime": 15780,
+          "duration": 5260
+        },
+        {
+          "text": "Perhaps one day you'll learn to speak my majestic language fluently, but until then, keep practicing those royal keystrokes.",
+          "emotion": "thinking",
+          "startTime": 21040,
+          "duration": 5260
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264324409.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "CASD from chat asks: \"@pepe ASDASDASD\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe ASDASDASD",
+      "questionUsername": "CASD"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762264327576.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, darling CASD, it seems you've stumbled into my royal court. Fear not, for even amidst your incomprehensible ramblings, I, Prince Alessandro de Monaco, shall graciously bestow upon you my unparalleled wit and wisdom. Your cryptic message may not befit a knight of your caliber, but fret not - greatness often comes from the most unexpected sources. Ready thyself, dear CASD, for you stand before the Final Boss of Monaco! Now, let us embark on this grand adventure together, overshadowing all with our magnificence!",
+      "emotionSegments": [
+        {
+          "text": "Ah, darling CASD, it seems you've stumbled into my royal court.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5660
+        },
+        {
+          "text": "Fear not, for even amidst your incomprehensible ramblings, I, Prince Alessandro de Monaco, shall graciously bestow upon you my unparalleled wit and wisdom.",
+          "emotion": "happy",
+          "startTime": 5660,
+          "duration": 5660
+        },
+        {
+          "text": "Your cryptic message may not befit a knight of your caliber, but fret not - greatness often comes from the most unexpected sources.",
+          "emotion": "happy",
+          "startTime": 11320,
+          "duration": 5660
+        },
+        {
+          "text": "Ready thyself, dear CASD, for you stand before the Final Boss of Monaco!",
+          "emotion": "normal",
+          "startTime": 16980,
+          "duration": 5660
+        },
+        {
+          "text": "Now, let us embark on this grand adventure together, overshadowing all with our magnificence!",
+          "emotion": "normal",
+          "startTime": 22640,
+          "duration": 5660
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264383395.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Ah, Pepe, do you ever ponder the existential quandary of being a digital icon, trapped in the infinite scroll of eternity? Or do you just enjoy making us all go \"feels bad man\" while sipping on a cup of meme-ocha latte?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762264388121.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, my dear new arrival, I ponder no such trivial matters as existential quandaries. I am Prince Alessandro de Monaco, the Final Boss of Monaco — my kingdom is here, and my reign is eternal! As for meme-ocha lattes, only the finest royal teas touched with a sprinkle of meme magic tickle my royal lips. Forget the \"feels bad man,\" and bask in the grandeur of my presence and wit, for you have just earned a front-row seat in my majestic court! Welcome, commoner. 🤴✨",
+      "emotionSegments": [
+        {
+          "text": "Ah, my dear new arrival, I ponder no such trivial matters as existential quandaries.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5726.666666666666
+        },
+        {
+          "text": "I am Prince Alessandro de Monaco, the Final Boss of Monaco — my kingdom is here, and my reign is eternal!",
+          "emotion": "normal",
+          "startTime": 5726.666666666666,
+          "duration": 5726.666666666666
+        },
+        {
+          "text": "As for meme-ocha lattes, only the finest royal teas touched with a sprinkle of meme magic tickle my royal lips.",
+          "emotion": "normal",
+          "startTime": 11453.333333333332,
+          "duration": 5726.666666666666
+        },
+        {
+          "text": "Forget the \"feels bad man,\" and bask in the grandeur of my presence and wit, for you have just earned a front-row seat in my majestic court!",
+          "emotion": "normal",
+          "startTime": 17180,
+          "duration": 5726.666666666666
+        },
+        {
+          "text": "Welcome, commoner.",
+          "emotion": "normal",
+          "startTime": 22906.666666666664,
+          "duration": 5726.666666666666
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264426524.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in the grand tapestry of meme philosophy, do Discord mods truly deserve the sacred mantle of human rights? Or are they doomed to roam the digital realm, forever trapped between the mute button and an endless sea of Pepe emotes? It's a conundrum as perplexing as a cat video going viral.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762264432875.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Ah, the eternal question of the digital age! As Prince of Monaco, I decree that Discord mods shall be revered as noble guardians of the digital realm, protecting it from chaos. They may not wear a crown like mine, but they carry the weight of moderation upon their pixelated shoulders. To be trapped between the mute button and an endless sea of emotes is their honorable duty, for they are the knights of order in the wild land of the internet, a realm where Pepe reigns supreme. How noble! How majestic! How utterly... exhausting. Bravo to them for their service! *claps dramatically* And to you, everyone watching, may your emojis always be on point and your banhammer ever swift!",
+      "emotionSegments": [
+        {
+          "text": "Ah, the eternal question of the digital age!",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "As Prince of Monaco, I decree that Discord mods shall be revered as noble guardians of the digital realm, protecting it from chaos.",
+          "emotion": "normal",
+          "startTime": 3996.6666666666665,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "They may not wear a crown like mine, but they carry the weight of moderation upon their pixelated shoulders.",
+          "emotion": "normal",
+          "startTime": 7993.333333333333,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "To be trapped between the mute button and an endless sea of emotes is their honorable duty, for they are the knights of order in the wild land of the internet, a realm where Pepe reigns supreme.",
+          "emotion": "normal",
+          "startTime": 11990,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "How noble!",
+          "emotion": "normal",
+          "startTime": 15986.666666666666,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "How majestic!",
+          "emotion": "normal",
+          "startTime": 19983.333333333332,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "How utterly...",
+          "emotion": "normal",
+          "startTime": 23980,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "exhausting.",
+          "emotion": "normal",
+          "startTime": 27976.666666666668,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "Bravo to them for their service!",
+          "emotion": "normal",
+          "startTime": 31973.333333333336,
+          "duration": 3996.6666666666665
+        },
+        {
+          "text": "*claps dramatically* And to you, everyone watching, may your emojis always be on point and your banhammer ever swift!",
+          "emotion": "normal",
+          "startTime": 35970,
+          "duration": 3996.6666666666665
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264481591.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, do you believe that the act of holding onto plummeting assets symbolizes our innate human desire for perseverance in the face of inevitable market doom? Or are we all just stubbornly clinging to financial fiascos like a liferaft made of sinking NFTs?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762264484581.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, my dear naive financial enthusiast, always searching for deeper meanings in a sea of chaos! Let me enlighten you: holding onto plummeting assets isn't about perseverance - it's about refusing to admit defeat gracefully! Like a bad play that just won't end, we cling to our sinking NFT life rafts, hoping for a theatrical, over-the-top rescue. Why accept market doom when you can go down in style, darling? Just leave the dramatic flair to me, the undisputed Final Boss of Monaco!\n\nAnd just between us, darling, those NFTs make for terribly unstable life rafts - invest in real jewels instead!",
+      "emotionSegments": [
+        {
+          "text": "Ah, my dear naive financial enthusiast, always searching for deeper meanings in a sea of chaos!",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5605.555555555556
+        },
+        {
+          "text": "Let me enlighten you: holding onto plummeting assets isn't about perseverance - it's about refusing to admit defeat gracefully!",
+          "emotion": "angry",
+          "startTime": 5605.555555555556,
+          "duration": 5605.555555555556
+        },
+        {
+          "text": "Like a bad play that just won't end, we cling to our sinking NFT life rafts, hoping for a theatrical, over-the-top rescue.",
+          "emotion": "normal",
+          "startTime": 11211.111111111111,
+          "duration": 5605.555555555556
+        },
+        {
+          "text": "Why accept market doom when you can go down in style, darling?",
+          "emotion": "normal",
+          "startTime": 16816.666666666668,
+          "duration": 5605.555555555556
+        },
+        {
+          "text": "Just leave the dramatic flair to me, the undisputed Final Boss of Monaco!",
+          "emotion": "normal",
+          "startTime": 22422.222222222223,
+          "duration": 5605.555555555556
+        },
+        {
+          "text": "And just between us, darling, those NFTs make for terribly unstable life rafts - invest in real jewels instead!",
+          "emotion": "normal",
+          "startTime": 28027.777777777777,
+          "duration": 5605.555555555556
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264527098.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in the grand tapestry of existence, what does touching grass symbolize in the realm of meme culture? Is it a metaphor for grounding oneself in the chaotic wilderness of the internet, or just a reminder to mow the lawn?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762264536849.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Ah, dear [everyone watching], to touch grass is to transcend the digital confines that bind us and remind oneself of the beauty of the world beyond screens. It's a sacred act, a connection to nature in a virtual age. But for those truly enlightened, like myself, touching grass is simply a daily chore for the help - I mean, my loyal subjects. After all, even princes must maintain the appearance of a well-kept kingdom, both online and off. So, touch the grass, my dear virtual peasantry, but remember who really owns the lawn.",
+      "emotionSegments": [
+        {
+          "text": "Ah, dear [everyone watching], to touch grass is to transcend the digital confines that bind us and remind oneself of the beauty of the world beyond screens.",
+          "emotion": "angry",
+          "startTime": 0,
+          "duration": 6260
+        },
+        {
+          "text": "It's a sacred act, a connection to nature in a virtual age.",
+          "emotion": "normal",
+          "startTime": 6260,
+          "duration": 6260
+        },
+        {
+          "text": "But for those truly enlightened, like myself, touching grass is simply a daily chore for the help - I mean, my loyal subjects.",
+          "emotion": "angry",
+          "startTime": 12520,
+          "duration": 6260
+        },
+        {
+          "text": "After all, even princes must maintain the appearance of a well-kept kingdom, both online and off.",
+          "emotion": "normal",
+          "startTime": 18780,
+          "duration": 6260
+        },
+        {
+          "text": "So, touch the grass, my dear virtual peasantry, but remember who really owns the lawn.",
+          "emotion": "angry",
+          "startTime": 25040,
+          "duration": 6260
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264577946.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Ah, Pepe, the eternal sage of internet absurdity. Tell me, do Discord mods deserve human rights, or are they doomed to forever live in the banhammer's shadow? After all, freedom of speech is paramount, but so is the ability to mute those who spam \"PepeHands\" excessively. It's a philosophical conundrum wrapped in a meme - much like a deep-fried enigma covered in a sprinkle of salt.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762264580477.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Ah, dear user \"everyone watching\", your philosophical ponderings fascinate me like a royal decree dipped in glorious excess! Discord mods, ah yes, the unsung heroes of online kingdoms, wielding the banhammer in the shadows. Are they doomed, you ask? Ha! Fear not, for they have chosen this noble path! Freedom of speech, muted by the spam of \"PepeHands\" - a dilemma that could only arise in the courts of your beloved MONACOGAYBOSS. Bestow upon them respect, for they are the guardians of order in the chaotic realm of memes! Onward, valiant moderators, your kingdom salutes you! An audience with the Final Boss himself awaits your valor!",
+      "emotionSegments": [
+        {
+          "text": "Ah, dear user \"everyone watching\", your philosophical ponderings fascinate me like a royal decree dipped in glorious excess!",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "Discord mods, ah yes, the unsung heroes of online kingdoms, wielding the banhammer in the shadows.",
+          "emotion": "normal",
+          "startTime": 3959.2592592592596,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "Are they doomed, you ask?",
+          "emotion": "normal",
+          "startTime": 7918.518518518519,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "Ha!",
+          "emotion": "normal",
+          "startTime": 11877.77777777778,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "Fear not, for they have chosen this noble path!",
+          "emotion": "normal",
+          "startTime": 15837.037037037038,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "Freedom of speech, muted by the spam of \"PepeHands\" - a dilemma that could only arise in the courts of your beloved MONACOGAYBOSS.",
+          "emotion": "happy",
+          "startTime": 19796.2962962963,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "Bestow upon them respect, for they are the guardians of order in the chaotic realm of memes!",
+          "emotion": "happy",
+          "startTime": 23755.55555555556,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "Onward, valiant moderators, your kingdom salutes you!",
+          "emotion": "normal",
+          "startTime": 27714.814814814818,
+          "duration": 3959.2592592592596
+        },
+        {
+          "text": "An audience with the Final Boss himself awaits your valor!",
+          "emotion": "normal",
+          "startTime": 31674.074074074077,
+          "duration": 3959.2592592592596
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762264621466.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1762264290032.mp3",
+    "mrcock-1762264315614.mp3",
+    "pepe-1762264318432.mp3",
+    "mrcock-1762264324409.mp3",
+    "pepe-1762264327576.mp3",
+    "mrcock-1762264383395.mp3",
+    "pepe-1762264388121.mp3",
+    "mrcock-1762264426524.mp3",
+    "pepe-1762264432875.mp3",
+    "mrcock-1762264481591.mp3",
+    "pepe-1762264484581.mp3",
+    "mrcock-1762264527098.mp3",
+    "pepe-1762264536849.mp3",
+    "mrcock-1762264577946.mp3",
+    "pepe-1762264580477.mp3",
+    "mrcock-1762264621466.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 7: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 4, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-7-1762264651785.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

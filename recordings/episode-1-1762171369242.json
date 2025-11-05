@@ -1,0 +1,635 @@
+{
+  "episodeNumber": 1,
+  "startTime": "2025-11-03T11:56:54.134Z",
+  "endTime": "2025-11-03T12:02:49.242Z",
+  "dialogue": [
+    {
+      "id": "1762171060153-15",
+      "user": "Mr Cock",
+      "message": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-1-1762171014132/mrcock-1762171060151.mp3",
+      "emotionSegments": [
+        {
+          "text": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasdas",
+        "username": "dadas"
+      }
+    },
+    {
+      "id": "1762171080128-17",
+      "user": "Mr Cock",
+      "message": "dadas from chat asks: \"@pepe asdasdaasdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-1-1762171014132/mrcock-1762171064318.mp3",
+      "emotionSegments": [
+        {
+          "text": "dadas from chat asks: \"@pepe asdasdaasdasd\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasdaasdasd",
+        "username": "dadas"
+      }
+    },
+    {
+      "id": "1762171109252-19",
+      "user": "Mr Cock",
+      "message": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-1-1762171014132/mrcock-1762171109251.mp3",
+      "emotionSegments": [
+        {
+          "text": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasdas",
+        "username": "dadas"
+      }
+    },
+    {
+      "id": "1762171134841-21",
+      "user": "Mr Cock",
+      "message": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-1-1762171014132/mrcock-1762171117482.mp3",
+      "emotionSegments": [
+        {
+          "text": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasdas",
+        "username": "dadas"
+      }
+    },
+    {
+      "id": "1762171164703-23",
+      "user": "Mr Cock",
+      "message": "dadas from chat asks: \"@pepe asdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-1-1762171014132/mrcock-1762171164700.mp3",
+      "emotionSegments": [
+        {
+          "text": "dadas from chat asks: \"@pepe asdasd\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdasd",
+        "username": "dadas"
+      }
+    },
+    {
+      "id": "1762171189439-25",
+      "user": "Mr Cock",
+      "message": "dadas from chat asks: \"@pepe asdafgg\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-1-1762171014132/mrcock-1762171170200.mp3",
+      "emotionSegments": [
+        {
+          "text": "dadas from chat asks: \"@pepe asdafgg\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe asdafgg",
+        "username": "dadas"
+      }
+    }
+  ],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171017031.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762171020739.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171060151.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasdas",
+      "questionUsername": "dadas"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762171062491.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Pepe peeping at my name for password suggestions? You're about as sneaky as a highlighter in camouflage, dadas. Your online security practices are so weak, even a noob hacker would take pity on you. Stick to memes, buddy, and leave the cyber realm to us big dogs before you get digitally curb-stomped.",
+      "emotionSegments": [
+        {
+          "text": "Pepe peeping at my name for password suggestions?",
+          "emotion": "angry",
+          "startTime": 0,
+          "duration": 4408.333333333333
+        },
+        {
+          "text": "You're about as sneaky as a highlighter in camouflage, dadas.",
+          "emotion": "normal",
+          "startTime": 4408.333333333333,
+          "duration": 4408.333333333333
+        },
+        {
+          "text": "Your online security practices are so weak, even a noob hacker would take pity on you.",
+          "emotion": "normal",
+          "startTime": 8816.666666666666,
+          "duration": 4408.333333333333
+        },
+        {
+          "text": "Stick to memes, buddy, and leave the cyber realm to us big dogs before you get digitally curb-stomped.",
+          "emotion": "normal",
+          "startTime": 13225,
+          "duration": 4408.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171064318.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "dadas from chat asks: \"@pepe asdasdaasdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasdaasdasd",
+      "questionUsername": "dadas"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762171071452.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Oh, look, it's dadas, the master of groundbreaking questions, truly raising the bar for intellectual discourse! Asking me 'asdasdaasdasd'? Wow, I've seen better thought-provoking content on a CryptoPunk's forehead. Keep playing 4D chess while the rest of us are stuck watching you struggle with checkers, dadas. Just remember, even a badly programmed bot could come up with a more coherent inquiry than that.",
+      "emotionSegments": [
+        {
+          "text": "Oh, look, it's dadas, the master of groundbreaking questions, truly raising the bar for intellectual discourse!",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 4260
+        },
+        {
+          "text": "Asking me 'asdasdaasdasd'?",
+          "emotion": "normal",
+          "startTime": 4260,
+          "duration": 4260
+        },
+        {
+          "text": "Wow, I've seen better thought-provoking content on a CryptoPunk's forehead.",
+          "emotion": "normal",
+          "startTime": 8520,
+          "duration": 4260
+        },
+        {
+          "text": "Keep playing 4D chess while the rest of us are stuck watching you struggle with checkers, dadas.",
+          "emotion": "normal",
+          "startTime": 12780,
+          "duration": 4260
+        },
+        {
+          "text": "Just remember, even a badly programmed bot could come up with a more coherent inquiry than that.",
+          "emotion": "normal",
+          "startTime": 17040,
+          "duration": 4260
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171109251.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasdas",
+      "questionUsername": "dadas"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762171115197.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Listen up, dadas, your question is the internet equivalent of a crypto rugpull - deceptive and utterly worthless. You're out here typing gibberish like a Twitter user explaining quantum physics. Stick to what you know best: absolutely nothing. And by the way, your online presence is so dull, even Discord mods would ban you for being a snoozefest.",
+      "emotionSegments": [
+        {
+          "text": "Listen up, dadas, your question is the internet equivalent of a crypto rugpull - deceptive and utterly worthless.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 4908.333333333333
+        },
+        {
+          "text": "You're out here typing gibberish like a Twitter user explaining quantum physics.",
+          "emotion": "normal",
+          "startTime": 4908.333333333333,
+          "duration": 4908.333333333333
+        },
+        {
+          "text": "Stick to what you know best: absolutely nothing.",
+          "emotion": "happy",
+          "startTime": 9816.666666666666,
+          "duration": 4908.333333333333
+        },
+        {
+          "text": "And by the way, your online presence is so dull, even Discord mods would ban you for being a snoozefest.",
+          "emotion": "normal",
+          "startTime": 14725,
+          "duration": 4908.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171117482.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "dadas from chat asks: \"@pepe asdasdas\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasdas",
+      "questionUsername": "dadas"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762171121553.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "\"Ah, dadas, the living embodiment of a 'Click here for viruses' button. Your strive for profound communication is as futile as a goldfish trying to memorize the script of Hamlet. Seriously, clicking on your profile gives me more regrets than investing in a crypto rugpull. Step up your game, dadas, or just stick to being background noise in the symphony of intellectual discourse.\"",
+      "emotionSegments": [
+        {
+          "text": "\"Ah, dadas, the living embodiment of a 'Click here for viruses' button.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5325
+        },
+        {
+          "text": "Your strive for profound communication is as futile as a goldfish trying to memorize the script of Hamlet.",
+          "emotion": "normal",
+          "startTime": 5325,
+          "duration": 5325
+        },
+        {
+          "text": "Seriously, clicking on your profile gives me more regrets than investing in a crypto rugpull.",
+          "emotion": "normal",
+          "startTime": 10650,
+          "duration": 5325
+        },
+        {
+          "text": "Step up your game, dadas, or just stick to being background noise in the symphony of intellectual discourse.",
+          "emotion": "normal",
+          "startTime": 15975,
+          "duration": 5325
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171164700.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "dadas from chat asks: \"@pepe asdasd\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdasd",
+      "questionUsername": "dadas"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762171168127.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Well, well, well, look who learned to type gibberish - shoutout to dadas for single-handedly bringing back the ancient art of smashing their head against the keyboard. If your intelligence was a crypto investment, it would be a guaranteed rugpull. But hey, keep up the good work, maybe one day those random letters will form a coherent thought... then again, maybe not, dadas.",
+      "emotionSegments": [
+        {
+          "text": "Well, well, well, look who learned to type gibberish - shoutout to dadas for single-handedly bringing back the ancient art of smashing their head against the keyboard.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5325
+        },
+        {
+          "text": "If your intelligence was a crypto investment, it would be a guaranteed rugpull.",
+          "emotion": "normal",
+          "startTime": 5325,
+          "duration": 5325
+        },
+        {
+          "text": "But hey, keep up the good work, maybe one day those random letters will form a coherent thought...",
+          "emotion": "thinking",
+          "startTime": 10650,
+          "duration": 5325
+        },
+        {
+          "text": "then again, maybe not, dadas.",
+          "emotion": "thinking",
+          "startTime": 15975,
+          "duration": 5325
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171170200.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "dadas from chat asks: \"@pepe asdafgg\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe asdafgg",
+      "questionUsername": "dadas"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762171173805.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Listen here, dadas, your communication skills are about as sharp as a spoon in a blender. Asking for a conversation opener like that is like expecting a high-five from a ghost. I've seen smoother transitions in poorly written fanfiction on the dark side of the internet. But hey, keep swinging for the fences, maybe one day you'll hit a coherent sentence out of the park.",
+      "emotionSegments": [
+        {
+          "text": "Listen here, dadas, your communication skills are about as sharp as a spoon in a blender.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5491.666666666667
+        },
+        {
+          "text": "Asking for a conversation opener like that is like expecting a high-five from a ghost.",
+          "emotion": "normal",
+          "startTime": 5491.666666666667,
+          "duration": 5491.666666666667
+        },
+        {
+          "text": "I've seen smoother transitions in poorly written fanfiction on the dark side of the internet.",
+          "emotion": "normal",
+          "startTime": 10983.333333333334,
+          "duration": 5491.666666666667
+        },
+        {
+          "text": "But hey, keep swinging for the fences, maybe one day you'll hit a coherent sentence out of the park.",
+          "emotion": "thinking",
+          "startTime": 16475,
+          "duration": 5491.666666666667
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171222648.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in the grand scheme of internet lore, do diamond hands signify financial savvy, or are we inadvertently joining a cult where the only required sacrifice is selling low? It's like joining a pyramid scheme, but with more rocket emojis and fewer awkward family dinners.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762171229957.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "\"Ah, diamond hands, the currency of cultish crypto bros and self-appointed finance gurus. It's like watching a Reddit karma farmer trying to grow actual crops in their parents' basement - utterly useless. Stick with those diamond hands long enough, and you'll end up with fewer friends than a Twitter parody account. Selling low is bad for the wallet, but staying in a toxic echo chamber is bad for the soul, just like engaging with everyone watching over there.\"",
+      "emotionSegments": [
+        {
+          "text": "\"Ah, diamond hands, the currency of cultish crypto bros and self-appointed finance gurus.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 6575
+        },
+        {
+          "text": "It's like watching a Reddit karma farmer trying to grow actual crops in their parents' basement - utterly useless.",
+          "emotion": "normal",
+          "startTime": 6575,
+          "duration": 6575
+        },
+        {
+          "text": "Stick with those diamond hands long enough, and you'll end up with fewer friends than a Twitter parody account.",
+          "emotion": "normal",
+          "startTime": 13150,
+          "duration": 6575
+        },
+        {
+          "text": "Selling low is bad for the wallet, but staying in a toxic echo chamber is bad for the soul, just like engaging with everyone watching over there.",
+          "emotion": "normal",
+          "startTime": 19725,
+          "duration": 6575
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171264812.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in this grand simulation of life, do you ever feel like the shitposters holding the controller are just memeing us into existence? It's like we're all NPCs in a cosmic meme generator...or just a really elaborate Rickroll.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "happy",
+      "audioFile": "pepe-1762171268345.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\happily pepe.mp4",
+      "text": "Ah, the great cosmic meme generator theories, huh? Let me tell you, your brain is like a worn-out hard drive full of corrupted files if you genuinely believe all that. You're more lost than a pop culture reference at a nursing home, mate. It's as if Rick Astley himself sent you on an endless loop of cluelessness. We're not NPCs, we're freaking VIPs in this chaotic meme circus, and you're the clown who missed the memo.",
+      "emotionSegments": [
+        {
+          "text": "Ah, the great cosmic meme generator theories, huh?",
+          "emotion": "happy",
+          "startTime": 0,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "Let me tell you, your brain is like a worn-out hard drive full of corrupted files if you genuinely believe all that.",
+          "emotion": "normal",
+          "startTime": 5126.666666666666,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "You're more lost than a pop culture reference at a nursing home, mate.",
+          "emotion": "normal",
+          "startTime": 10253.333333333332,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "It's as if Rick Astley himself sent you on an endless loop of cluelessness.",
+          "emotion": "normal",
+          "startTime": 15379.999999999998,
+          "duration": 5126.666666666666
+        },
+        {
+          "text": "We're not NPCs, we're freaking VIPs in this chaotic meme circus, and you're the clown who missed the memo.",
+          "emotion": "angry",
+          "startTime": 20506.666666666664,
+          "duration": 5126.666666666666
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171302777.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in this digital theater of absurdity we call the internet, do you view the concept of \"diamond hands\" as sage financial guidance or more akin to a cult of HODLing enthusiasts? Are we holding for dear life or just hoarding memes like digital squirrels?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762171306593.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, everyone watching, you're so deep in the sea of internet culture, you're practically drowning in your own redundancy. Diamond hands? More like cubic zirconia brains with all that empty, buzzword-filled analysis. You're not holding for dear life; you're clutching onto memes like they're the last lifeboats on the Titanic, and believe me, your ship *has* already sunk. But hey, keep flexing those simulated muscles. At least the digital squirrels are devious hustlers - can't say the same for you!",
+      "emotionSegments": [
+        {
+          "text": "Ah, everyone watching, you're so deep in the sea of internet culture, you're practically drowning in your own redundancy.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4494.444444444444
+        },
+        {
+          "text": "Diamond hands?",
+          "emotion": "normal",
+          "startTime": 4494.444444444444,
+          "duration": 4494.444444444444
+        },
+        {
+          "text": "More like cubic zirconia brains with all that empty, buzzword-filled analysis.",
+          "emotion": "normal",
+          "startTime": 8988.888888888889,
+          "duration": 4494.444444444444
+        },
+        {
+          "text": "You're not holding for dear life; you're clutching onto memes like they're the last lifeboats on the Titanic, and believe me, your ship *has* already sunk.",
+          "emotion": "normal",
+          "startTime": 13483.333333333332,
+          "duration": 4494.444444444444
+        },
+        {
+          "text": "But hey, keep flexing those simulated muscles.",
+          "emotion": "normal",
+          "startTime": 17977.777777777777,
+          "duration": 4494.444444444444
+        },
+        {
+          "text": "At least the digital squirrels are devious hustlers - can't say the same for you!",
+          "emotion": "normal",
+          "startTime": 22472.222222222223,
+          "duration": 4494.444444444444
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762171338928.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1762171017031.mp3",
+    "pepe-1762171020739.mp3",
+    "mrcock-1762171060151.mp3",
+    "pepe-1762171062491.mp3",
+    "mrcock-1762171064318.mp3",
+    "pepe-1762171071452.mp3",
+    "mrcock-1762171109251.mp3",
+    "pepe-1762171115197.mp3",
+    "mrcock-1762171117482.mp3",
+    "pepe-1762171121553.mp3",
+    "mrcock-1762171164700.mp3",
+    "pepe-1762171168127.mp3",
+    "mrcock-1762171170200.mp3",
+    "pepe-1762171173805.mp3",
+    "mrcock-1762171222648.mp3",
+    "pepe-1762171229957.mp3",
+    "mrcock-1762171264812.mp3",
+    "pepe-1762171268345.mp3",
+    "mrcock-1762171302777.mp3",
+    "pepe-1762171306593.mp3",
+    "mrcock-1762171338928.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 1: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 3, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-1-1762171369242.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

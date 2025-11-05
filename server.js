@@ -3,7 +3,6 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
-import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
@@ -11,26 +10,31 @@ import ffmpeg from 'fluent-ffmpeg';
 import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
 import ffprobeInstaller from '@ffprobe-installer/ffprobe';
 
-import {
-  questions,
-  connectedUsers,
-  setupChatHandlers,
-  startEpisodeIntro,
-  getValidEmotion,
-  generateSpeech
-} from './chat.js';
+// Import chat/conversation modules
+import { setupChatHandlers, questions } from './chat.js';
+import { startEpisodeIntro } from './chat.js';
+import { generateSpeech } from './chat.js';
+
+// Import routes
+import videoRoutes from './routes/videos.js';
+import adminRoutes, { setupStartWebsite, broadcastState } from './routes/admin.js';
+import applicationsRoutes from './routes/applications.js';
+
+// Import recording modules
+import { createRecordingCallbacks, startRecording, currentEpisode, handleChatMessageRecording } from './recording/manager.js';
+import { getAudioDuration } from './recording/ffmpeg.js';
+import { downloadCharacterVideos, characterVideosExist } from './recording/download-videos.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const R2_BASE_URL = 'https://pub-2210718f3f20481b84992800d4ae8bd1.r2.dev';
-
+// FFmpeg setup
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
-
 console.log('✅ FFmpeg path:', ffmpegInstaller.path);
 console.log('✅ FFprobe path:', ffprobeInstaller.path);
 
+// Express & Socket.IO setup
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
@@ -53,121 +57,47 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const uploadPath = path.join(__dirname, 'public', 'uploads', req.body.type, req.body.characterId);
-    fs.mkdirSync(uploadPath, { recursive: true });
-    cb(null, uploadPath);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${req.body.emotion}${path.extname(file.originalname)}`);
-  }
-});
-
-const upload = multer({ 
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = /mp4|webm|mov/;
-    const isValid = allowedTypes.test(path.extname(file.originalname).toLowerCase()) && allowedTypes.test(file.mimetype);
-    cb(isValid ? null : new Error('Only video files allowed'), isValid);
-  }
-});
-
+// Setup Socket.IO handlers
 setupChatHandlers(io);
 
 io.engine.on("connection_error", (err) => {
   console.error('❌ Socket.IO Connection Error:', err);
-  console.error('   Code:', err.code);
-  console.error('   Message:', err.message);
-  console.error('   Context:', err.context);
 });
 
 io.on('connection', (socket) => {
   console.log(`✅ Socket.IO Client Connected: ${socket.id}`);
-  console.log(`   Transport: ${socket.conn.transport.name}`);
-  console.log(`   Remote Address: ${socket.handshake.address}`);
   
   socket.on('disconnect', (reason) => {
     console.log(`❌ Socket.IO Client Disconnected: ${socket.id}`);
-    console.log(`   Reason: ${reason}`);
-  });
-  
-  socket.on('error', (error) => {
-    console.error(`❌ Socket.IO Error on ${socket.id}:`, error);
   });
   
   socket.conn.on('upgrade', (transport) => {
-    console.log(`🔄 Socket.IO Transport Upgraded: ${socket.id}`);
-    console.log(`   From: polling → To: ${transport.name}`);
-    });
+    console.log(`🔄 Socket.IO Transport Upgraded: ${socket.id} to ${transport.name}`);
   });
-  
-io.on('chat_message_recorded', (userMsg) => {
-    if (isRecording) {
-      currentRecording.chat.push(userMsg);
-    }
 });
 
+// Recording callbacks
+const onBroadcastStop = () => {
+  broadcastState.isLive = false;
+  broadcastState.episodeStarted = false;
+};
+
+const recordingCallbacks = createRecordingCallbacks(onBroadcastStop);
+handleChatMessageRecording(io);
+
+// API Routes
 app.get('/api/questions', (req, res) => {
   res.json(questions);
 });
 
-let broadcastState = {
-  isLive: false,
-  episodeStarted: false,
-  countdown: null,
-  startTime: null
-};
+app.use('/api/videos', videoRoutes);
 
-app.get('/api/admin/broadcast-state', (req, res) => {
-  res.json(broadcastState);
-});
+// Setup admin start-website route BEFORE registering adminRoutes
+setupStartWebsite(io, getAudioDuration, recordingCallbacks);
+app.use('/api/admin', adminRoutes);
+app.use('/api', applicationsRoutes);
 
-app.post('/api/admin/start-website', async (req, res) => {
-  broadcastState.isLive = true;
-  broadcastState.countdown = 10;
-  broadcastState.startTime = new Date().toISOString();
-  broadcastState.episodeStarted = false;
-
-  console.log('🚀 Website started! Beginning 10 second countdown...');
-  
-  const countdownInterval = setInterval(() => {
-    if (broadcastState.countdown > 0) {
-      io.emit('countdown', { seconds: broadcastState.countdown });
-      console.log(`⏳ Countdown: ${broadcastState.countdown}`);
-      broadcastState.countdown--;
-    } else {
-      clearInterval(countdownInterval);
-      broadcastState.countdown = null;
-      broadcastState.episodeStarted = true;
-      io.emit('countdown', { seconds: 0 });
-      console.log('🎬 Countdown finished! Starting episode...');
-      
-      setTimeout(() => {
-        if (!currentEpisode.isLive) {
-          startRecording();
-          currentEpisode.isLive = true;
-          startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broadcastState);
-        }
-      }, 1000);
-    }
-  }, 1000);
-
-  res.json({ success: true, message: 'Countdown started!' });
-});
-
-app.get('/api/admin/schedule', (req, res) => {
-  res.json([]);
-});
-
-app.post('/api/admin/schedule', (req, res) => {
-  res.json({ success: true });
-});
-
-app.delete('/api/admin/schedule/:id', (req, res) => {
-  res.json({ success: true });
-});
-
+// Episodes route (public)
 app.get('/api/episodes', (req, res) => {
   const episodesFile = path.join(__dirname, 'episodes.json');
   
@@ -179,6 +109,7 @@ app.get('/api/episodes', (req, res) => {
   }
 });
 
+// Generate audio endpoint
 app.post('/api/generate-audio', async (req, res) => {
   try {
     const { text, voice = 'onyx' } = req.body;
@@ -187,15 +118,13 @@ app.post('/api/generate-audio', async (req, res) => {
       return res.status(400).json({ error: 'Text is required' });
     }
     
-    console.log(`🎤 Generating audio: voice=${voice}, text="${text.substring(0, 50)}..."`);
+    console.log(`🎤 Generating audio: voice=${voice}`);
     
     const result = await generateSpeech(text, voice);
     
     if (!result || !result.buffer) {
       throw new Error('Failed to generate audio');
     }
-    
-    console.log(`✅ Audio generated successfully, buffer size: ${result.buffer.length} bytes`);
     
     res.set('Content-Type', 'audio/mpeg');
     res.send(result.buffer);
@@ -205,682 +134,18 @@ app.post('/api/generate-audio', async (req, res) => {
   }
 });
 
-app.get('/api/admin/episodes', (req, res) => {
-  const episodesFile = path.join(__dirname, 'episodes.json');
-  
-  if (fs.existsSync(episodesFile)) {
-    const episodes = JSON.parse(fs.readFileSync(episodesFile, 'utf8'));
-    res.json(episodes);
-  } else {
-    res.json([]);
-  }
-});
-
-app.delete('/api/admin/episodes/:id', (req, res) => {
-  res.json({ success: true });
-});
-
-app.post('/api/admin/upload-video', upload.single('video'), (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'No video file uploaded' });
-    }
-    
-    console.log(`✅ Video uploaded: ${req.body.type}/${req.body.characterId}/${req.body.emotion}`);
-    res.json({ 
-      success: true, 
-      message: 'Video uploaded successfully',
-      path: `/uploads/${req.body.type}/${req.body.characterId}/${req.body.emotion}${path.extname(req.file.originalname)}`
-    });
-  } catch (error) {
-    console.error('Upload error:', error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-app.get('/api/videos/hosts/:id', (req, res) => {
-  const videos = {
-    angry: { 
-      webm: `${R2_BASE_URL}/angrily%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/angrily%20coock.mp4`,
-      gif: `${R2_BASE_URL}/angrily%20coock.gif`
-    },
-    laughing: { 
-      webm: `${R2_BASE_URL}/laughing%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/laughing%20coock.mp4`,
-      gif: `${R2_BASE_URL}/laughing%20coock.gif`
-    },
-    sad: { 
-      webm: `${R2_BASE_URL}/sad%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/sad%20coock.mp4`,
-      gif: `${R2_BASE_URL}/sad%20coock.gif`
-    },
-    thinking: { 
-      webm: `${R2_BASE_URL}/sarcastically%20coock.webm`, 
-      mp4: `${R2_BASE_URL}/sarcastically%20coock.mp4`,
-      gif: `${R2_BASE_URL}/sarcastically%20coock.gif`
-    },
-    normal: { 
-      webm: `${R2_BASE_URL}/serious%20cooock.webm`, 
-      mp4: `${R2_BASE_URL}/serious%20cooock.mp4`,
-      gif: `${R2_BASE_URL}/serious%20cooock.gif`
-    }
-  };
-  
-  res.json(videos);
-});
-
-app.get('/api/videos/guests/:id', (req, res) => {
-  const videos = {
-    angry: { 
-      webm: `${R2_BASE_URL}/angrily%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/angrily%20pepe.mp4`,
-      gif: `${R2_BASE_URL}/angrily%20pepe.gif`
-    },
-    happy: { 
-      webm: `${R2_BASE_URL}/happily%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/happily%20pepe.mp4`,
-      gif: `${R2_BASE_URL}/happily%20pepe.gif`
-    },
-    sad: { 
-      webm: `${R2_BASE_URL}/sad%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/sad%20pepe.mp4`,
-      gif: `${R2_BASE_URL}/sad%20pepe.gif`
-    },
-    screaming: { 
-      webm: `${R2_BASE_URL}/crazy%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/crazy%20pepe.mp4`,
-      gif: `${R2_BASE_URL}/crazy%20pepe.gif`
-    },
-    thinking: { 
-      webm: `${R2_BASE_URL}/sarcastically%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/sarcastically%20pepe.mp4`,
-      gif: `${R2_BASE_URL}/sarcastically%20pepe.gif`
-    },
-    normal: { 
-      webm: `${R2_BASE_URL}/serious%20pepe.webm`, 
-      mp4: `${R2_BASE_URL}/serious%20pepe.mp4`,
-      gif: `${R2_BASE_URL}/serious%20pepe.gif`
-    }
-  };
-  
-  res.json(videos);
-});
-
-let currentRecording = {
-  episodeNumber: 1,
-  startTime: null,
-  endTime: null,
-  dialogue: [],
-  chat: [],
-  videoSegments: [],
-  audioFiles: [],
-  metadata: {
-    title: '',
-    guest: 'Pepe',
-    host: 'Mr Cock',
-    description: '',
-    views: 0
-  }
-};
-let isRecording = false;
-let recordingDir = null;
-
-const recordingCallbacks = {
-  isRecording: () => isRecording,
-  getRecordingDir: () => recordingDir,
-  onAudioSaved: (audioFilename, segmentData) => {
-    currentRecording.audioFiles.push(audioFilename);
-    
-    let videoClip = null;
-    if (segmentData.speaker === 'Mr Cock') {
-      videoClip = path.join(__dirname, 'public', 'uploads', 'hosts', 'mrcock', `${segmentData.emotion}.mp4`);
-      if (!fs.existsSync(videoClip)) {
-        console.log(`⚠️ ${segmentData.emotion}.mp4 not found, using normal.mp4`);
-        videoClip = path.join(__dirname, 'public', 'uploads', 'hosts', 'mrcock', 'normal.mp4');
-      }
-    } else if (segmentData.speaker === 'Pepe') {
-      videoClip = path.join(__dirname, 'public', 'uploads', 'guests', 'pepe', `${segmentData.emotion}.mp4`);
-      if (!fs.existsSync(videoClip)) {
-        console.log(`⚠️ ${segmentData.emotion}.mp4 not found, using normal.mp4`);
-        videoClip = path.join(__dirname, 'public', 'uploads', 'guests', 'pepe', 'normal.mp4');
-      }
-    }
-    
-    if (!videoClip || !fs.existsSync(videoClip)) {
-      console.error(`❌ ERROR: No video clip found for ${segmentData.speaker}!`);
-      console.error(`   Expected path: ${videoClip}`);
-    } else {
-      const segment = {
-        speaker: segmentData.speaker,
-        emotion: segmentData.emotion,
-        audioFile: audioFilename,
-        videoClip,
-        text: segmentData.text,
-        emotionSegments: segmentData.emotionSegments || null
-      };
-      
-      if (segmentData.questionData) {
-        segment.questionText = segmentData.questionData.question;
-        segment.questionUsername = segmentData.questionData.username;
-        console.log(`📝 Adding question overlay: "${segmentData.questionData.question}" - ${segmentData.questionData.username}`);
-      }
-      
-      currentRecording.videoSegments.push(segment);
-      const emotionCount = segmentData.emotionSegments ? segmentData.emotionSegments.length : 1;
-      console.log(`✅ Segment recorded: ${segmentData.speaker} (${emotionCount} emotions) - ${currentRecording.videoSegments.length} total`);
-    }
-  },
-  addDialogue: (dialogue) => {
-    currentRecording.dialogue.push(dialogue);
-  },
-  onEpisodeEnd: () => {
-    currentEpisode.isLive = false;
-    broadcastState.isLive = false;
-    broadcastState.episodeStarted = false;
-    saveRecording();
-  }
-};
-
-function startRecording() {
-  isRecording = true;
-  
-  recordingDir = path.join(__dirname, 'temp', `episode-${currentRecording.episodeNumber}-${Date.now()}`);
-  if (!fs.existsSync(recordingDir)) {
-    fs.mkdirSync(recordingDir, { recursive: true });
-  }
-  
-  currentRecording = {
-    episodeNumber: currentRecording.episodeNumber,
-    startTime: new Date().toISOString(),
-    endTime: null,
-    dialogue: [],
-    chat: [],
-    videoSegments: [],
-    audioFiles: [],
-    metadata: {
-      guest: 'Pepe',
-      host: 'Mr Cock',
-      totalViewers: connectedUsers.size
-    }
-  };
-  console.log('🔴 RECORDING STARTED - Episode', currentRecording.episodeNumber);
-  console.log('📁 Temp directory:', recordingDir);
-}
-
-async function saveRecording() {
-  if (!isRecording) {
-    console.log('⚠️ saveRecording called but not recording');
-    return;
-  }
-  
-  console.log('\n📊 ===== RECORDING SUMMARY =====');
-  console.log(`   Video segments: ${currentRecording.videoSegments.length}`);
-  console.log(`   Audio files: ${currentRecording.audioFiles.length}`);
-  console.log(`   Dialogue lines: ${currentRecording.dialogue.length}`);
-  console.log(`   Chat messages: ${currentRecording.chat.length}`);
-  console.log(`   Recording dir: ${recordingDir}`);
-  
-  if (currentRecording.videoSegments.length === 0) {
-    console.error('❌ CRITICAL: No video segments recorded!');
-    console.error('   This episode will NOT have a video file.');
-    console.error('   Check if TTS was working and speaker parameter was passed.');
-  }
-  
-  if (!recordingDir || !fs.existsSync(recordingDir)) {
-    console.error('❌ CRITICAL: Recording directory missing!');
-    console.error('   Video creation will fail.');
-  }
-  
-  isRecording = false;
-  currentRecording.endTime = new Date().toISOString();
-  
-  const timestamp = Date.now();
-  const filename = `episode-${currentRecording.episodeNumber}-${timestamp}.json`;
-  const filepath = path.join(__dirname, 'recordings', filename);
-  
-  const recordingsDir = path.join(__dirname, 'recordings');
-  if (!fs.existsSync(recordingsDir)) {
-    fs.mkdirSync(recordingsDir, { recursive: true });
-  }
-  
-  currentRecording.metadata = {
-    title: `Episode ${currentRecording.episodeNumber}: ${currentRecording.metadata.guest}`,
-    guest: currentRecording.metadata.guest,
-    host: currentRecording.metadata.host,
-    description: `${currentRecording.metadata.guest} joins ${currentRecording.metadata.host} for an unfiltered meme interview`,
-    views: 0,
-    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-    duration: '5:00',
-    videoFile: `episode-${currentRecording.episodeNumber}-${timestamp}.mp4`,
-    thumbnail: '/memetalk.tv.png'
-  };
-  
-  fs.writeFileSync(filepath, JSON.stringify(currentRecording, null, 2));
-  console.log(`💾 Recording saved: ${filename}`);
-  console.log(`   📊 Total dialogue: ${currentRecording.dialogue.length}`);
-  console.log(`   💬 Total chat: ${currentRecording.chat.length}`);
-  
-  console.log('\n🎬 ===== STARTING VIDEO CREATION =====');
-  console.log(`   📹 Episode: ${currentRecording.episodeNumber}`);
-  console.log(`   🎞️  Segments to process: ${currentRecording.videoSegments.length}`);
-  console.log(`   📂 Working directory: ${recordingDir}`);
-  console.log(`   ⏱️  Started at: ${new Date().toLocaleTimeString()}`);
-  
-  createEpisodeVideo(currentRecording, timestamp)
-    .then(() => {
-      console.log('\n✅ ===== VIDEO CREATION SUCCESS =====');
-      console.log(`   ⏱️  Finished at: ${new Date().toLocaleTimeString()}`);
-      console.log(`   📹 Episode ${currentRecording.episodeNumber} is ready!`);
-    })
-    .catch(err => {
-      console.error('\n❌ ===== VIDEO CREATION FAILED =====');
-      console.error(`   Error: ${err.message}`);
-      console.error(`   Stack: ${err.stack}`);
-      console.error('   💡 Check if FFmpeg is installed on Railway');
-      console.error('   💡 Check if video files exist in public/uploads');
-  });
-  
-  currentRecording.episodeNumber++;
-}
-
-async function addToEpisodesDatabase(recording) {
-  const episodesFile = path.join(__dirname, 'episodes.json');
-  let episodes = [];
-  
-  if (fs.existsSync(episodesFile)) {
-    episodes = JSON.parse(fs.readFileSync(episodesFile, 'utf8'));
-  }
-  
-  episodes.unshift({
-    number: recording.episodeNumber,
-    ...recording.metadata,
-    recordedAt: recording.endTime
-  });
-  
-  fs.writeFileSync(episodesFile, JSON.stringify(episodes, null, 2));
-  console.log(`📚 Added Episode ${recording.episodeNumber} to database`);
-}
-
-async function createEpisodeVideo(recording, timestamp) {
-  console.log(`\n🎬 ===== createEpisodeVideo STARTED =====`);
-  console.log(`   Episode #${recording.episodeNumber}`);
-  console.log(`   Timestamp: ${timestamp}`);
-  
-  try {
-    if (!recording) {
-      console.error('❌ ERROR: No recording data provided!');
-      return;
-    }
-    
-    console.log(`✅ Step 1/6: Recording data validated`);
-    
-    if (!recordingDir || !fs.existsSync(recordingDir)) {
-      console.error('❌ ERROR: Recording directory is missing or invalid!');
-      console.error('   Expected:', recordingDir);
-      return;
-    }
-    
-    console.log(`✅ Step 2/6: Recording directory exists: ${recordingDir}`);
-    
-    const episodesDir = path.join(__dirname, 'public', 'episodes');
-    if (!fs.existsSync(episodesDir)) {
-      console.log(`📁 Creating episodes directory: ${episodesDir}`);
-      fs.mkdirSync(episodesDir, { recursive: true });
-    }
-    
-    console.log(`✅ Step 3/6: Episodes directory ready: ${episodesDir}`);
-    
-    const outputPath = path.join(episodesDir, `episode-${recording.episodeNumber}-${timestamp}.mp4`);
-    console.log(`📹 Final output will be: ${outputPath}`);
-    
-    if (!recording.videoSegments || recording.videoSegments.length === 0) {
-      console.error('❌ ERROR: No video segments recorded!');
-      console.error('   This means TTS audio was not saved during the episode.');
-      console.error('   Check if generateSpeech() is being called with correct parameters.');
-      return;
-    }
-    
-    console.log(`✅ Step 4/6: ${recording.videoSegments.length} video segments to process`);
-    console.log(`\n🔧 Starting FFmpeg segment processing...`);
-    
-    const concatFilePath = path.join(recordingDir, 'concat.txt');
-    const segmentPaths = [];
-    
-    for (let i = 0; i < recording.videoSegments.length; i++) {
-      console.log(`\n🎞️  Processing Segment ${i+1}/${recording.videoSegments.length}`);
-      const segment = recording.videoSegments[i];
-      console.log(`   Speaker: ${segment.speaker}`);
-      console.log(`   Emotion: ${segment.emotion}`);
-      console.log(`   Text: "${segment.text.substring(0, 50)}..."`);
-      
-      const segmentOutputPath = path.join(recordingDir, `segment-${i}.mp4`);
-      
-      const audioPath = path.join(recordingDir, segment.audioFile);
-      if (!fs.existsSync(audioPath)) {
-        console.log(`⚠️ Skipping segment ${i}: audio file not found at ${audioPath}`);
-        continue;
-      }
-      console.log(`   ✅ Audio file found: ${segment.audioFile}`);
-      
-      const audioDuration = await getAudioDuration(audioPath);
-      
-      if (segment.emotionSegments && segment.emotionSegments.length > 1) {
-        console.log(`🎬 Creating ${segment.emotionSegments.length} emotion sub-segments for segment ${i}...`);
-        
-        const subSegmentPaths = [];
-        for (let j = 0; j < segment.emotionSegments.length; j++) {
-          const emotionSeg = segment.emotionSegments[j];
-          const subSegmentPath = path.join(recordingDir, `segment-${i}-emotion-${j}.mp4`);
-          
-          const characterId = segment.speaker === 'Mr Cock' ? 'mrcock' : segment.speaker === 'Pepe' ? 'pepe' : null;
-          const validEmotion = characterId ? getValidEmotion(emotionSeg.emotion, characterId) : emotionSeg.emotion;
-          
-          let videoClip = null;
-          if (segment.speaker === 'Mr Cock') {
-            videoClip = path.join(__dirname, 'public', 'uploads', 'hosts', 'mrcock', `${validEmotion}.mp4`);
-            if (!fs.existsSync(videoClip)) {
-              videoClip = path.join(__dirname, 'public', 'uploads', 'hosts', 'mrcock', 'normal.mp4');
-            }
-          } else if (segment.speaker === 'Pepe') {
-            videoClip = path.join(__dirname, 'public', 'uploads', 'guests', 'pepe', `${validEmotion}.mp4`);
-            if (!fs.existsSync(videoClip)) {
-              videoClip = path.join(__dirname, 'public', 'uploads', 'guests', 'pepe', 'normal.mp4');
-            }
-          }
-          
-          if (!videoClip || !fs.existsSync(videoClip)) {
-            console.log(`⚠️ Video not found for emotion ${emotionSeg.emotion}, skipping`);
-            continue;
-          }
-          
-          const emotionDuration = (emotionSeg.duration / 1000).toFixed(3);
-          
-          await new Promise((resolve, reject) => {
-            console.log(`      🔨 FFmpeg processing emotion ${j+1}/${segment.emotionSegments.length}: ${emotionSeg.emotion}`);
-            ffmpeg()
-              .input(videoClip)
-              .inputOptions(['-stream_loop', '-1'])
-              .outputOptions(['-t', emotionDuration, '-c:v', 'libx264', '-an', '-y'])
-              .output(subSegmentPath)
-              .on('start', (cmd) => {
-                console.log(`      🎬 FFmpeg command: ${cmd.substring(0, 100)}...`);
-              })
-              .on('progress', (progress) => {
-                if (progress.percent) {
-                  console.log(`      ⏳ Progress: ${Math.round(progress.percent)}%`);
-                }
-              })
-              .on('end', () => {
-                console.log(`      ✅ Emotion ${j+1}/${segment.emotionSegments.length}: ${emotionSeg.emotion} (${emotionDuration}s) DONE`);
-                subSegmentPaths.push(subSegmentPath);
-                resolve();
-              })
-              .on('error', (err) => {
-                console.error(`      ❌ FFmpeg error creating emotion sub-segment:`, err.message);
-                reject(err);
-              })
-              .run();
-          });
-        }
-        
-        if (subSegmentPaths.length === 0) {
-          console.log(`⚠️ No emotion sub-segments created for segment ${i}`);
-          continue;
-        }
-        
-        const emotionConcatFile = path.join(recordingDir, `segment-${i}-emotions.txt`);
-        const emotionConcatContent = subSegmentPaths.map(p => `file '${p}'`).join('\n');
-        fs.writeFileSync(emotionConcatFile, emotionConcatContent);
-        
-        const emotionVideoPath = path.join(recordingDir, `segment-${i}-video.mp4`);
-        await new Promise((resolve, reject) => {
-          ffmpeg()
-            .input(emotionConcatFile)
-            .inputOptions(['-f', 'concat', '-safe', '0'])
-            .outputOptions(['-c', 'copy'])
-            .output(emotionVideoPath)
-            .on('end', () => {
-              console.log(`  🔗 All emotions concatenated for segment ${i}`);
-              resolve();
-            })
-            .on('error', (err) => {
-              console.error(`  ❌ Error concatenating emotions:`, err.message);
-              reject(err);
-            })
-            .run();
-        });
-        
-        const command = ffmpeg()
-          .input(emotionVideoPath)
-          .input(audioPath);
-        
-        if (segment.questionText && segment.questionUsername) {
-          const escapedQuestion = segment.questionText.replace(/'/g, "'\\\\\\''").replace(/:/g, '\\:');
-          const escapedUsername = segment.questionUsername.replace(/'/g, "'\\\\\\''").replace(/:/g, '\\:');
-          
-          command.videoFilters([
-            {
-              filter: 'drawtext',
-              options: {
-                text: escapedQuestion,
-                fontsize: 24,
-                fontcolor: 'white',
-                bordercolor: 'black',
-                borderw: 3,
-                x: '(w-text_w)/2',
-                y: 'h-140',
-                box: 1,
-                boxcolor: 'black@0.85',
-                boxborderw: 20,
-                shadowcolor: 'black',
-                shadowx: 3,
-                shadowy: 3
-              }
-            },
-            {
-              filter: 'drawtext',
-              options: {
-                text: `— ${escapedUsername}`,
-                fontsize: 18,
-                fontcolor: '0xA855F7',
-                bordercolor: 'black',
-                borderw: 2,
-                x: '(w-text_w)/2',
-                y: 'h-90',
-                box: 1,
-                boxcolor: 'black@0.85',
-                boxborderw: 15,
-                shadowcolor: 'black',
-                shadowx: 3,
-                shadowy: 3
-              }
-            }
-          ]);
-        }
-        
-        await new Promise((resolve, reject) => {
-          command
-            .outputOptions(['-t', audioDuration.toString(), '-c:v', 'libx264', '-c:a', 'aac', '-shortest', '-y'])
-            .output(segmentOutputPath)
-            .on('end', () => {
-              console.log(`✅ Segment ${i} created with ${segment.emotionSegments.length} emotion switches${segment.questionText ? ' + question overlay' : ''}!`);
-              segmentPaths.push(segmentOutputPath);
-              resolve();
-            })
-            .on('error', (err) => {
-              console.error(`Error creating final segment ${i}:`, err.message);
-              reject(err);
-            })
-            .run();
-        });
-        
-        continue;
-      }
-      
-      if (!segment.videoClip || !fs.existsSync(segment.videoClip)) {
-        console.log(`⚠️ Skipping segment ${i}: video clip not found`);
-        continue;
-      }
-      
-      const command = ffmpeg()
-        .input(segment.videoClip)
-        .inputOptions(['-stream_loop', '-1'])
-        .input(audioPath);
-      
-      if (segment.questionText && segment.questionUsername) {
-        const escapedQuestion = segment.questionText.replace(/'/g, "'\\\\\\''").replace(/:/g, '\\:');
-        const escapedUsername = segment.questionUsername.replace(/'/g, "'\\\\\\''").replace(/:/g, '\\:');
-        
-        command.videoFilters([
-          {
-            filter: 'drawtext',
-            options: {
-              text: escapedQuestion,
-              fontsize: 24,
-              fontcolor: 'white',
-              bordercolor: 'black',
-              borderw: 3,
-              x: '(w-text_w)/2',
-              y: 'h-140',
-              box: 1,
-              boxcolor: 'black@0.85',
-              boxborderw: 20,
-              shadowcolor: 'black',
-              shadowx: 3,
-              shadowy: 3
-            }
-          },
-          {
-            filter: 'drawtext',
-            options: {
-              text: `— ${escapedUsername}`,
-              fontsize: 18,
-              fontcolor: '0xA855F7',
-              bordercolor: 'black',
-              borderw: 2,
-              x: '(w-text_w)/2',
-              y: 'h-90',
-              box: 1,
-              boxcolor: 'black@0.85',
-              boxborderw: 15,
-              shadowcolor: 'black',
-              shadowx: 3,
-              shadowy: 3
-            }
-          }
-        ]);
-      }
-      
-      await new Promise((resolve, reject) => {
-        command
-          .outputOptions(['-t', audioDuration.toString(), '-c:v', 'libx264', '-c:a', 'aac', '-shortest', '-y'])
-          .output(segmentOutputPath)
-          .on('end', () => {
-            console.log(`✅ Segment ${i} created${segment.questionText ? ' (with question overlay)' : ''}`);
-            segmentPaths.push(segmentOutputPath);
-            resolve();
-          })
-          .on('error', (err) => {
-            console.error(`Error creating segment ${i}:`, err.message);
-            reject(err);
-          })
-          .run();
-      });
-    }
-    
-    if (segmentPaths.length === 0) {
-      console.error('❌ ERROR: No valid segments created - video cannot be generated!');
-      return;
-    }
-    
-    console.log(`\n✅ Step 5/6: All ${segmentPaths.length} segments processed successfully`);
-    console.log(`🔗 Step 6/6: Final concatenation starting...`);
-    
-    const concatContent = segmentPaths.map(p => `file '${p}'`).join('\n');
-    fs.writeFileSync(concatFilePath, concatContent);
-    console.log(`   📝 Concat file created: ${concatFilePath}`);
-    
-    await new Promise((resolve, reject) => {
-      console.log(`   🎬 Running final FFmpeg concatenation...`);
-      ffmpeg()
-        .input(concatFilePath)
-        .inputOptions(['-f', 'concat', '-safe', '0'])
-        .outputOptions(['-c', 'copy'])
-        .output(outputPath)
-        .on('start', (cmd) => {
-          console.log(`   🔧 FFmpeg command: ${cmd.substring(0, 150)}...`);
-        })
-        .on('progress', (progress) => {
-          if (progress.percent && progress.percent > 0) {
-            console.log(`   ⏳ Concatenation progress: ${Math.round(progress.percent)}%`);
-          }
-        })
-        .on('end', async () => {
-          console.log(`\n🎉 ===== FINAL VIDEO CREATED SUCCESSFULLY =====`);
-          console.log(`   📹 File: ${outputPath}`);
-          console.log(`   📊 Size: ${(fs.statSync(outputPath).size / 1024 / 1024).toFixed(2)} MB`);
-          
-          await addToEpisodesDatabase(recording);
-          
-          try {
-            fs.rmSync(recordingDir, { recursive: true, force: true });
-            console.log('   🗑️  Temp directory cleaned up');
-          } catch (err) {
-            console.error('   ⚠️  Error cleaning temp dir:', err.message);
-          }
-          
-          resolve();
-        })
-        .on('error', (err) => {
-          console.error(`\n❌ ===== FFmpeg CONCATENATION ERROR =====`);
-          console.error(`   Error: ${err.message}`);
-          console.error(`   Stack: ${err.stack}`);
-          reject(err);
-        })
-        .run();
-    });
-    
-  } catch (error) {
-    console.error('Error creating video:', error);
-  }
-}
-
-async function getAudioDuration(audioPath) {
-  return new Promise((resolve, reject) => {
-    ffmpeg.ffprobe(audioPath, (err, metadata) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(metadata.format.duration || 3);
-      }
-    });
-  });
-}
-
-let currentEpisode = {
-  guest: 'Pepe',
-  isLive: false
-};
-
-app.get('/api/videos/transition', (req, res) => {
-  res.json({ 
-    webm: `${R2_BASE_URL}/bothshutup.webm`,
-    mp4: `${R2_BASE_URL}/bothshutup.mp4`,
-    gif: `${R2_BASE_URL}/bothshutup.gif`
-  });
-});
-
+// Start episode endpoint
 app.post('/api/start-episode', async (req, res) => {
   currentEpisode.isLive = true;
   const success = await startEpisodeIntro(io, getAudioDuration, recordingCallbacks, broadcastState);
   if (success !== false) {
-  res.json({ success: true, message: 'Episode started with continuous conversation!' });
-  } else {
+    res.json({ success: true, message: 'Episode started!' });
+          } else {
     res.status(400).json({ success: false, message: 'Could not start episode' });
   }
 });
 
+// Video recording endpoints (for frontend recording)
 let videoRecordingChunks = [];
 let isVideoRecording = false;
 let currentVideoFilename = '';
@@ -888,7 +153,7 @@ let currentVideoFilename = '';
 app.post('/api/recording/start', (req, res) => {
   videoRecordingChunks = [];
   isVideoRecording = true;
-  currentVideoFilename = `episode-${currentRecording.episodeNumber}-${Date.now()}.webm`;
+  currentVideoFilename = `episode-recording-${Date.now()}.webm`;
   console.log('🎥 VIDEO RECORDING STARTED:', currentVideoFilename);
   res.json({ success: true, filename: currentVideoFilename });
 });
@@ -899,7 +164,7 @@ app.post('/api/recording/chunk', express.raw({ type: 'application/octet-stream',
   }
   
   videoRecordingChunks.push(req.body);
-  console.log(`📦 Received chunk ${videoRecordingChunks.length} (${req.body.length} bytes)`);
+  console.log(`📦 Received chunk ${videoRecordingChunks.length}`);
   res.json({ success: true, chunkNumber: videoRecordingChunks.length });
 });
 
@@ -932,14 +197,12 @@ app.post('/api/recording/stop', async (req, res) => {
     
     const totalSize = videoRecordingChunks.reduce((acc, chunk) => acc + chunk.length, 0);
     console.log(`💾 VIDEO SAVED: ${currentVideoFilename} (${(totalSize / 1024 / 1024).toFixed(2)} MB)`);
-    console.log(`📍 Location: ${videoPath}`);
     
     videoRecordingChunks = [];
     
     res.json({ 
       success: true, 
       filename: currentVideoFilename,
-      path: videoPath,
       size: totalSize
     });
   } catch (error) {
@@ -948,35 +211,70 @@ app.post('/api/recording/stop', async (req, res) => {
   }
 });
 
+// Static file serving (always needed for uploads, videos, etc)
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/episodes', express.static(path.join(__dirname, 'public/episodes')));
 app.use('/temp', express.static(path.join(__dirname, 'temp')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const distPath = path.join(__dirname, 'dist');
-if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
-  console.log('✅ Serving frontend from dist folder');
+// Serve frontend (production only)
+// In development, use Vite dev server on port 5173
+if (process.env.NODE_ENV === 'production') {
+  const distPath = path.join(__dirname, 'dist');
+  if (fs.existsSync(distPath)) {
+    app.use(express.static(distPath));
+    console.log('✅ Serving frontend from dist folder (PRODUCTION)');
+  } else {
+    console.log('⚠️ No dist folder found, run: npm run build');
+  }
+
+  // SPA fallback for production
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api')) {
+      const indexPath = path.join(__dirname, 'dist', 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(404).send('Frontend not built. Run: npm run build');
+      }
+    } else {
+      next();
+    }
+  });
 } else {
-  console.log('⚠️ No dist folder found, frontend not available');
+  console.log('💡 DEVELOPMENT MODE: Use frontend at http://localhost:5173');
+  console.log('💡 This port (3001) is for API endpoints only');
 }
 
-app.use((req, res, next) => {
-  if (req.method === 'GET' && !req.path.startsWith('/api')) {
-    const indexPath = path.join(__dirname, 'dist', 'index.html');
-    if (fs.existsSync(indexPath)) {
-      res.sendFile(indexPath);
-    } else {
-      res.status(404).send('Frontend not built. Please run: npm run build');
-    }
-  } else {
-    next();
+// Download character videos from R2 on startup (for FFmpeg recording)
+async function initializeServer() {
+  // Check if videos exist, download if not
+  if (!characterVideosExist()) {
+    console.log('📥 Downloading character videos from R2...');
+    await downloadCharacterVideos();
   }
-});
+  
+  // Start server (hardcoded to port 3001 instead of 3000)
+  const PORT = 3001;  // Hardcoded to avoid environment variable override
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`🚀 BACKEND API SERVER: http://localhost:${PORT}`);
+    console.log(`🎙️ Mr Cock is ready to host!`);
+    console.log(`🐸 Pepe is ready to be interviewed!`);
+    console.log(`🎥 Episode recording: ENABLED`);
+    console.log(`☁️  R2 upload: ${process.env.R2_ACCESS_KEY_ID ? 'CONFIGURED' : 'NOT CONFIGURED'}`);
+    
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(`\n💡 FOR DEVELOPMENT:`);
+      console.log(`   Frontend (with hot reload): http://localhost:5173`);
+      console.log(`   Backend API: http://localhost:${PORT}`);
+    }
+    console.log(`${'='.repeat(60)}\n`);
+  });
+}
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`🎙️ Mr Cock is ready to host!`);
-  console.log(`🐸 Pepe is ready to be interviewed!`);
+// Initialize server with video download
+initializeServer().catch(err => {
+  console.error('❌ Failed to initialize server:', err);
+  process.exit(1);
 });

@@ -1,120 +1,142 @@
+import '../styles/About.css'
+
 function About() {
   return (
     <div className="page-container">
       <div className="page-hero">
         <h1 className="page-title">About MemeTalk.TV</h1>
-        <p className="page-subtitle">The most community-driven podcast in crypto</p>
+        <p className="page-subtitle">Give Your Meme a Voice — Where Creators Meet Community</p>
       </div>
 
       <div className="about-content">
-        <section className="about-section">
+        <section className="about-section intro-section">
+          <h2 className="about-heading">What is MemeTalk.TV?</h2>
+          <p className="about-text large">
+            MemeTalk.TV is the ultimate platform where creators can give their memes a voice. 
+            Whether you're building a token, launching a community, or just have an epic meme story — 
+            we bring your project to life through live, interactive podcast episodes.
+          </p>
+          <p className="about-text large">
+            Every show is broadcast live with real-time community interaction, recorded, and published 
+            across multiple platforms for maximum reach.
+          </p>
+        </section>
+
+        <section className="about-section pumpfun-section">
+          <div className="pumpfun-badge">
+            <img src="https://pump.fun/_next/image?url=%2Flogo.png&w=64&q=75" alt="Pump.fun" className="pumpfun-logo" />
+            <span>Pairs Perfectly with Pump.fun Live</span>
+          </div>
+          <p className="about-text">
+            Launching on Pump.fun? MemeTalk.TV is your next step. Give your token instant credibility and visibility 
+            by showcasing it in a live interview with <strong>Mr. Cock</strong>, our legendary host.
+          </p>
+          <p className="about-text">
+            <strong>🎥 Stream Your Interview to Pump.fun Live:</strong> When you book your slot, we provide you with an <strong>OBS stream link</strong>. 
+            Simply add our link as a <strong>Browser Source</strong> or use <strong>Display Capture</strong> to broadcast your live interview on Pump.fun's platform, 
+            maximizing your exposure to thousands of crypto enthusiasts watching in real-time.
+          </p>
+          <p className="about-text">
+            Your community gets to ask questions live, and we handle all the technical setup. Just add our stream link as a Browser Source or use Display Capture, 
+            then hit "Go Live" on Pump.fun. It's that simple.
+          </p>
+        </section>
+
+        <section className="about-section how-it-works-section">
           <h2 className="about-heading">How It Works</h2>
-          <p className="about-text">
-            MemeTalk.TV isn't your typical podcast. Every episode is shaped by YOU—the community. 
-            Through live chat, you ask the questions, and our AI-powered host brings them to life 
-            in real conversations with crypto's most iconic meme projects.
-          </p>
-        </section>
-
-        <section className="about-section">
-          <h2 className="about-heading">Community-Driven Content</h2>
-          <p className="about-text">
-            The community decides everything. Vote on which projects get interviewed next, 
-            submit your burning questions beforehand, or join the live chat during episodes 
-            to interact in real-time. No gatekeepers, no corporate BS—just pure, unfiltered conversations.
-          </p>
-        </section>
-
-        <section className="about-section">
-          <h2 className="about-heading">Where We Publish</h2>
-          <div className="publish-list">
-            <div className="publish-item">
-              <span className="publish-icon">🎥</span>
-              <div>
-                <h3>YouTube</h3>
-                <p>Full episodes on the MemeTalk.TV channel</p>
-              </div>
+          <div className="steps-clean">
+            <div className="step-clean">
+              <div className="step-icon">🔥</div>
+              <h3>Burn Tokens to Book</h3>
+              <p>Burn 1 million of your platform's native tokens to secure a live interview slot</p>
             </div>
-            <div className="publish-item">
-              <span className="publish-icon">🌐</span>
-              <div>
-                <h3>This Website</h3>
-                <p>All episodes archived and available on demand</p>
-              </div>
+            <div className="step-clean">
+              <div className="step-icon">🎙️</div>
+              <h3>Live Show Broadcast</h3>
+              <p>Your meme gets interviewed by <strong>Mr. Cock</strong>, our legendary host, live at 4PM EST with the community watching and participating in real-time</p>
             </div>
-            <div className="publish-item">
-              <span className="publish-icon">🐦</span>
-              <div>
-                <h3>Social Media</h3>
-                <p>Clips and highlights on Twitter, TikTok, and more</p>
-              </div>
+            <div className="step-clean">
+              <div className="step-icon">📹</div>
+              <h3>Published Everywhere</h3>
+              <p>Episode is recorded, edited, and published to YouTube, X (Twitter), and our website</p>
+            </div>
+            <div className="step-clean">
+              <div className="step-icon">🚀</div>
+              <h3>Community Growth</h3>
+              <p>Get exposure to our audience, build credibility, and grow your community organically</p>
             </div>
           </div>
         </section>
 
-        <section className="about-section">
-          <h2 className="about-heading">Apply for an Interview</h2>
-          <p className="about-text">
-            Want your meme project featured on MemeTalk.TV? We're always looking for the next 
-            legendary conversation. Whether you're launching a new token, building a community, 
-            or just have an insane story to tell—we want to hear from you.
-          </p>
-          <div className="apply-steps">
-            <div className="apply-step">
-              <div className="step-number">1</div>
-              <div className="step-content">
-                <h3>Hold Our Meme Coin</h3>
-                <p>Priority access for holders of $MEMETALK token</p>
-              </div>
+        <section className="about-section burn-benefits-section">
+          <h2 className="about-heading">Why the Token Burn Model?</h2>
+          <div className="benefits-grid">
+            <div className="benefit-card">
+              <div className="benefit-icon">💎</div>
+              <h3>Commitment & Quality</h3>
+              <p>Burning tokens shows you're serious about your project and ensures only quality guests appear</p>
             </div>
-            <div className="apply-step">
-              <div className="step-number">2</div>
-              <div className="step-content">
-                <h3>Submit Your Application</h3>
-                <p>Fill out the form with your project details and why you'd make a great guest</p>
-              </div>
+            <div className="benefit-card">
+              <div className="benefit-icon">📉</div>
+              <h3>Reduces Supply</h3>
+              <p>Every burn permanently reduces your token's circulating supply, benefiting all holders</p>
             </div>
-            <div className="apply-step">
-              <div className="step-number">3</div>
-              <div className="step-content">
-                <h3>Community Votes</h3>
-                <p>The community decides who gets interviewed next through voting</p>
-              </div>
+            <div className="benefit-card">
+              <div className="benefit-icon">🎯</div>
+              <h3>Fair Access</h3>
+              <p>No favoritism or pay-to-win. Every project follows the same rules — burn tokens, get visibility</p>
+            </div>
+            <div className="benefit-card">
+              <div className="benefit-icon">🌐</div>
+              <h3>Community Value</h3>
+              <p>Your appearance helps your holders by reducing supply while you gain massive exposure</p>
             </div>
           </div>
-          <button className="cta-button">Apply Now</button>
         </section>
 
-        <section className="about-section promote-section">
-          <h2 className="about-heading">Promote with $MEMETALK</h2>
-          <p className="about-text" style={{fontSize: '18px', marginBottom: '24px'}}>
-            Want to promote your coin, meme, or platform on MEMETALK.TV?
-          </p>
-          <p className="about-text" style={{fontSize: '16px', marginBottom: '24px'}}>
-            All promotions and guest features on our podcast are paid exclusively in <strong>$MEMETALK</strong> — the token that powers every appearance on the show.
-          </p>
-          <p className="about-text" style={{fontSize: '20px', fontWeight: '600', color: '#fbbf24', marginBottom: '20px'}}>
-            Hold it. Use it. Get seen.
-          </p>
-          <p className="about-text" style={{fontSize: '18px', color: 'rgba(255, 255, 255, 0.9)'}}>
-            🎙️ Because on MEMETALK, visibility comes in $MEMETALK.
-          </p>
-          <button className="cta-button" style={{marginTop: '32px'}}>Get $MEMETALK</button>
-        </section>
-
-        <section className="about-section final-section">
-          <h2 className="about-heading">The $MEMETALK Token</h2>
-          <p className="about-text">
-            Holding $MEMETALK gives you exclusive perks: priority interview applications, 
-            governance voting power, early access to episodes, and special roles in our community. 
-            Be part of the revolution where memes meet real conversations.
-          </p>
-          <div className="token-benefits">
-            <div className="benefit-item">✓ Priority guest applications</div>
-            <div className="benefit-item">✓ Vote on upcoming guests</div>
-            <div className="benefit-item">✓ Early episode access</div>
-            <div className="benefit-item">✓ Exclusive community roles</div>
+        <section className="about-section publish-section">
+          <h2 className="about-heading">Where We Publish Your Episode</h2>
+          <div className="publish-platforms">
+            <div className="platform-card">
+              <div className="platform-icon">🎥</div>
+              <h3>YouTube</h3>
+              <p>Full episode uploaded to our growing channel with thousands of crypto enthusiasts</p>
+            </div>
+            <div className="platform-card">
+              <div className="platform-icon">𝕏</div>
+              <h3>X (Twitter)</h3>
+              <p>Clips, highlights, and promotions shared across our social media networks</p>
+            </div>
+            <div className="platform-card">
+              <div className="platform-icon">🌐</div>
+              <h3>MemeTalk.TV</h3>
+              <p>Permanent archive on our website for on-demand viewing anytime</p>
+            </div>
+            <div className="platform-card">
+              <div className="platform-icon">📱</div>
+              <h3>Social Clips</h3>
+              <p>Short-form content distributed to TikTok, Instagram, and other platforms</p>
+            </div>
           </div>
+        </section>
+
+        <section className="about-section community-section">
+          <h2 className="about-heading">Community at the Core</h2>
+          <p className="about-text large">
+            MemeTalk.TV is 100% community-driven. During every live show, viewers chat in real-time, 
+            ask questions, and interact with your project directly. This isn't a scripted interview — 
+            it's a real conversation shaped by the people who matter most: your future community members.
+          </p>
+          <p className="about-text large">
+            After the show, episodes are archived and shared everywhere, giving your project lasting exposure 
+            and credibility that helps attract new holders and believers.
+          </p>
+        </section>
+
+        <section className="about-section cta-section">
+          <h2>Ready to Give Your Meme a Voice?</h2>
+          <p>Book your live interview today and join the memes that have already made their mark</p>
+          <a href="/apply" className="cta-button-large">Apply for an Interview</a>
         </section>
       </div>
     </div>

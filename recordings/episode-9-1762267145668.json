@@ -1,0 +1,119 @@
+{
+  "episodeNumber": 9,
+  "startTime": "2025-11-04T14:37:24.245Z",
+  "endTime": "2025-11-04T14:39:05.668Z",
+  "dialogue": [
+    {
+      "id": "1762267072983-110",
+      "user": "Mr Cock",
+      "message": "cvcxvx from chat asks: \"@pepe zxczxc\" Let me pose this to our guest. Pepe, your thoughts?",
+      "timestamp": "Just now",
+      "isHost": true,
+      "hasAudio": true,
+      "audioPath": "/temp/episode-9-1762267044243/mrcock-1762267072980.mp3",
+      "emotionSegments": [
+        {
+          "text": "cvcxvx from chat asks: \"@pepe zxczxc\" Let me pose this to our guest.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 2816.6666666666665
+        },
+        {
+          "text": "Pepe, your thoughts?",
+          "emotion": "normal",
+          "startTime": 2816.6666666666665,
+          "duration": 2816.6666666666665
+        }
+      ],
+      "questionData": {
+        "question": "@pepe zxczxc",
+        "username": "cvcxvx"
+      }
+    }
+  ],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762267047433.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have a very special guest — MONACOGAYBOSS . A fascinating character from the depths of meme culture. Welcome to the show, MONACOGAYBOSS .",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762267072980.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "cvcxvx from chat asks: \"@pepe zxczxc\" Let me pose this to our guest. Pepe, your thoughts?",
+      "emotionSegments": null,
+      "questionText": "@pepe zxczxc",
+      "questionUsername": "cvcxvx"
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762267082976.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, sweet cvcxvx, addressing me with the name of a mere peasant. Fear not, for you stand before Prince Alessandro de Monaco, the Final Boss of this illustrious kingdom. As for your request for \"zxczxc,\" know that in my realm, only the most noble and daring knights may earn an audience with me. Perhaps one day, if you prove yourself worthy, we shall see. In the meantime, enjoy the spectacle of basking in my royal presence. 🤴🏻💫",
+      "emotionSegments": [
+        {
+          "text": "Ah, sweet cvcxvx, addressing me with the name of a mere peasant.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5193.333333333334
+        },
+        {
+          "text": "Fear not, for you stand before Prince Alessandro de Monaco, the Final Boss of this illustrious kingdom.",
+          "emotion": "normal",
+          "startTime": 5193.333333333334,
+          "duration": 5193.333333333334
+        },
+        {
+          "text": "As for your request for \"zxczxc,\" know that in my realm, only the most noble and daring knights may earn an audience with me.",
+          "emotion": "normal",
+          "startTime": 10386.666666666668,
+          "duration": 5193.333333333334
+        },
+        {
+          "text": "Perhaps one day, if you prove yourself worthy, we shall see.",
+          "emotion": "thinking",
+          "startTime": 15580.000000000002,
+          "duration": 5193.333333333334
+        },
+        {
+          "text": "In the meantime, enjoy the spectacle of basking in my royal presence.",
+          "emotion": "normal",
+          "startTime": 20773.333333333336,
+          "duration": 5193.333333333334
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762267115348.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1762267047433.mp3",
+    "mrcock-1762267072980.mp3",
+    "pepe-1762267082976.mp3",
+    "mrcock-1762267115348.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 9: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 4, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-9-1762267145668.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

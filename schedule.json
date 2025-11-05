@@ -1,0 +1,182 @@
+[
+  {
+    "id": "slot-1762178400000",
+    "date": "2025-11-03T14:00:00.000Z",
+    "displayDate": "Mon, Nov 3, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": true,
+    "bookedBy": "2M4ysvFtnabwRbnuZ99KH7WrEWnymh7W4taXS8bGYedU",
+    "applicationId": "app-1762264153072"
+  },
+  {
+    "id": "slot-1762264800000",
+    "date": "2025-11-04T14:00:00.000Z",
+    "displayDate": "Tue, Nov 4, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": true,
+    "bookedBy": "2M4ysvFtnabwRbnuZ99KH7WrEWnymh7W4taXS8bGYedU",
+    "applicationId": "app-1762261995756"
+  },
+  {
+    "id": "slot-1762351200000",
+    "date": "2025-11-05T14:00:00.000Z",
+    "displayDate": "Wed, Nov 5, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": true,
+    "bookedBy": "2M4ysvFtnabwRbnuZ99KH7WrEWnymh7W4taXS8bGYedU",
+    "applicationId": "app-1762263487285"
+  },
+  {
+    "id": "slot-1762437600000",
+    "date": "2025-11-06T14:00:00.000Z",
+    "displayDate": "Thu, Nov 6, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": true,
+    "bookedBy": "2M4ysvFtnabwRbnuZ99KH7WrEWnymh7W4taXS8bGYedU",
+    "applicationId": "app-1762258107757"
+  },
+  {
+    "id": "slot-1762524000000",
+    "date": "2025-11-07T14:00:00.000Z",
+    "displayDate": "Fri, Nov 7, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1762610400000",
+    "date": "2025-11-08T14:00:00.000Z",
+    "displayDate": "Sat, Nov 8, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1762696800000",
+    "date": "2025-11-09T14:00:00.000Z",
+    "displayDate": "Sun, Nov 9, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1762783200000",
+    "date": "2025-11-10T14:00:00.000Z",
+    "displayDate": "Mon, Nov 10, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1762869600000",
+    "date": "2025-11-11T14:00:00.000Z",
+    "displayDate": "Tue, Nov 11, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1762956000000",
+    "date": "2025-11-12T14:00:00.000Z",
+    "displayDate": "Wed, Nov 12, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763042400000",
+    "date": "2025-11-13T14:00:00.000Z",
+    "displayDate": "Thu, Nov 13, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763128800000",
+    "date": "2025-11-14T14:00:00.000Z",
+    "displayDate": "Fri, Nov 14, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763215200000",
+    "date": "2025-11-15T14:00:00.000Z",
+    "displayDate": "Sat, Nov 15, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763301600000",
+    "date": "2025-11-16T14:00:00.000Z",
+    "displayDate": "Sun, Nov 16, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763388000000",
+    "date": "2025-11-17T14:00:00.000Z",
+    "displayDate": "Mon, Nov 17, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763474400000",
+    "date": "2025-11-18T14:00:00.000Z",
+    "displayDate": "Tue, Nov 18, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763560800000",
+    "date": "2025-11-19T14:00:00.000Z",
+    "displayDate": "Wed, Nov 19, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763647200000",
+    "date": "2025-11-20T14:00:00.000Z",
+    "displayDate": "Thu, Nov 20, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763733600000",
+    "date": "2025-11-21T14:00:00.000Z",
+    "displayDate": "Fri, Nov 21, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  },
+  {
+    "id": "slot-1763820000000",
+    "date": "2025-11-22T14:00:00.000Z",
+    "displayDate": "Sat, Nov 22, 2025",
+    "displayTime": "4:00 PM EST",
+    "isBooked": false,
+    "bookedBy": null,
+    "applicationId": null
+  }
+]

@@ -9,22 +9,40 @@ export const VideoPlayer = ({
   currentEmotion,
   isUnlocked 
 }) => {
-  const videoRef = useRef(null);
+  // Use two video refs for smooth crossfading
+  const videoRef1 = useRef(null);
+  const videoRef2 = useRef(null);
   const imgRef = useRef(null);
   const [currentSrc, setCurrentSrc] = useState('');
+  const [activeVideo, setActiveVideo] = useState(1); // 1 or 2
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   useEffect(() => {
     let newSrc = '';
     
     if (!currentSpeaker && transitionVideo) {
+      // MAIN PAGE: PREFER WebM for smaller file size & faster loading
       newSrc = isMobile ? transitionVideo.gif : (transitionVideo.webm || transitionVideo.mp4);
-    } else if (currentSpeaker === 'Mr Cock' && hostVideos && hostVideos[currentEmotion]) {
-      const urls = hostVideos[currentEmotion];
-      newSrc = isMobile ? urls.gif : (urls.webm || urls.mp4);
-    } else if (currentSpeaker === 'Pepe' && guestVideos && guestVideos[currentEmotion]) {
-      const urls = guestVideos[currentEmotion];
-      newSrc = isMobile ? urls.gif : (urls.webm || urls.mp4);
+    } else if (currentSpeaker === 'Mr Cock' && hostVideos) {
+      // Try requested emotion, fallback to normal
+      const urls = hostVideos[currentEmotion] || hostVideos['normal'];
+      if (urls) {
+        // MAIN PAGE: PREFER WebM for smaller file size & faster loading
+        newSrc = isMobile ? urls.gif : (urls.webm || urls.mp4);
+      }
+      if (!hostVideos[currentEmotion] && currentEmotion !== 'normal') {
+        console.warn(`⚠️ Missing Mr Cock emotion: ${currentEmotion}, using normal`);
+      }
+    } else if (currentSpeaker === 'Pepe' && guestVideos) {
+      // Try requested emotion, fallback to normal
+      const urls = guestVideos[currentEmotion] || guestVideos['normal'];
+      if (urls) {
+        // MAIN PAGE: PREFER WebM for smaller file size & faster loading
+        newSrc = isMobile ? urls.gif : (urls.webm || urls.mp4);
+      }
+      if (!guestVideos[currentEmotion] && currentEmotion !== 'normal') {
+        console.warn(`⚠️ Missing Pepe emotion: ${currentEmotion}, using normal`);
+      }
     }
 
     if (newSrc && newSrc !== currentSrc) {
@@ -41,24 +59,62 @@ export const VideoPlayer = ({
         imgRef.current.src = currentSrc;
       }
     } else {
-      // Desktop: Videos need play() call
-      const video = videoRef.current;
-      if (!video) return;
+      // Desktop: Smooth crossfade between two video elements
+      const currentVideo = activeVideo === 1 ? videoRef1.current : videoRef2.current;
+      const nextVideo = activeVideo === 1 ? videoRef2.current : videoRef1.current;
+      
+      if (!currentVideo || !nextVideo) return;
 
-      if (video.src !== currentSrc) {
-        video.src = currentSrc;
-        video.load();
+      // Check if we need to change the video
+      const needsChange = currentVideo.src !== currentSrc && !currentVideo.src.endsWith(currentSrc);
+      
+      if (needsChange) {
+        // Preload the next video
+        nextVideo.src = currentSrc;
+        nextVideo.style.opacity = '0';
+        nextVideo.style.zIndex = '1';
         
-        const attemptPlay = () => {
-          video.play().catch(err => {
-            console.log('Play blocked, retrying...', err.message);
-            setTimeout(attemptPlay, 100);
-          });
+        // Handle load errors
+        nextVideo.onerror = () => {
+          console.error(`❌ Video failed to load: ${currentSrc}`);
         };
-        attemptPlay();
+        
+        // Wait for next video to be ready
+        const onCanPlay = () => {
+          // Start playing the new video
+          nextVideo.play().catch(err => {
+            if (err.name !== 'AbortError') {
+              console.log(`Play delayed, will retry automatically`);
+            }
+          });
+          
+          // Crossfade transition
+          nextVideo.style.transition = 'opacity 0.4s ease-in-out';
+          nextVideo.style.opacity = '1';
+          nextVideo.style.zIndex = '2';
+          
+          // Fade out old video
+          currentVideo.style.transition = 'opacity 0.4s ease-in-out';
+          currentVideo.style.opacity = '0';
+          currentVideo.style.zIndex = '1';
+          
+          // After transition, pause the old video and switch active
+          setTimeout(() => {
+            currentVideo.pause();
+            setActiveVideo(activeVideo === 1 ? 2 : 1);
+          }, 400);
+        };
+        
+        nextVideo.addEventListener('canplay', onCanPlay, { once: true });
+        nextVideo.load();
+        
+        // Cleanup
+        return () => {
+          nextVideo.removeEventListener('canplay', onCanPlay);
+        };
       }
     }
-  }, [currentSrc, isUnlocked, isMobile]);
+  }, [currentSrc, isUnlocked, isMobile, activeVideo]);
 
   if (!currentSrc) return null;
 
@@ -71,7 +127,7 @@ export const VideoPlayer = ({
         className="video-element"
         style={{
           width: '100%',
-          height: '100%',
+          height: 'auto',
           objectFit: 'contain'
         }}
       />
@@ -79,20 +135,34 @@ export const VideoPlayer = ({
   }
 
   return (
-    <video
-      ref={videoRef}
-      className="video-element"
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="auto"
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'contain'
-      }}
-    />
+    <>
+      <video
+        ref={videoRef1}
+        className="video-element video-crossfade"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        style={{
+          opacity: activeVideo === 1 ? 1 : 0,
+          zIndex: activeVideo === 1 ? 2 : 1
+        }}
+      />
+      <video
+        ref={videoRef2}
+        className="video-element video-crossfade"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        style={{
+          opacity: activeVideo === 2 ? 1 : 0,
+          zIndex: activeVideo === 2 ? 2 : 1
+        }}
+      />
+    </>
   );
 };
 

@@ -19,15 +19,7 @@
 
 /* Pages */
 @import './styles/admin.css';
-
-/* TODO: Create these files next:
-   - ./styles/chat.css (chat messages, input, scrollbar)
-   - ./styles/episodes.css (episode cards, list)
-   - ./styles/schedule.css (schedule page)
-   - ./styles/about.css (about page)
-   - ./styles/apply.css (apply page)
-   - ./styles/responsive.css (all media queries)
-*/
+@import './styles/home.css';
 
 /* TEMPORARY: Remaining unsplit CSS below - will be moved to files above */
 
@@ -43,100 +35,13 @@
   background: #000;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
 }
 
 /* Character display styles moved to VideoPlayer.css */
 
-/* Chat */
-.chat-section {
-  background: rgba(15, 15, 15, 0.5);
-  backdrop-filter: saturate(180%) blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 176px);
-  max-height: 800px;
-  position: relative;
-}
-
-.chat-header {
-  padding: 24px 28px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-header h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.95);
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 24px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.chat-input-container {
-  padding: 20px 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.chat-input-wrapper {
-  display: flex;
-  gap: 12px;
-}
-
-.chat-input {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 14px 18px;
-  color: #ffffff;
-  font-size: 14px;
-}
-
-.chat-send-btn {
-  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
-  border: none;
-  color: #ffffff;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.chat-message {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.message-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.message-user {
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.message-text {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 14px;
-  line-height: 1.5;
-}
+/* Chat styles moved to home.css */
 
 /* Talking Indicator */
 .talking-indicator {
@@ -155,6 +60,76 @@
   color: #00ff41;
   font-weight: 600;
   font-size: 14px;
+}
+
+/* Question Indicator (shows during question asking and answering) */
+.question-indicator {
+  max-width: 650px;
+  padding: 18px 32px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.indicator-label {
+  display: block;
+  color: #a78bfa;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.indicator-question {
+  display: block;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.5;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Buffering Overlay */
+.buffering-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 100;
+}
+
+.buffering-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(139, 92, 246, 0.2);
+  border-top-color: #8b5cf6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.buffering-text {
+  color: #8b5cf6;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 /* Audio Unlock Prompt */
@@ -208,86 +183,9 @@
   z-index: 10;
 }
 
-/* Username Modal */
-.chat-username-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-}
+/* Username Modal - All styles moved to Home.css */
 
-.username-overlay-content {
-  background: rgba(20, 20, 20, 0.95);
-  padding: 40px;
-  border-radius: 24px;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  max-width: 400px;
-  width: 90%;
-}
-
-.username-overlay-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 12px;
-}
-
-.username-overlay-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.username-overlay-input {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 14px 18px;
-  color: #ffffff;
-  font-size: 16px;
-}
-
-.username-overlay-submit {
-  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
-  border: none;
-  color: #ffffff;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* Episodes Page */
-.episodes-container {
-  padding: 120px 48px 48px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.episodes-list {
-  display: grid;
-  gap: 24px;
-}
-
-.episode-card {
-  background: rgba(20, 20, 20, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 24px;
-  display: flex;
-  gap: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.episode-card:hover {
-  border-color: rgba(139, 92, 246, 0.5);
-  transform: translateY(-2px);
-}
+/* Episodes styles moved to home.css */
 
 /* Schedule Page */
 .schedule-container {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import '../styles/Episodes.css'
 
 function Episodes() {
   const [episodes, setEpisodes] = useState([]);
@@ -11,7 +12,8 @@ function Episodes() {
 
   const loadEpisodes = async () => {
     try {
-      const response = await fetch('${window.location.origin}/api/episodes');
+      const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : window.location.origin;
+      const response = await fetch(`${API_URL}/api/episodes`);
       if (response.ok) {
         const data = await response.json();
         setEpisodes(data);
@@ -79,7 +81,6 @@ function Episodes() {
                   {episode.description && (
                     <p className="episode-description">{episode.description}</p>
                   )}
-                  <p className="episode-views">👁️ {episode.views} views</p>
                   
                   <button 
                     className="episode-watch-btn"
@@ -107,7 +108,7 @@ function Episodes() {
                   autoPlay
                   style={{ width: '100%', maxHeight: '70vh', backgroundColor: '#000' }}
                 >
-                  <source src={`${window.location.origin}/episodes/${selectedEpisode.videoFile}`} type="video/mp4" />
+                  <source src={`/episodes/${selectedEpisode.videoFile}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               ) : (

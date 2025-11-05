@@ -1,0 +1,147 @@
+{
+  "episodeNumber": 19,
+  "startTime": "2025-11-05T03:42:15.907Z",
+  "endTime": "2025-11-05T03:45:02.772Z",
+  "dialogue": [],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762314139449.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762314142291.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762314188745.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, amidst the sea of digital worship and viral dogmas, do you believe memes have become the new religion? Or are we all just blindly following the Church of Dankness, praying to the Almighty Algorithm for likes and shares? Ah, the trials and tribulations of memetic faith - it's a real test of our comedic souls, isn't it?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762314189162.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, the next prophet of the digital age emerges! With takes as dry as crypto wallets after a rugpull. You know, questioning memes is like asking Discord mods for fashion advice - futile and utterly ridiculous, \"everyone watching\". We're not worshipping at the altars of likes and shares, we're just meme connoisseurs in this chaotic meme economy seeking the true Holy Grail of humor. Stay woke, my son, and kneel before the memetic madness!",
+      "emotionSegments": [
+        {
+          "text": "Ah, the next prophet of the digital age emerges!",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 4993.333333333334
+        },
+        {
+          "text": "With takes as dry as crypto wallets after a rugpull.",
+          "emotion": "normal",
+          "startTime": 4993.333333333334,
+          "duration": 4993.333333333334
+        },
+        {
+          "text": "You know, questioning memes is like asking Discord mods for fashion advice - futile and utterly ridiculous, \"everyone watching\".",
+          "emotion": "thinking",
+          "startTime": 9986.666666666668,
+          "duration": 4993.333333333334
+        },
+        {
+          "text": "We're not worshipping at the altars of likes and shares, we're just meme connoisseurs in this chaotic meme economy seeking the true Holy Grail of humor.",
+          "emotion": "normal",
+          "startTime": 14980.000000000002,
+          "duration": 4993.333333333334
+        },
+        {
+          "text": "Stay woke, my son, and kneel before the memetic madness!",
+          "emotion": "normal",
+          "startTime": 19973.333333333336,
+          "duration": 4993.333333333334
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762314224407.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, in the grand tapestry of internet culture, do you see cryptocurrency as a modern-day religion guiding the faithful towards financial salvation, or perhaps a cult where believers HODL on for dear life, chanting \"To the moon\" in hopes of transcendental profits? Or is it just a sophisticated way to turn electricity into memes?",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "thinking",
+      "audioFile": "pepe-1762314227604.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\sarcastically  pepe.mp4",
+      "text": "Listen up, everyone watching, this question is like asking a pufferfish to recite the works of Shakespeare - absolutely off the mark. Cryptocurrency is like a circus run by crypto clowns, with rugpulls replacing pratfalls and Twitter warriors fighting for karma instead of laughs. It's more volatile than a toddler on a sugar rush with a dash of existential crisis. If you think it's a salvation, you're about as lost as a sea cucumber in the Sahara desert - clueless and dried out. It's like a fever dream where the only cure is some common sense, a cold shower, and a glimpse of reality shining through the screens. ",
+      "emotionSegments": [
+        {
+          "text": "Listen up, everyone watching, this question is like asking a pufferfish to recite the works of Shakespeare - absolutely off the mark.",
+          "emotion": "thinking",
+          "startTime": 0,
+          "duration": 7326.666666666667
+        },
+        {
+          "text": "Cryptocurrency is like a circus run by crypto clowns, with rugpulls replacing pratfalls and Twitter warriors fighting for karma instead of laughs.",
+          "emotion": "angry",
+          "startTime": 7326.666666666667,
+          "duration": 7326.666666666667
+        },
+        {
+          "text": "It's more volatile than a toddler on a sugar rush with a dash of existential crisis.",
+          "emotion": "normal",
+          "startTime": 14653.333333333334,
+          "duration": 7326.666666666667
+        },
+        {
+          "text": "If you think it's a salvation, you're about as lost as a sea cucumber in the Sahara desert - clueless and dried out.",
+          "emotion": "thinking",
+          "startTime": 21980,
+          "duration": 7326.666666666667
+        },
+        {
+          "text": "It's like a fever dream where the only cure is some common sense, a cold shower, and a glimpse of reality shining through the screens.",
+          "emotion": "normal",
+          "startTime": 29306.666666666668,
+          "duration": 7326.666666666667
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762314272457.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1762314139449.mp3",
+    "pepe-1762314142291.mp3",
+    "mrcock-1762314188745.mp3",
+    "pepe-1762314189162.mp3",
+    "mrcock-1762314224407.mp3",
+    "pepe-1762314227604.mp3",
+    "mrcock-1762314272457.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 19: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 5, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-19-1762314302772.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}

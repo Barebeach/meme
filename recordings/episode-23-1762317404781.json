@@ -1,0 +1,92 @@
+{
+  "episodeNumber": 23,
+  "startTime": "2025-11-05T04:34:56.045Z",
+  "endTime": "2025-11-05T04:36:44.781Z",
+  "dialogue": [],
+  "chat": [],
+  "videoSegments": [
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317299703.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Good evening, citizens of the web. Welcome to MemeTalk Live, where virality meets virtue. Tonight, we have the honor of hosting none other than Pepe the Meme — a cultural icon whose green visage has graced millions of screens. Pepe, welcome to the show.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "angry",
+      "audioFile": "pepe-1762317300016.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\angrily pepe.mp4",
+      "text": "Yeah yeah, I'm here. What's good? Let me tell you something right now - if ANY of you broke ass viewers in chat come at me with some dumb shit, I'm gonna roast you so hard you'll wish you never clicked on this website. But hey, I'm ready to talk about memes, crypto, and whatever the fuck else. Let's get it!",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317344500.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Pepe, let's delve into the digital abyss - is crypto a mere financial vessel or a sacred congregation? Are we hodling coins or praying at the altar of blockchain? Either way, just make sure your wallet has better security than the Vatican's secrets.",
+      "emotionSegments": null
+    },
+    {
+      "speaker": "Pepe",
+      "emotion": "normal",
+      "audioFile": "pepe-1762317347179.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious pepe.mp4",
+      "text": "Ah, the musings of a would-be crypto prophet, trying to turn rags into digital riches. It's funny how you wax poetic about altars and sacred congregations when your portfolio is as secure as a glass hammer. I've seen more financial wisdom from a gambling hamster on TikTok. Keep praying to the blockchain gods, everyone watching, maybe one day they'll bless you with a clue.",
+      "emotionSegments": [
+        {
+          "text": "Ah, the musings of a would-be crypto prophet, trying to turn rags into digital riches.",
+          "emotion": "normal",
+          "startTime": 0,
+          "duration": 5408.333333333333
+        },
+        {
+          "text": "It's funny how you wax poetic about altars and sacred congregations when your portfolio is as secure as a glass hammer.",
+          "emotion": "angry",
+          "startTime": 5408.333333333333,
+          "duration": 5408.333333333333
+        },
+        {
+          "text": "I've seen more financial wisdom from a gambling hamster on TikTok.",
+          "emotion": "normal",
+          "startTime": 10816.666666666666,
+          "duration": 5408.333333333333
+        },
+        {
+          "text": "Keep praying to the blockchain gods, everyone watching, maybe one day they'll bless you with a clue.",
+          "emotion": "thinking",
+          "startTime": 16225,
+          "duration": 5408.333333333333
+        }
+      ]
+    },
+    {
+      "speaker": "Mr Cock",
+      "emotion": "normal",
+      "audioFile": "mrcock-1762317374465.mp3",
+      "videoClip": "C:\\Users\\Phill\\Desktop\\memetalk.tv\\memetalk-app\\public\\serious cooock.mp4",
+      "text": "Well folks, that's all the time we have for tonight's show! I want to thank our special guest Pepe for joining us, and of course, thank YOU, our incredible viewers, for being part of MemeTalk Live. Remember, we go live every evening at 8 PM Eastern Time. Don't forget to follow us on social media for updates. Until next time, this is Mr. Cock saying: stay dank, stay based, and keep those memes flowing. Goodnight!",
+      "emotionSegments": null
+    }
+  ],
+  "audioFiles": [
+    "mrcock-1762317299703.mp3",
+    "pepe-1762317300016.mp3",
+    "mrcock-1762317344500.mp3",
+    "pepe-1762317347179.mp3",
+    "mrcock-1762317374465.mp3"
+  ],
+  "metadata": {
+    "title": "Episode 23: Pepe",
+    "guest": "Pepe",
+    "host": "Mr Cock",
+    "description": "Pepe joins Mr Cock for an unfiltered meme interview",
+    "views": 0,
+    "date": "Nov 5, 2025",
+    "duration": "15:00",
+    "videoFile": "episode-23-1762317404781.mp4",
+    "thumbnail": "/memetalk.tv.png"
+  }
+}
