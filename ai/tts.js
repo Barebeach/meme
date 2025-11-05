@@ -72,7 +72,22 @@ export async function generateSpeech(text, voice = 'alloy', speaker = null, emot
           fs.writeFileSync(audioPath, buffer);
           
           // Convert to web path - make it work on both localhost and production
-          const relativePath = path.relative(process.cwd(), audioPath).replace(/\\/g, '/');
+          let relativePath = path.relative(process.cwd(), audioPath).replace(/\\/g, '/');
+          
+          // FALLBACK: If relative path fails or is empty, construct manually
+          if (!relativePath || relativePath === audioFilename) {
+            // Extract the important parts: temp/episode-XX-XXXX/filename.mp3
+            const parts = audioPath.replace(/\\/g, '/').split('/');
+            const tempIndex = parts.findIndex(p => p === 'temp');
+            if (tempIndex >= 0) {
+              relativePath = parts.slice(tempIndex).join('/');
+            } else {
+              // Last resort: just use filename with temp prefix
+              relativePath = `temp/${audioFilename}`;
+            }
+            console.log(`⚠️ Using fallback path construction: ${relativePath}`);
+          }
+          
           savedAudioPath = `/${relativePath}`;
           console.log(`💾 Saved audio: ${audioFilename} -> ${savedAudioPath} (${(buffer.length / 1024).toFixed(1)}KB)`);
           
