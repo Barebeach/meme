@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { VideoPlayer, unlockAllVideos } from '../components/VideoPlayer'
-import { initSpeechSynthesis, speak, stopSpeech, getVoices } from '../utils/speechSynthesis'
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : window.location.origin;
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -43,6 +42,7 @@ function Home() {
   const isPlayingAudioRef = useRef(false);
   const lastMessageTimeRef = useRef(0);
   const currentAudioRef = useRef(null);
+  const audioElementRef = useRef(null); // HTML5 audio element for mobile
   
   const getVideoForEmotion = (videoMap, emotion, isHost) => {
     if (isHost) {
@@ -180,11 +180,29 @@ function Home() {
 
     console.log(`🔊 PREPARING: ${msg.user}`);
 
-    // MOBILE: Use Web Speech API (browser TTS) - ALWAYS works!
-    if (isMobile) {
-      console.log('📱 Mobile: Using Text-to-Speech (no audio files needed!)');
+    // MOBILE: Use HTML5 <audio> element instead of Audio API
+    if (isMobile && audioElementRef.current) {
+      console.log('📱 Mobile: Using HTML5 audio element');
       
       try {
+        if (!msg.audioPath) {
+          console.error(`❌ No audio path provided for ${msg.user}`);
+          isPlayingAudioRef.current = false;
+          if (audioQueueRef.current.length > 0) {
+            processAudioQueue();
+          }
+          return;
+        }
+        
+        console.log(`⚡ MOBILE: Loading audio: ${msg.audioPath}`);
+        
+        const audioElement = audioElementRef.current;
+        const audioUrl = `${API_URL}${msg.audioPath}`;
+        
+        // Set source on HTML5 element
+        audioElement.src = audioUrl;
+        audioElement.load();
+        
         // Switch video immediately
         const newSpeaker = msg.isGuest ? 'Pepe' : msg.isHost ? 'Mr Cock' : null;
         const isHost = msg.isHost || false;
@@ -200,25 +218,56 @@ function Home() {
           setCurrentQuestion(null);
         }
         
-        // Speak the text using browser TTS
-        await speak(msg.message, { speaker: msg.user });
-        
-        console.log(`✅ Finished speaking: ${msg.user}`);
-        
-        // Clear question if guest finished
-        if (msg.isGuest && currentQuestion) {
-          setCurrentQuestion(null);
-        }
-        
-        // Clear speaker if no more in queue
-        setTimeout(() => {
-          if (!isPlayingAudioRef.current) {
-            setCurrentSpeaker(null);
-          }
-        }, 100);
+        // Wait for audio to be ready and play
+        await new Promise((resolve) => {
+          const onCanPlay = () => {
+            console.log(`✅ Mobile: Audio ready, playing...`);
+            audioElement.play().then(() => {
+              console.log(`🎵 Mobile: Playing ${msg.user}`);
+            }).catch(err => {
+              console.error('❌ Mobile play error:', err);
+              setShowPlayButton(true);
+            });
+          };
+          
+          const onEnded = () => {
+            console.log(`✅ Mobile: Finished playing ${msg.user}`);
+            
+            // Clear question if guest finished
+            if (msg.isGuest && currentQuestion) {
+              setCurrentQuestion(null);
+            }
+            
+            // Clear speaker if no more in queue
+            setTimeout(() => {
+              if (!isPlayingAudioRef.current) {
+                setCurrentSpeaker(null);
+              }
+            }, 100);
+            
+            resolve();
+          };
+          
+          const onError = (e) => {
+            console.error(`❌ Mobile audio error:`, e);
+            resolve();
+          };
+          
+          audioElement.addEventListener('canplay', onCanPlay, { once: true });
+          audioElement.addEventListener('ended', onEnded, { once: true });
+          audioElement.addEventListener('error', onError, { once: true });
+          
+          // Timeout fallback
+          setTimeout(() => {
+            audioElement.removeEventListener('canplay', onCanPlay);
+            audioElement.removeEventListener('ended', onEnded);
+            audioElement.removeEventListener('error', onError);
+            resolve();
+          }, 30000);
+        });
         
       } catch (error) {
-        console.error('❌ TTS error:', error);
+        console.error('❌ Mobile audio error:', error);
       }
       
       isPlayingAudioRef.current = false;
@@ -462,26 +511,22 @@ function Home() {
       return;
     }
     
-    console.log('🔓 Unlocking audio for mobile...');
+    console.log('🔓 Unlocking audio...');
     
-    // Mobile: Initialize Speech Synthesis (browser TTS)
-    if (isMobile) {
-      console.log('📱 Mobile: Initializing Web Speech API...');
-      const ttsAvailable = initSpeechSynthesis();
-      if (ttsAvailable) {
-        console.log('✅ Text-to-Speech ready!');
-        
-        // Load voices (some browsers need a delay)
-        setTimeout(() => {
-          const voices = getVoices();
-          console.log(`🎤 Available voices: ${voices.length}`);
-          if (voices.length > 0) {
-            console.log(`   Using: ${voices[0].name}`);
-          }
-        }, 100);
+    // Mobile: Try to play the HTML5 audio element to unlock it
+    if (isMobile && audioElementRef.current) {
+      console.log('📱 Mobile: Attempting to unlock HTML5 audio element...');
+      try {
+        // Load a silent audio to unlock
+        audioElementRef.current.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+        await audioElementRef.current.play();
+        audioElementRef.current.pause();
+        audioElementRef.current.src = '';
+        console.log('✅ Mobile: Audio element unlocked!');
+      } catch (err) {
+        console.log('⚠️ Audio unlock attempt (some browsers require multiple interactions)');
       }
     } else {
-      // Desktop: Use the old audio unlock method
       await unlockAllVideos();
     }
     
@@ -879,6 +924,12 @@ function Home() {
 
   return (
     <>
+      {/* Hidden HTML5 audio element for mobile - much more reliable than Audio API */}
+      <audio 
+        ref={audioElementRef}
+        preload="auto"
+        style={{ display: 'none' }}
+      />
 
       {episodeStarted && (
         <div className="live-badge">
