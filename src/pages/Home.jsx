@@ -394,12 +394,17 @@ function Home() {
   }, [messages]);
 
   const handleUnlock = async () => {
-    if (audioUnlocked) return;
+    console.log('🔓🔓🔓 UNLOCK BUTTON TAPPED/CLICKED! 🔓🔓🔓');
+    if (audioUnlocked) {
+      console.log('⚠️ Audio already unlocked, skipping...');
+      return;
+    }
     
     console.log('🔓 Unlocking audio for mobile...');
     await unlockAllVideos();
     setAudioUnlocked(true);
     setShowPlayButton(false);
+    console.log('✅ setAudioUnlocked(true) called');
     
     // If there are items in the audio queue, start processing them NOW
     if (audioQueueRef.current.length > 0 && !isPlayingAudioRef.current) {
@@ -877,6 +882,11 @@ function Home() {
                     <div 
                     className="audio-unlock-prompt"
                     onClick={showPlayButton ? handleManualPlay : handleUnlock}
+                    onTouchStart={(e) => {
+                      e.preventDefault();
+                      const handler = showPlayButton ? handleManualPlay : handleUnlock;
+                      handler();
+                    }}
                     style={{
                       position: 'absolute',
                       top: '50%',
@@ -884,29 +894,34 @@ function Home() {
                       transform: 'translate(-50%, -50%)',
                       background: 'rgba(0, 0, 0, 0.95)',
                       color: '#00ff41',
-                      padding: '30px 50px',
+                      padding: '40px 60px',
                       borderRadius: '20px',
-                      border: '3px solid #00ff41',
-                      fontSize: '24px',
+                      border: '4px solid #00ff41',
+                      fontSize: '28px',
                       fontWeight: 'bold',
                       cursor: 'pointer',
-                      zIndex: 1000,
+                      zIndex: 9999,
                       textAlign: 'center',
                       animation: 'pulse 2s infinite',
-                      boxShadow: '0 0 30px rgba(0, 255, 65, 0.5)'
+                      boxShadow: '0 0 40px rgba(0, 255, 65, 0.8)',
+                      pointerEvents: 'auto',
+                      touchAction: 'manipulation',
+                      WebkitTapHighlightColor: 'rgba(0, 255, 65, 0.3)',
+                      userSelect: 'none',
+                      WebkitUserSelect: 'none'
                     }}
                   >
                     {showPlayButton ? (
                       <>
-                        ▶️ TAP TO PLAY AUDIO
-                        <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.9 }}>
+                        <div style={{ pointerEvents: 'none' }}>▶️ TAP TO PLAY AUDIO</div>
+                        <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.9, pointerEvents: 'none' }}>
                           Audio is ready - tap to start!
                         </div>
                       </>
                     ) : (
                       <>
-                        🔊 TAP TO ENABLE AUDIO
-                        <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.8 }}>
+                        <div style={{ pointerEvents: 'none' }}>🔊 TAP TO ENABLE AUDIO</div>
+                        <div style={{ fontSize: '14px', marginTop: '10px', opacity: 0.8, pointerEvents: 'none' }}>
                           Required for mobile playback
                         </div>
                       </>
