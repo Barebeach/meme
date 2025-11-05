@@ -39,7 +39,9 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: { 
-    origin: process.env.NODE_ENV === 'production' ? true : "http://localhost:5173",
+    origin: process.env.NODE_ENV === 'production' 
+      ? ["https://memetalk.tv", "https://www.memetalk.tv"] 
+      : "http://localhost:5173",
     methods: ["GET", "POST"],
     credentials: true
   },
@@ -54,7 +56,12 @@ const io = new Server(server, {
   httpCompression: false
 });
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production'
+    ? ["https://memetalk.tv", "https://www.memetalk.tv"]
+    : ["http://localhost:5173", "http://localhost:3001"],
+  credentials: true
+}));
 app.use(express.json());
 
 // Setup Socket.IO handlers
@@ -254,8 +261,8 @@ async function initializeServer() {
     await downloadCharacterVideos();
   }
   
-  // Start server (hardcoded to port 3001 instead of 3000)
-  const PORT = 3001;  // Hardcoded to avoid environment variable override
+  // Start server (use PORT from Railway in production, 3001 in dev)
+  const PORT = process.env.PORT || 3001;
   server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n${'='.repeat(60)}`);
     console.log(`🚀 BACKEND API SERVER: http://localhost:${PORT}`);
