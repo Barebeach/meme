@@ -12,7 +12,9 @@ function Admin() {
   const [schedule, setSchedule] = useState([]);
   const [episodes, setEpisodes] = useState([]);
   const [applications, setApplications] = useState([]);
-  const [tokenAddress, setTokenAddress] = useState('D6AQDyi8AVX7oHTdiY1MfQRfYmzjYHkfENUxx1uQpump');
+  const [tokenAddress, setTokenAddress] = useState(
+    localStorage.getItem('memetalk_token_address') || 'D6AQDyi8AVX7oHTdiY1MfQRfYmzjYHkfENUxx1uQpump'
+  );
   const [activeTab, setActiveTab] = useState('broadcast'); // broadcast, videos, schedule, episodes, applications, settings
 
   // Video upload states
@@ -819,7 +821,7 @@ function Admin() {
                 <button 
                   onClick={() => {
                     localStorage.setItem('memetalk_token_address', tokenAddress);
-                    alert('Token address saved! Restart the server for changes to take effect.');
+                    alert('✅ Token address saved! The new address will appear on the Apply page immediately.');
                   }}
                   className="admin-btn save-btn"
                 >

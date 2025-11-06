@@ -5,7 +5,7 @@ import '../styles/Apply.css';
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : window.location.origin;
 
 // Default burn settings (can be changed in admin)
-const DEFAULT_TOKEN_ADDRESS = 'D6AQDyi8AVX7oHTdiY1MfQRfYmzjYHkfENUxx1uQpump';
+const DEFAULT_FALLBACK_ADDRESS = 'D6AQDyi8AVX7oHTdiY1MfQRfYmzjYHkfENUxx1uQpump';
 const BURN_AMOUNT = 10; // 10 tokens for TESTING (change to 1000000 for production)
 
 function Apply() {
@@ -15,6 +15,11 @@ function Apply() {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [tokenBalance, setTokenBalance] = useState(0);
   const [loading, setLoading] = useState(false);
+  
+  // Get token address from localStorage or use default
+  const [tokenAddress, setTokenAddress] = useState(
+    localStorage.getItem('memetalk_token_address') || DEFAULT_FALLBACK_ADDRESS
+  );
   
   // Form state
   const [formData, setFormData] = useState({
@@ -55,7 +60,7 @@ function Apply() {
   const loadTokenBalance = async () => {
     try {
       setLoading(true);
-      const balance = await getTokenBalance(DEFAULT_TOKEN_ADDRESS);
+      const balance = await getTokenBalance(tokenAddress);
       setTokenBalance(balance);
     } catch (error) {
       console.error('Failed to load token balance:', error);
@@ -133,7 +138,7 @@ function Apply() {
 
       // Step 1: Burn tokens
       console.log('🔥 Burning tokens...');
-      const txSignature = await burnTokens(DEFAULT_TOKEN_ADDRESS, BURN_AMOUNT);
+      const txSignature = await burnTokens(tokenAddress, BURN_AMOUNT);
       console.log('✅ Tokens burned! Signature:', txSignature);
 
       // Step 2: Submit application
@@ -266,9 +271,9 @@ ${streamUrl}
               <div className="token-info-box">
                 <p className="token-info-label">🔥 Token Required to Burn:</p>
                 <div className="token-mint-address">
-                  <code>{DEFAULT_TOKEN_ADDRESS}</code>
+                  <code>{tokenAddress}</code>
                   <button 
-                    onClick={() => navigator.clipboard.writeText(DEFAULT_TOKEN_ADDRESS)}
+                    onClick={() => navigator.clipboard.writeText(tokenAddress)}
                     className="copy-btn"
                     title="Copy address"
                   >
@@ -297,9 +302,9 @@ ${streamUrl}
                 </div>
                 <div className="token-address-info">
                   <span className="token-label">Token:</span>
-                  <code className="token-address-display">{DEFAULT_TOKEN_ADDRESS.slice(0, 8)}...{DEFAULT_TOKEN_ADDRESS.slice(-6)}</code>
+                  <code className="token-address-display">{tokenAddress.slice(0, 8)}...{tokenAddress.slice(-6)}</code>
                   <button 
-                    onClick={() => navigator.clipboard.writeText(DEFAULT_TOKEN_ADDRESS)}
+                    onClick={() => navigator.clipboard.writeText(tokenAddress)}
                     className="copy-btn-small"
                     title="Copy full address"
                   >
