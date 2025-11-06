@@ -6,7 +6,7 @@ const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : window.location.
 
 // Default burn settings (can be changed in admin)
 const DEFAULT_FALLBACK_ADDRESS = 'D6AQDyi8AVX7oHTdiY1MfQRfYmzjYHkfENUxx1uQpump';
-const BURN_AMOUNT = 10; // 10 tokens for TESTING (change to 1000000 for production)
+const BURN_AMOUNT = 10000000; // 10 million tokens to book a show
 
 function Apply() {
   const { connected, publicKey, connect, burnTokens, getTokenBalance } = useWallet();
@@ -231,10 +231,17 @@ ${streamUrl}
         {/* Free Spots Schedule - Calendar View */}
         <div className="free-spots-section">
           <h2>📅 Available Show Slots</h2>
-          <p className="spots-subtitle">All shows broadcast live at 4:00 PM EST • 1 hour duration • 1M tokens to book</p>
+          <p className="spots-subtitle">All shows broadcast live at 4:00 PM EST • 1 hour duration • 10M tokens to book</p>
           
           <div className="apply-calendar-grid">
-            {schedule.filter(slot => !slot.isBooked).slice(0, 20).map((slot) => {
+            {schedule.filter(slot => {
+              const slotDate = new Date(slot.date);
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              slotDate.setHours(0, 0, 0, 0);
+              // Only show future dates (tomorrow onwards) and not booked
+              return slotDate > today && !slot.isBooked;
+            }).slice(0, 20).map((slot) => {
               const date = new Date(slot.date);
               return (
                 <div 
@@ -255,7 +262,13 @@ ${streamUrl}
             })}
           </div>
 
-          {schedule.filter(slot => !slot.isBooked).length === 0 && (
+          {schedule.filter(slot => {
+            const slotDate = new Date(slot.date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            slotDate.setHours(0, 0, 0, 0);
+            return slotDate > today && !slot.isBooked;
+          }).length === 0 && (
             <div className="no-slots-message">
               <p>🔥 All slots are currently booked! Check back soon for new availability.</p>
             </div>

@@ -57,8 +57,8 @@ function Schedule() {
       const date = new Date(slot.date);
       date.setHours(0, 0, 0, 0);
       
-      // Only show future dates (today and onwards)
-      if (date >= today) {
+      // Only show future dates (tomorrow onwards)
+      if (date > today) {
       const monthYear = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
       if (!groups[monthYear]) {
         groups[monthYear] = [];
