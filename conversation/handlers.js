@@ -1,10 +1,59 @@
 import { isQuestion, isSpam, generateUniqueId } from '../utils/validation.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const MESSAGE_COOLDOWN = 2000;
+const MAX_CHAT_HISTORY = 500; // Keep last 500 messages
+const CHAT_HISTORY_FILE = path.join(process.cwd(), 'chat-history.json');
+
 const userLastMessage = new Map();
 export const connectedUsers = new Map();
 export const conversationQueue = [];
 export const questions = [];
+
+// Load chat history from file
+let chatHistory = [];
+try {
+  if (fs.existsSync(CHAT_HISTORY_FILE)) {
+    const data = fs.readFileSync(CHAT_HISTORY_FILE, 'utf8');
+    chatHistory = JSON.parse(data);
+    console.log(`📜 Loaded ${chatHistory.length} messages from chat history`);
+  }
+} catch (error) {
+  console.error('❌ Error loading chat history:', error);
+  chatHistory = [];
+}
+
+// Save chat history to file
+function saveChatHistory() {
+  try {
+    // Keep only last MAX_CHAT_HISTORY messages
+    if (chatHistory.length > MAX_CHAT_HISTORY) {
+      chatHistory = chatHistory.slice(-MAX_CHAT_HISTORY);
+    }
+    fs.writeFileSync(CHAT_HISTORY_FILE, JSON.stringify(chatHistory, null, 2));
+  } catch (error) {
+    console.error('❌ Error saving chat history:', error);
+  }
+}
+
+// Clear old messages periodically (keep only messages from today)
+setInterval(() => {
+  const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+  const originalLength = chatHistory.length;
+  chatHistory = chatHistory.filter(msg => {
+    const msgTime = msg.timestampMs || 0;
+    return msgTime > oneDayAgo;
+  });
+  if (chatHistory.length < originalLength) {
+    console.log(`🧹 Cleaned up ${originalLength - chatHistory.length} old messages`);
+    saveChatHistory();
+  }
+}, 60 * 60 * 1000); // Check every hour
 
 /**
  * Setup Socket.IO chat handlers
@@ -13,6 +62,10 @@ export const questions = [];
 export function setupChatHandlers(io) {
   io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
+    
+    // Send chat history to newly connected user
+    console.log(`📜 Sending ${chatHistory.length} messages to new user`);
+    socket.emit('chat_history', chatHistory);
     
     socket.on('join', (username) => {
       console.log(`👤 User joining - Socket: ${socket.id}, Username: ${username}`);
@@ -37,13 +90,20 @@ export function setupChatHandlers(io) {
       const displayCount = connectedUsers.size + 17;
       io.emit('user_count', displayCount);
       
-      io.emit('message', {
+      const joinMsg = {
         id: generateUniqueId(),
         user: 'System',
         message: `${username} joined the chat`,
         timestamp: 'Just now',
+        timestampMs: Date.now(),
         isSystem: true
-      });
+      };
+      
+      io.emit('message', joinMsg);
+      
+      // Save join message to history
+      chatHistory.push(joinMsg);
+      saveChatHistory();
     });
     
     socket.on('send_message', async (data) => {
@@ -92,6 +152,7 @@ export function setupChatHandlers(io) {
         user: user.username,
         message: message,
         timestamp: 'Just now',
+        timestampMs: now,
         isYou: false,
         userColor: user.color || '#8b5cf6'
       };
@@ -100,6 +161,10 @@ export function setupChatHandlers(io) {
       io.emit('message', userMsg);
       
       io.emit('chat_message_recorded', userMsg);
+      
+      // Save message to chat history
+      chatHistory.push(userMsg);
+      saveChatHistory();
       
       const questionCheck = isQuestion(message);
       console.log(`Is question: ${questionCheck.isQuestion} (target: ${questionCheck.target}) - "${message}"`);
@@ -140,13 +205,20 @@ export function setupChatHandlers(io) {
         
         io.emit('get_broadcast_state');
         
-        io.emit('message', {
+        const systemMsg = {
           id: generateUniqueId(),
           user: 'System',
           message: ackMessage,
           timestamp: 'Just now',
+          timestampMs: Date.now(),
           isSystem: true
-        });
+        };
+        
+        io.emit('message', systemMsg);
+        
+        // Save system message to history
+        chatHistory.push(systemMsg);
+        saveChatHistory();
       } else {
         console.log('Not a question, just chat');
       }

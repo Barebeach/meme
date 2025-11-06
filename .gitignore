@@ -6,3 +6,4 @@ dist
 public/recordings/*
 public/temp/*
 public/episodes/*
+chat-history.json

@@ -500,6 +500,15 @@ function Home() {
       console.log('🔄 Socket.IO Transport Upgraded to:', transport.name);
     });
     
+    // Listen for chat history on connect
+    newSocket.on('chat_history', (history) => {
+      console.log(`📜 Received chat history: ${history.length} messages`);
+      setMessages(history.map(msg => ({
+        ...msg,
+        id: msg.id || `${msg.user}-${msg.timestampMs || Date.now()}-${Math.random()}`
+      })));
+    });
+    
     setSocket(newSocket);
 
     // Listen for USER messages ONLY (not podcast dialogue)
