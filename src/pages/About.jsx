@@ -79,7 +79,7 @@ function About() {
             <div className="benefit-card">
               <div className="benefit-icon">📉</div>
               <h3>Reduces Supply</h3>
-              <p>Every burn permanently reduces your token's circulating supply, benefiting all holders</p>
+              <p>Every burn permanently reduces the platform native token supply, benefiting all holders. Your appearance helps our holders by reducing supply while you gain massive exposure!</p>
             </div>
             <div className="benefit-card">
               <div className="benefit-icon">🎯</div>

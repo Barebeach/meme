@@ -6,7 +6,7 @@ const API_URL = import.meta.env.DEV ? 'http://localhost:3001' : window.location.
 
 // Default burn settings (can be changed in admin)
 const DEFAULT_FALLBACK_ADDRESS = 'D6AQDyi8AVX7oHTdiY1MfQRfYmzjYHkfENUxx1uQpump';
-const BURN_AMOUNT = 10000000; // 10 million tokens to book a show
+const BURN_AMOUNT = 500000; // 500k tokens to book a show
 
 function Apply() {
   const { connected, publicKey, connect, burnTokens, getTokenBalance } = useWallet();
@@ -231,7 +231,7 @@ ${streamUrl}
         {/* Free Spots Schedule - Calendar View */}
         <div className="free-spots-section">
           <h2>📅 Available Show Slots</h2>
-          <p className="spots-subtitle">All shows broadcast live at 4:00 PM EST • 1 hour duration • 10M tokens to book</p>
+          <p className="spots-subtitle">All shows broadcast live at 4:00 PM EST • 1 hour duration • 500K tokens to book</p>
           
           <div className="apply-calendar-grid">
             {schedule.filter(slot => {
