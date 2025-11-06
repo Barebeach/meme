@@ -48,7 +48,7 @@ function About() {
             <div className="step-clean">
               <div className="step-icon">🔥</div>
               <h3>Burn Tokens to Book</h3>
-              <p>Burn 1 million of your platform's native tokens to secure a live interview slot</p>
+              <p>Burn 500K MemeTalk.TV tokens to secure your live interview slot</p>
             </div>
             <div className="step-clean">
               <div className="step-icon">🎙️</div>
@@ -74,22 +74,22 @@ function About() {
             <div className="benefit-card">
               <div className="benefit-icon">💎</div>
               <h3>Commitment & Quality</h3>
-              <p>Burning tokens shows you're serious about your project and ensures only quality guests appear</p>
+              <p>Burning MemeTalk.TV tokens shows you're serious about your project and ensures only quality guests appear</p>
             </div>
             <div className="benefit-card">
               <div className="benefit-icon">📉</div>
-              <h3>Reduces Supply</h3>
-              <p>Every burn permanently reduces the platform native token supply, benefiting all holders. Your appearance helps our holders by reducing supply while you gain massive exposure!</p>
+              <h3>Makes MemeTalk.TV Token Rarer</h3>
+              <p>Every burn permanently reduces MemeTalk.TV token supply, making it more valuable for all holders!</p>
             </div>
             <div className="benefit-card">
               <div className="benefit-icon">🎯</div>
               <h3>Fair Access</h3>
-              <p>No favoritism or pay-to-win. Every project follows the same rules — burn tokens, get visibility</p>
+              <p>No favoritism or pay-to-win. Every project follows the same rules — burn MemeTalk.TV tokens, get visibility</p>
             </div>
             <div className="benefit-card">
               <div className="benefit-icon">🌐</div>
-              <h3>Community Value</h3>
-              <p>Your appearance helps your holders by reducing supply while you gain massive exposure</p>
+              <h3>Win-Win for Everyone</h3>
+              <p>MemeTalk.TV token holders benefit from reduced supply, while you gain massive exposure for your meme project</p>
             </div>
           </div>
         </section>
